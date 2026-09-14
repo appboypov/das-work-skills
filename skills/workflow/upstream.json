@@ -1,0 +1,389 @@
+{
+  "sources": [
+    {
+      "name": "AI Hero skills",
+      "repository": "https://github.com/mattpocock/skills",
+      "revision": "3cca18b368ae95cdbdebbff572ccafa662551015",
+      "license": "LICENSES/aihero.txt"
+    },
+    {
+      "name": "OpenSpec",
+      "repository": "https://github.com/Fission-AI/OpenSpec",
+      "revision": "9d4e5974e5c0d9a09b9c6c1e1eb0975e80ec4461",
+      "runtime": "1.13.0",
+      "license": "LICENSES/openspec.txt"
+    }
+  ],
+  "skills": [
+    {
+      "name": "ask-skuddy",
+      "source": "skills/engineering/ask-matt/SKILL.md"
+    },
+    {
+      "name": "code-review",
+      "source": "skills/engineering/code-review/SKILL.md"
+    },
+    {
+      "name": "codebase-design",
+      "source": "skills/engineering/codebase-design/SKILL.md"
+    },
+    {
+      "name": "diagnosing-bugs",
+      "source": "skills/engineering/diagnosing-bugs/SKILL.md"
+    },
+    {
+      "name": "domain-modeling",
+      "source": "skills/engineering/domain-modeling/SKILL.md"
+    },
+    {
+      "name": "grill-with-docs",
+      "source": "skills/engineering/grill-with-docs/SKILL.md"
+    },
+    {
+      "name": "implement",
+      "source": "skills/engineering/implement/SKILL.md"
+    },
+    {
+      "name": "improve-codebase-architecture",
+      "source": "skills/engineering/improve-codebase-architecture/SKILL.md"
+    },
+    {
+      "name": "prototype",
+      "source": "skills/engineering/prototype/SKILL.md"
+    },
+    {
+      "name": "research",
+      "source": "skills/engineering/research/SKILL.md"
+    },
+    {
+      "name": "resolving-merge-conflicts",
+      "source": "skills/engineering/resolving-merge-conflicts/SKILL.md"
+    },
+    {
+      "name": "setup-work-skills",
+      "source": "skills/engineering/setup-matt-pocock-skills/SKILL.md"
+    },
+    {
+      "name": "tdd",
+      "source": "skills/engineering/tdd/SKILL.md"
+    },
+    {
+      "name": "to-spec",
+      "source": "skills/engineering/to-spec/SKILL.md"
+    },
+    {
+      "name": "to-tickets",
+      "source": "skills/engineering/to-tickets/SKILL.md"
+    },
+    {
+      "name": "triage",
+      "source": "skills/engineering/triage/SKILL.md"
+    },
+    {
+      "name": "wayfinder",
+      "source": "skills/engineering/wayfinder/SKILL.md"
+    },
+    {
+      "name": "wizard",
+      "source": "skills/engineering/wizard/SKILL.md"
+    },
+    {
+      "name": "implement-spec",
+      "source": "skills/in-progress/implement-spec/SKILL.md"
+    },
+    {
+      "name": "loop-me",
+      "source": "skills/in-progress/loop-me/SKILL.md"
+    },
+    {
+      "name": "retro",
+      "source": "skills/in-progress/retro/SKILL.md"
+    },
+    {
+      "name": "setup-ts-deep-modules",
+      "source": "skills/in-progress/setup-ts-deep-modules/SKILL.md"
+    },
+    {
+      "name": "writing-beats",
+      "source": "skills/in-progress/writing-beats/SKILL.md"
+    },
+    {
+      "name": "writing-fragments",
+      "source": "skills/in-progress/writing-fragments/SKILL.md"
+    },
+    {
+      "name": "writing-shape",
+      "source": "skills/in-progress/writing-shape/SKILL.md"
+    },
+    {
+      "name": "migrate-to-shoehorn",
+      "source": "skills/misc/migrate-to-shoehorn/SKILL.md"
+    },
+    {
+      "name": "scaffold-exercises",
+      "source": "skills/misc/scaffold-exercises/SKILL.md"
+    },
+    {
+      "name": "setup-pre-commit",
+      "source": "skills/misc/setup-pre-commit/SKILL.md"
+    },
+    {
+      "name": "grill-me",
+      "source": "skills/productivity/grill-me/SKILL.md"
+    },
+    {
+      "name": "grilling",
+      "source": "skills/productivity/grilling/SKILL.md"
+    },
+    {
+      "name": "handoff",
+      "source": "skills/productivity/handoff/SKILL.md"
+    },
+    {
+      "name": "teach",
+      "source": "skills/productivity/teach/SKILL.md"
+    },
+    {
+      "name": "to-questionnaire",
+      "source": "skills/productivity/to-questionnaire/SKILL.md"
+    },
+    {
+      "name": "wait-what",
+      "source": "skills/productivity/wait-what/SKILL.md"
+    },
+    {
+      "name": "writing-for-agents",
+      "source": "skills/productivity/writing-for-agents/SKILL.md"
+    },
+    {
+      "name": "openspec-apply-change",
+      "source": "skills/openspec-apply-change/SKILL.md"
+    },
+    {
+      "name": "openspec-explore",
+      "source": "skills/openspec-explore/SKILL.md"
+    },
+    {
+      "name": "openspec-verify-change",
+      "source": "skills/openspec-verify-change/SKILL.md"
+    },
+    {
+      "name": "openspec-new-change",
+      "source": "skills/openspec-new-change/SKILL.md"
+    },
+    {
+      "name": "openspec-update-change",
+      "source": "skills/openspec-update-change/SKILL.md"
+    },
+    {
+      "name": "openspec-archive-change",
+      "source": "skills/openspec-archive-change/SKILL.md"
+    },
+    {
+      "name": "openspec-onboard",
+      "source": "skills/openspec-onboard/SKILL.md"
+    },
+    {
+      "name": "openspec-propose",
+      "source": "skills/openspec-propose/SKILL.md"
+    },
+    {
+      "name": "openspec-bulk-archive-change",
+      "source": "skills/openspec-bulk-archive-change/SKILL.md"
+    },
+    {
+      "name": "openspec-continue-change",
+      "source": "skills/openspec-continue-change/SKILL.md"
+    },
+    {
+      "name": "openspec-sync-specs",
+      "source": "skills/openspec-sync-specs/SKILL.md"
+    },
+    {
+      "name": "openspec-ff-change",
+      "source": "skills/openspec-ff-change/SKILL.md"
+    }
+  ],
+  "templates": [
+    {
+      "source": "a-story.md",
+      "sha256": "a0dcc16a2ac9118f68e776895c5035408f0ba917a1a2762b08719d4a941308ef"
+    },
+    {
+      "source": "a-bug.md",
+      "sha256": "4763b50590232044da67aadf45c8762292a950b0a9c9c891ed553ddcddb0cd94"
+    },
+    {
+      "source": "an-enhancement.md",
+      "sha256": "a1c79a99c7a64e260ff91b1260e1adb93d1cccf7d539fc5cc4c6ccc58d658065"
+    },
+    {
+      "source": "a-refactor.md",
+      "sha256": "902b2b3431f5f23f65374c12304852ba6edd2bd83aa1b97054f199f14ba250b9"
+    },
+    {
+      "source": "a-chore.md",
+      "sha256": "1541e5d1ba959be971c85f5805f9da98fbc9fdc2dfaf3fbfea76989e359ddd6f"
+    },
+    {
+      "source": "a-backend-task.md",
+      "sha256": "bf9d612bbb2a49d172c8142824cbe7a67decd681be907f3bd0392fb7844032cc"
+    },
+    {
+      "source": "a-components-task.md",
+      "sha256": "704b6bffc1f44582e2f541842bb8fd06f3088700fd701e7f79b454a83ef2031b"
+    },
+    {
+      "source": "a-content-task.md",
+      "sha256": "1de7573a3cc4c375e0949912af1eebda6dd71fec8f61edc519704077d22a5449"
+    },
+    {
+      "source": "a-data-task.md",
+      "sha256": "f9c55c8d60d5f18041e34c2d3e6753dfc1b85f4768c60031bf8e74cb5dc08892"
+    },
+    {
+      "source": "a-frontend-task.md",
+      "sha256": "704b6bffc1f44582e2f541842bb8fd06f3088700fd701e7f79b454a83ef2031b"
+    },
+    {
+      "source": "a-mockup-task.md",
+      "sha256": "17b767a0b2e7aad089937af84093649042c758d7342f11b7d2c6f4120c641c2e"
+    },
+    {
+      "source": "a-poc-task.md",
+      "sha256": "bab2858f587c1fac8f005fbe338a53dbb02e9bba83e2a3f89fde8bef1ef6a5b8"
+    },
+    {
+      "source": "a-prototype-task.md",
+      "sha256": "94d87a96f3ad97ea0b417b50a95fa28412c428c6d8a28b4c090bb60ad617254e"
+    },
+    {
+      "source": "a-skills-task.md",
+      "sha256": "1f6d14a06d211bb09889cef132670d239c98b2b10c10b9aa03ffd290aa155cf6"
+    },
+    {
+      "source": "a-task.md",
+      "sha256": "41b448eae80328bf2e0f882a89a42a2646f1d588b1b390c89b2da79548dd3e61"
+    },
+    {
+      "source": "a-tooling-task.md",
+      "sha256": "9fef78e78c80bb639f8a7213e261ec87071baf74ac8b426499d88758cef22bde"
+    },
+    {
+      "source": "a-brainstorm-session-todo.md",
+      "sha256": "410521082ec0009657a608ae78f1196cbc0729fd246d2628701f4e6ed0337392"
+    },
+    {
+      "source": "a-build-backend-session-todo.md",
+      "sha256": "2c909e7a335c908e0bd9e447a107b221c1f3cfbe455ec08a2274c793aa1cb1cd"
+    },
+    {
+      "source": "a-build-components-session-todo.md",
+      "sha256": "0f4200098d55328805301e99673887c4da78d4f1282da5c2901e4aee22ebe929"
+    },
+    {
+      "source": "a-build-content-session-todo.md",
+      "sha256": "90dcc5499103a73b2a90074083dd9e179500e92333bde84ee46a401acfa66a33"
+    },
+    {
+      "source": "a-build-data-session-todo.md",
+      "sha256": "79feb3801b9cb50e5f58853a38c0c266004032b1ca839c1e1fade157ab477c34"
+    },
+    {
+      "source": "a-build-frontend-session-todo.md",
+      "sha256": "73c3d024f97d1a2e8766b05203f201d50ad5937a7956f3cbaaf7420262c97011"
+    },
+    {
+      "source": "a-build-mockup-session-todo.md",
+      "sha256": "693e1825ba108b34345bad2c07a755db8a414e4a37803dc320b5ca2526fde0b0"
+    },
+    {
+      "source": "a-build-offer-session-todo.md",
+      "sha256": "dbb0ec1a3643ba01235c39fa9e837b099a874e8848f1185dfed2d3296ac72312"
+    },
+    {
+      "source": "a-build-prototype-session-todo.md",
+      "sha256": "429cfae695f5dace5960ad0bbba718d79101d67cbf12413d86d4862436755c01"
+    },
+    {
+      "source": "a-build-skills-session-todo.md",
+      "sha256": "9bbc88d6bb83de54685a66ac6710785f183c205e001d2f94dfe93b646062d4dd"
+    },
+    {
+      "source": "a-build-tooling-session-todo.md",
+      "sha256": "20b35b7fa434cfdab881bcbcec7f119db8f583a20789140daaf5d4957ddb7334"
+    },
+    {
+      "source": "a-clarify-enrichments-session-todo.md",
+      "sha256": "6f1a68de7fd541dca302c62565d299866f559d980bc9e4964093d292f6bd5069"
+    },
+    {
+      "source": "a-clarify-intent-session-todo.md",
+      "sha256": "3f8824afb70b4fca6d0b0a0a72af36907a29c51093767bc24989fbddf70890e8"
+    },
+    {
+      "source": "a-clarify-planning-session-todo.md",
+      "sha256": "747ab92ff77833b5497bfd9764fe9c6aa64de789960a04a9fa016cfe800e0784"
+    },
+    {
+      "source": "a-clarify-qa-session-todo.md",
+      "sha256": "36d7ac811fe4e2369970a5b96e47aca7e25347533ba6a8def209fb25557e760d"
+    },
+    {
+      "source": "a-clarify-sources-session-todo.md",
+      "sha256": "34d887af4e74c4128cb6c9dd41385a5a44f9cdfe6b4d582b39e6baee73fa3333"
+    },
+    {
+      "source": "a-clarify-specs-session-todo.md",
+      "sha256": "3b6e70bb7da5b2bbd9d013e9eeaa0f26c3d775d37786f4923f48d066ce0d02ed"
+    },
+    {
+      "source": "a-clarify-tasks-session-todo.md",
+      "sha256": "2a8b60d5724c8ef2122954dc7fb5c0ffbdb9e51228ee8c5f7fd31f41852f831b"
+    },
+    {
+      "source": "a-code-review-todo.md",
+      "sha256": "ec9de5707b2f1fea861f7e135c527d615a6fb1f4932622fbe52f564a8949d407"
+    },
+    {
+      "source": "a-decision-gate-todo.md",
+      "sha256": "d538cdaecc4afe5a1340db037d78a06010fc27a023082d929e7573e983b38a5d"
+    },
+    {
+      "source": "a-design-review-todo.md",
+      "sha256": "865718ffa482aa7a98efe9a2ef2e581f57211bf575512fb968649b74de307cc9"
+    },
+    {
+      "source": "a-document-review-todo.md",
+      "sha256": "cd99dda0d78ebcfef34036b32690515f4b17d3f4db8d6d338cf8000d21c21e26"
+    },
+    {
+      "source": "a-human-action-todo.md",
+      "sha256": "d4564a9ed2e3bea91390436fad38f7dfb94f4d636a9df2b65b3e49f377ce7006"
+    },
+    {
+      "source": "a-human-communication-todo.md",
+      "sha256": "1426e18dc70a7b63ffb3810951e191b5102203adf5e20cbbdd1ba0e8b4f44634"
+    },
+    {
+      "source": "a-review-session-todo.md",
+      "sha256": "b1325ea87a0bfd1ca9e143ef3b88cfb597ef71d2edbf1dd52bfe82a949ce7e22"
+    },
+    {
+      "source": "a-test-session-todo.md",
+      "sha256": "32ece5320bc7bef17da2d090754b425acaafb33dd680704daae60604c735a22b"
+    },
+    {
+      "source": "a-todo.md",
+      "sha256": "425dd95b85ba6a4266947074854f2bc7aca28fb59484780986200fb978847376"
+    },
+    {
+      "source": "an-acceptance-test-todo.md",
+      "sha256": "df2bcc9c05350dc19db9fb3caf7998f8d81a65e5ecfb0d75edc42696dc72f5c7"
+    },
+    {
+      "source": "an-in-person-meeting-todo.md",
+      "sha256": "69e96b6fb8c356fa5ea5baea953f929a0cfcf25014aa664fb1e8117074ede131"
+    }
+  ]
+}

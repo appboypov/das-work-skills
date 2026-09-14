@@ -1,0 +1,954 @@
+{
+  "runtime": "1.13.0",
+  "execution": "Main agent directly; isolated temporary XDG configuration and data directories",
+  "checks": [
+    {
+      "check": "Bundle integrity",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "cwd": "<repository>",
+      "exit": 0,
+      "stdout": "\n> client-skills@1.0.0 check\n> node scripts/check.mjs\n\n{\n  \"skills\": 51,\n  \"templates\": 45,\n  \"files\": 119,\n  \"localReferences\": \"valid\",\n  \"portableMetadata\": \"valid\",\n  \"schemaTemplates\": \"present\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "check": "First installation",
+      "command": [
+        "node",
+        "<repository>/scripts/install.mjs",
+        "--skills-dir",
+        "<smoke-directory>/skills",
+        "--planning-root",
+        "<smoke-directory>/local",
+        "--select-schema"
+      ],
+      "cwd": "<repository>",
+      "exit": 1,
+      "stdout": "",
+      "stderr": "Destination symlink requires an explicit real path: /var\n"
+    },
+    {
+      "check": "First installation",
+      "command": [
+        "node",
+        "<repository>/scripts/install.mjs",
+        "--skills-dir",
+        "<smoke-directory>/skills",
+        "--planning-root",
+        "<smoke-directory>/local",
+        "--select-schema"
+      ],
+      "cwd": "<repository>",
+      "exit": 0,
+      "stdout": "{\n  \"skillsDirectory\": \"<smoke-directory>/skills\",\n  \"planningRoot\": \"<smoke-directory>/local\",\n  \"schema\": \"client-work\",\n  \"files\": 128,\n  \"changed\": 128\n}\n",
+      "stderr": ""
+    },
+    {
+      "check": "Idempotent reinstallation",
+      "command": [
+        "node",
+        "<repository>/scripts/install.mjs",
+        "--skills-dir",
+        "<smoke-directory>/skills",
+        "--planning-root",
+        "<smoke-directory>/local",
+        "--select-schema"
+      ],
+      "cwd": "<repository>",
+      "exit": 0,
+      "stdout": "{\n  \"skillsDirectory\": \"<smoke-directory>/skills\",\n  \"planningRoot\": \"<smoke-directory>/local\",\n  \"schema\": \"client-work\",\n  \"files\": 128,\n  \"changed\": 0\n}\n",
+      "stderr": ""
+    },
+    {
+      "check": "Pinned runtime",
+      "command": [
+        "node",
+        "<repository>/node_modules/@fission-ai/openspec/bin/openspec.js",
+        "--version"
+      ],
+      "cwd": "<repository>",
+      "exit": 0,
+      "stdout": "1.13.0\n",
+      "stderr": ""
+    },
+    {
+      "check": "Native schema validation",
+      "command": [
+        "node",
+        "<repository>/node_modules/@fission-ai/openspec/bin/openspec.js",
+        "schema",
+        "validate",
+        "client-work",
+        "--json"
+      ],
+      "cwd": "<smoke-directory>/local",
+      "exit": 0,
+      "stdout": "{\n  \"name\": \"client-work\",\n  \"path\": \"<smoke-directory>/local/openspec/schemas/client-work\",\n  \"valid\": true,\n  \"issues\": []\n}\n",
+      "stderr": "Note: Schema commands are experimental and may change.\n"
+    },
+    {
+      "check": "Create real change",
+      "command": [
+        "node",
+        "<repository>/node_modules/@fission-ai/openspec/bin/openspec.js",
+        "new",
+        "change",
+        "format-greeting"
+      ],
+      "cwd": "<smoke-directory>/local",
+      "exit": 0,
+      "stdout": "Created change 'format-greeting' at openspec/changes/format-greeting/\nSchema: client-work\nNext: openspec status --change format-greeting\n",
+      "stderr": "- Creating change 'format-greeting' with schema 'spec-driven'...\n"
+    },
+    {
+      "check": "Read planning status",
+      "command": [
+        "node",
+        "<repository>/node_modules/@fission-ai/openspec/bin/openspec.js",
+        "status",
+        "--change",
+        "format-greeting",
+        "--json"
+      ],
+      "cwd": "<smoke-directory>/local",
+      "exit": 0,
+      "stdout": "{\n  \"changeName\": \"format-greeting\",\n  \"schemaName\": \"client-work\",\n  \"planningHome\": {\n    \"kind\": \"repo\",\n    \"root\": \"<smoke-directory>/local\",\n    \"changesDir\": \"<smoke-directory>/local/openspec/changes\",\n    \"defaultSchema\": \"spec-driven\"\n  },\n  \"changeRoot\": \"<smoke-directory>/local/openspec/changes/format-greeting\",\n  \"artifactPaths\": {\n    \"proposal\": {\n      \"outputPath\": \"proposal.md\",\n      \"resolvedOutputPath\": \"<smoke-directory>/local/openspec/changes/format-greeting/proposal.md\",\n      \"existingOutputPaths\": []\n    },\n    \"specs\": {\n      \"outputPath\": \"specs/**/*.md\",\n      \"resolvedOutputPath\": \"<smoke-directory>/local/openspec/changes/format-greeting/specs/**/*.md\",\n      \"existingOutputPaths\": []\n    },\n    \"design\": {\n      \"outputPath\": \"design.md\",\n      \"resolvedOutputPath\": \"<smoke-directory>/local/openspec/changes/format-greeting/design.md\",\n      \"existingOutputPaths\": []\n    },\n    \"tasks\": {\n      \"outputPath\": \"tasks.md\",\n      \"resolvedOutputPath\": \"<smoke-directory>/local/openspec/changes/format-greeting/tasks.md\",\n      \"existingOutputPaths\": []\n    }\n  },\n  \"isPlanningComplete\": false,\n  \"isComplete\": false,\n  \"applyRequires\": [\n    \"tasks\"\n  ],\n  \"nextSteps\": [\n    \"Run openspec instructions proposal --change \\\"format-greeting\\\" --json before writing that artifact.\"\n  ],\n  \"actionContext\": {\n    \"mode\": \"repo-local\",\n    \"sourceOfTruth\": \"repo\",\n    \"planningArtifacts\": [\n      \"proposal\",\n      \"specs\",\n      \"design\",\n      \"tasks\"\n    ],\n    \"linkedContext\": [],\n    \"allowedEditRoots\": [\n      \"<smoke-directory>/local\"\n    ],\n    \"requiresAffectedAreaSelection\": false,\n    \"constraints\": [\n      \"Repo-local change artifacts and implementation edits are scoped to this project.\"\n    ]\n  },\n  \"artifacts\": [\n    {\n      \"id\": \"proposal\",\n      \"outputPath\": \"proposal.md\",\n      \"status\": \"ready\",\n      \"requires\": []\n    },\n    {\n      \"id\": \"specs\",\n      \"outputPath\": \"specs/**/*.md\",\n      \"status\": \"blocked\",\n      \"requires\": [\n        \"proposal\"\n      ],\n      \"missingDeps\": [\n        \"proposal\"\n      ]\n    },\n    {\n      \"id\": \"design\",\n      \"outputPath\": \"design.md\",\n      \"status\": \"blocked\",\n      \"requires\": [\n        \"proposal\"\n      ],\n      \"missingDeps\": [\n        \"proposal\"\n      ]\n    },\n    {\n      \"id\": \"tasks\",\n      \"outputPath\": \"tasks.md\",\n      \"status\": \"blocked\",\n      \"requires\": [\n        \"specs\",\n        \"design\"\n      ],\n      \"missingDeps\": [\n        \"specs\",\n        \"design\"\n      ]\n    }\n  ],\n  \"root\": {\n    \"path\": \"<smoke-directory>/local\",\n    \"source\": \"nearest\"\n  }\n}\n",
+      "stderr": ""
+    },
+    {
+      "check": "Blocked implementation",
+      "command": [
+        "node",
+        "<repository>/node_modules/@fission-ai/openspec/bin/openspec.js",
+        "instructions",
+        "apply",
+        "--change",
+        "format-greeting",
+        "--json"
+      ],
+      "cwd": "<smoke-directory>/local",
+      "exit": 0,
+      "stdout": "{\n  \"changeName\": \"format-greeting\",\n  \"changeDir\": \"<smoke-directory>/local/openspec/changes/format-greeting\",\n  \"schemaName\": \"client-work\",\n  \"contextFiles\": {},\n  \"progress\": {\n    \"total\": 0,\n    \"complete\": 0,\n    \"remaining\": 0\n  },\n  \"tasks\": [],\n  \"state\": \"blocked\",\n  \"missingArtifacts\": [\n    \"tasks\"\n  ],\n  \"missingPrerequisites\": [\n    \"proposal\",\n    \"specs\",\n    \"design\",\n    \"tasks\"\n  ],\n  \"instruction\": \"Cannot apply this change yet. Missing artifacts: tasks.\\nNot created yet, in build order: proposal, specs, design, tasks. Build the ones this change needs before applying - the schema says which are conditional.\\nCreate each with `openspec instructions <artifact> --change format-greeting` (`openspec status --change format-greeting` shows what is left).\",\n  \"root\": {\n    \"path\": \"<smoke-directory>/local\",\n    \"source\": \"nearest\"\n  }\n}\n",
+      "stderr": ""
+    },
+    {
+      "check": "Read proposal instructions",
+      "command": [
+        "node",
+        "<repository>/node_modules/@fission-ai/openspec/bin/openspec.js",
+        "instructions",
+        "proposal",
+        "--change",
+        "format-greeting",
+        "--json"
+      ],
+      "cwd": "<smoke-directory>/local",
+      "exit": 0,
+      "stdout": "{\n  \"changeName\": \"format-greeting\",\n  \"artifactId\": \"proposal\",\n  \"schemaName\": \"client-work\",\n  \"changeDir\": \"<smoke-directory>/local/openspec/changes/format-greeting\",\n  \"planningHome\": {\n    \"kind\": \"repo\",\n    \"root\": \"<smoke-directory>/local\",\n    \"changesDir\": \"<smoke-directory>/local/openspec/changes\",\n    \"defaultSchema\": \"spec-driven\"\n  },\n  \"outputPath\": \"proposal.md\",\n  \"resolvedOutputPath\": \"<smoke-directory>/local/openspec/changes/format-greeting/proposal.md\",\n  \"existingOutputPaths\": [],\n  \"description\": \"Outcome and affected capabilities\",\n  \"instruction\": \"Read the installed workflow skill. Establish the problem, desired outcome and scope from the request and source evidence.\\nUse grilling and domain-modeling when the outcome or vocabulary needs clarification. Reuse settled answers.\\nIdentify existing capabilities with openspec list --specs and read relevant specs with openspec show <id> --type spec.\\nCarry the selected --store flag. Preserve existing capability paths.\\nList introduced and modified capabilities and affected code repositories. Link related Linear entities where they exist.\\nA change with no externally visible specification change declares skip_specs: true in .openspec.yaml.\\nRecord the actual reason; invent no requirements to satisfy validation.\\n\",\n  \"template\": \"## Why\\n\\nDescribe the problem and desired outcome.\\n\\n## What changes\\n\\nState the agreed scope.\\n\\n## Capabilities\\n\\n### New capabilities\\n\\n### Modified capabilities\\n\\n## Impact\\n\\nName affected repositories and external contracts.\\n\\n## Linear\\n\\nLink related work when available.\\n\",\n  \"dependencies\": [],\n  \"unlocks\": [\n    \"specs\",\n    \"design\"\n  ],\n  \"root\": {\n    \"path\": \"<smoke-directory>/local\",\n    \"source\": \"nearest\"\n  }\n}\n",
+      "stderr": ""
+    },
+    {
+      "check": "Read specs instructions",
+      "command": [
+        "node",
+        "<repository>/node_modules/@fission-ai/openspec/bin/openspec.js",
+        "instructions",
+        "specs",
+        "--change",
+        "format-greeting",
+        "--json"
+      ],
+      "cwd": "<smoke-directory>/local",
+      "exit": 0,
+      "stdout": "{\n  \"changeName\": \"format-greeting\",\n  \"artifactId\": \"specs\",\n  \"schemaName\": \"client-work\",\n  \"changeDir\": \"<smoke-directory>/local/openspec/changes/format-greeting\",\n  \"planningHome\": {\n    \"kind\": \"repo\",\n    \"root\": \"<smoke-directory>/local\",\n    \"changesDir\": \"<smoke-directory>/local/openspec/changes\",\n    \"defaultSchema\": \"spec-driven\"\n  },\n  \"outputPath\": \"specs/**/*.md\",\n  \"resolvedOutputPath\": \"<smoke-directory>/local/openspec/changes/format-greeting/specs/**/*.md\",\n  \"existingOutputPaths\": [],\n  \"description\": \"Behavioral requirement deltas\",\n  \"instruction\": \"Describe observable behavior rather than implementation. Use project terminology and the agreed outcome.\\nWrite one specs/<capability-path>/spec.md per affected capability using its exact existing path or agreed new kebab-case path.\\nUse ## ADDED Requirements, ## MODIFIED Requirements, ## REMOVED Requirements and ## RENAMED Requirements as applicable.\\nEach requirement has a ### Requirement: <name> heading, SHALL or MUST behavior, and at least one #### Scenario: <name> with WHEN and THEN.\\nA MODIFIED requirement includes the full updated requirement and every retained scenario; match its existing name exactly.\\nA REMOVED requirement records Reason and Migration in the historical delta. RENAMED uses FROM and TO names.\\nFor an introduced capability, include a ## Purpose of at least 50 characters describing its lasting behavior.\\nCurrent specs are resolved beneath planningHome.root/openspec/specs, not the code checkout.\\nRead the selected root's specs before writing deltas. Keep source code unchanged during planning.\\nWhen instructions report skipped, leave the specs artifact absent.\\n\",\n  \"template\": \"## Purpose\\n\\nDescribe the lasting capability when introducing it.\\n\\n## ADDED Requirements\\n\\n### Requirement: <behavior>\\nThe system SHALL <observable result>.\\n\\n#### Scenario: <condition>\\n- **WHEN** <action or condition>\\n- **THEN** <observable result>\\n\",\n  \"dependencies\": [\n    {\n      \"id\": \"proposal\",\n      \"done\": true,\n      \"path\": \"proposal.md\",\n      \"description\": \"Outcome and affected capabilities\"\n    }\n  ],\n  \"unlocks\": [\n    \"tasks\"\n  ],\n  \"root\": {\n    \"path\": \"<smoke-directory>/local\",\n    \"source\": \"nearest\"\n  }\n}\n",
+      "stderr": ""
+    },
+    {
+      "check": "Read design instructions",
+      "command": [
+        "node",
+        "<repository>/node_modules/@fission-ai/openspec/bin/openspec.js",
+        "instructions",
+        "design",
+        "--change",
+        "format-greeting",
+        "--json"
+      ],
+      "cwd": "<smoke-directory>/local",
+      "exit": 0,
+      "stdout": "{\n  \"changeName\": \"format-greeting\",\n  \"artifactId\": \"design\",\n  \"schemaName\": \"client-work\",\n  \"changeDir\": \"<smoke-directory>/local/openspec/changes/format-greeting\",\n  \"planningHome\": {\n    \"kind\": \"repo\",\n    \"root\": \"<smoke-directory>/local\",\n    \"changesDir\": \"<smoke-directory>/local/openspec/changes\",\n    \"defaultSchema\": \"spec-driven\"\n  },\n  \"outputPath\": \"design.md\",\n  \"resolvedOutputPath\": \"<smoke-directory>/local/openspec/changes/format-greeting/design.md\",\n  \"existingOutputPaths\": [],\n  \"description\": \"Grounded design and implementation authorization\",\n  \"instruction\": \"Read the proposal and relevant code, configuration, tests and domain decisions.\\nRecord implementation decisions, participating repositories, behavioral test seams, dependencies and real risks.\\nLink research or prototypes that resolve a design choice rather than duplicating them.\\nResolve questions that would change scope, contracts or task breakdown before preparing tasks.\\nRecord explicit implementation approval and the scope it covers when supplied. Otherwise state that approval is pending.\\nFinished source must present a coherent current implementation. Historical explanation belongs in change records.\\n\",\n  \"template\": \"## Context\\n\\n## Decisions\\n\\n## Repositories\\n\\n## Verification\\n\\n## Risks\\n\\n## Implementation approval\\n\\nPending explicit approval of the implementation scope.\\n\",\n  \"dependencies\": [\n    {\n      \"id\": \"proposal\",\n      \"done\": true,\n      \"path\": \"proposal.md\",\n      \"description\": \"Outcome and affected capabilities\"\n    }\n  ],\n  \"unlocks\": [\n    \"tasks\"\n  ],\n  \"root\": {\n    \"path\": \"<smoke-directory>/local\",\n    \"source\": \"nearest\"\n  }\n}\n",
+      "stderr": ""
+    },
+    {
+      "check": "Read tasks instructions",
+      "command": [
+        "node",
+        "<repository>/node_modules/@fission-ai/openspec/bin/openspec.js",
+        "instructions",
+        "tasks",
+        "--change",
+        "format-greeting",
+        "--json"
+      ],
+      "cwd": "<smoke-directory>/local",
+      "exit": 0,
+      "stdout": "{\n  \"changeName\": \"format-greeting\",\n  \"artifactId\": \"tasks\",\n  \"schemaName\": \"client-work\",\n  \"changeDir\": \"<smoke-directory>/local/openspec/changes/format-greeting\",\n  \"planningHome\": {\n    \"kind\": \"repo\",\n    \"root\": \"<smoke-directory>/local\",\n    \"changesDir\": \"<smoke-directory>/local/openspec/changes\",\n    \"defaultSchema\": \"spec-driven\"\n  },\n  \"outputPath\": \"tasks.md\",\n  \"resolvedOutputPath\": \"<smoke-directory>/local/openspec/changes/format-greeting/tasks.md\",\n  \"existingOutputPaths\": [],\n  \"description\": \"Ordered implementation work linked to Linear\",\n  \"instruction\": \"Read specs and design. Use the to-tickets skill's vertical slicing method without recursively rebuilding this artifact.\\nWrite numbered - [ ] tasks grouped under numbered headings. Each task names observable completion and its check.\\nOrder by real dependencies and identify repository ownership for multi-repository work.\\nLink each related Linear issue beside its task when one exists. Create issues only within the requested authority using the linear skill and supplied issue templates.\\nTask artifacts track evolving execution. Initial issue descriptions retain their template brief; relevant follow-ups go in concise comments.\\nSupporting task records may carry detailed context while this checklist tracks completion.\\nRevising requirements requires reconsidering checked tasks and invalidated evidence, leaving affected work unchecked.\\n\",\n  \"template\": \"## 1. Implementation\\n\\n- [ ] 1.1 <Observable result and its check>\\n\\n## Linear links\\n\\nAssociate task identifiers with relevant issue URLs when available.\\n\",\n  \"dependencies\": [\n    {\n      \"id\": \"specs\",\n      \"done\": true,\n      \"path\": \"specs/**/*.md\",\n      \"description\": \"Behavioral requirement deltas\"\n    },\n    {\n      \"id\": \"design\",\n      \"done\": true,\n      \"path\": \"design.md\",\n      \"description\": \"Grounded design and implementation authorization\"\n    }\n  ],\n  \"unlocks\": [],\n  \"root\": {\n    \"path\": \"<smoke-directory>/local\",\n    \"source\": \"nearest\"\n  }\n}\n",
+      "stderr": ""
+    },
+    {
+      "check": "Validate native change",
+      "command": [
+        "node",
+        "<repository>/node_modules/@fission-ai/openspec/bin/openspec.js",
+        "validate",
+        "format-greeting",
+        "--strict"
+      ],
+      "cwd": "<smoke-directory>/local",
+      "exit": 0,
+      "stdout": "Change 'format-greeting' is valid\n",
+      "stderr": ""
+    },
+    {
+      "check": "Ready implementation",
+      "command": [
+        "node",
+        "<repository>/node_modules/@fission-ai/openspec/bin/openspec.js",
+        "instructions",
+        "apply",
+        "--change",
+        "format-greeting",
+        "--json"
+      ],
+      "cwd": "<smoke-directory>/local",
+      "exit": 0,
+      "stdout": "{\n  \"changeName\": \"format-greeting\",\n  \"changeDir\": \"<smoke-directory>/local/openspec/changes/format-greeting\",\n  \"schemaName\": \"client-work\",\n  \"contextFiles\": {\n    \"proposal\": [\n      \"<smoke-directory>/local/openspec/changes/format-greeting/proposal.md\"\n    ],\n    \"specs\": [\n      \"<smoke-directory>/local/openspec/changes/format-greeting/specs/greeting/spec.md\"\n    ],\n    \"design\": [\n      \"<smoke-directory>/local/openspec/changes/format-greeting/design.md\"\n    ],\n    \"tasks\": [\n      \"<smoke-directory>/local/openspec/changes/format-greeting/tasks.md\"\n    ]\n  },\n  \"progress\": {\n    \"total\": 1,\n    \"complete\": 0,\n    \"remaining\": 1\n  },\n  \"tasks\": [\n    {\n      \"id\": \"1\",\n      \"description\": \"1.1 Print Hello Ada for argument Ada and confirm exact stdout.\",\n      \"done\": false\n    }\n  ],\n  \"state\": \"ready\",\n  \"instruction\": \"Read every context file, the workflow skill and the explicit implementation approval before source edits.\\nWork through ready tasks using tdd at useful behavioral seams and the project's conventions.\\nExercise each changed behavior and record commands, observations and limitations in evidence.md beside tasks.md.\\nCheck a task only after its behavior and applicable checks succeed. Preserve blocked work as incomplete.\\nUse code-review on the full relevant diff including uncommitted changes. Verify conformance before proposing sync or archive.\\nComment on linked Linear issues only for relevant developments. Issue descriptions retain their initial brief.\",\n  \"root\": {\n    \"path\": \"<smoke-directory>/local\",\n    \"source\": \"nearest\"\n  }\n}\n",
+      "stderr": ""
+    },
+    {
+      "check": "Greeting before fix",
+      "command": [
+        "node",
+        "<smoke-directory>/local/greet.mjs",
+        "Ada"
+      ],
+      "cwd": "<smoke-directory>/local",
+      "exit": 0,
+      "stdout": "Hi Ada\n",
+      "stderr": ""
+    },
+    {
+      "check": "Greeting behavior",
+      "command": [
+        "node",
+        "<smoke-directory>/local/greet.mjs",
+        "Ada"
+      ],
+      "cwd": "<smoke-directory>/local",
+      "exit": 0,
+      "stdout": "Hello Ada\n",
+      "stderr": ""
+    },
+    {
+      "check": "Completed checklist",
+      "command": [
+        "node",
+        "<repository>/node_modules/@fission-ai/openspec/bin/openspec.js",
+        "instructions",
+        "apply",
+        "--change",
+        "format-greeting",
+        "--json"
+      ],
+      "cwd": "<smoke-directory>/local",
+      "exit": 0,
+      "stdout": "{\n  \"changeName\": \"format-greeting\",\n  \"changeDir\": \"<smoke-directory>/local/openspec/changes/format-greeting\",\n  \"schemaName\": \"client-work\",\n  \"contextFiles\": {\n    \"proposal\": [\n      \"<smoke-directory>/local/openspec/changes/format-greeting/proposal.md\"\n    ],\n    \"specs\": [\n      \"<smoke-directory>/local/openspec/changes/format-greeting/specs/greeting/spec.md\"\n    ],\n    \"design\": [\n      \"<smoke-directory>/local/openspec/changes/format-greeting/design.md\"\n    ],\n    \"tasks\": [\n      \"<smoke-directory>/local/openspec/changes/format-greeting/tasks.md\"\n    ]\n  },\n  \"progress\": {\n    \"total\": 1,\n    \"complete\": 1,\n    \"remaining\": 0\n  },\n  \"tasks\": [\n    {\n      \"id\": \"1\",\n      \"description\": \"1.1 Print Hello Ada for argument Ada and confirm exact stdout.\",\n      \"done\": true\n    }\n  ],\n  \"state\": \"all_done\",\n  \"instruction\": \"All tasks are complete! This change is ready to be archived.\\nConsider running tests and reviewing the changes before archiving.\",\n  \"root\": {\n    \"path\": \"<smoke-directory>/local\",\n    \"source\": \"nearest\"\n  }\n}\n",
+      "stderr": ""
+    },
+    {
+      "check": "Revision reopens implementation",
+      "command": [
+        "node",
+        "<repository>/node_modules/@fission-ai/openspec/bin/openspec.js",
+        "instructions",
+        "apply",
+        "--change",
+        "format-greeting",
+        "--json"
+      ],
+      "cwd": "<smoke-directory>/local",
+      "exit": 0,
+      "stdout": "{\n  \"changeName\": \"format-greeting\",\n  \"changeDir\": \"<smoke-directory>/local/openspec/changes/format-greeting\",\n  \"schemaName\": \"client-work\",\n  \"contextFiles\": {\n    \"proposal\": [\n      \"<smoke-directory>/local/openspec/changes/format-greeting/proposal.md\"\n    ],\n    \"specs\": [\n      \"<smoke-directory>/local/openspec/changes/format-greeting/specs/greeting/spec.md\"\n    ],\n    \"design\": [\n      \"<smoke-directory>/local/openspec/changes/format-greeting/design.md\"\n    ],\n    \"tasks\": [\n      \"<smoke-directory>/local/openspec/changes/format-greeting/tasks.md\"\n    ]\n  },\n  \"progress\": {\n    \"total\": 1,\n    \"complete\": 0,\n    \"remaining\": 1\n  },\n  \"tasks\": [\n    {\n      \"id\": \"1\",\n      \"description\": \"1.1 Print Hello Ada! for argument Ada and confirm exact stdout. Previous punctuation evidence no longer applies.\",\n      \"done\": false\n    }\n  ],\n  \"state\": \"ready\",\n  \"instruction\": \"Read every context file, the workflow skill and the explicit implementation approval before source edits.\\nWork through ready tasks using tdd at useful behavioral seams and the project's conventions.\\nExercise each changed behavior and record commands, observations and limitations in evidence.md beside tasks.md.\\nCheck a task only after its behavior and applicable checks succeed. Preserve blocked work as incomplete.\\nUse code-review on the full relevant diff including uncommitted changes. Verify conformance before proposing sync or archive.\\nComment on linked Linear issues only for relevant developments. Issue descriptions retain their initial brief.\",\n  \"root\": {\n    \"path\": \"<smoke-directory>/local\",\n    \"source\": \"nearest\"\n  }\n}\n",
+      "stderr": ""
+    },
+    {
+      "check": "Revised greeting behavior",
+      "command": [
+        "node",
+        "<smoke-directory>/local/greet.mjs",
+        "Ada"
+      ],
+      "cwd": "<smoke-directory>/local",
+      "exit": 0,
+      "stdout": "Hello Ada!\n",
+      "stderr": ""
+    },
+    {
+      "check": "Validate revised change",
+      "command": [
+        "node",
+        "<repository>/node_modules/@fission-ai/openspec/bin/openspec.js",
+        "validate",
+        "format-greeting",
+        "--strict"
+      ],
+      "cwd": "<smoke-directory>/local",
+      "exit": 0,
+      "stdout": "Change 'format-greeting' is valid\n",
+      "stderr": ""
+    },
+    {
+      "check": "Archive completed change",
+      "command": [
+        "node",
+        "<repository>/node_modules/@fission-ai/openspec/bin/openspec.js",
+        "archive",
+        "format-greeting",
+        "--yes"
+      ],
+      "cwd": "<smoke-directory>/local",
+      "exit": 0,
+      "stdout": "Task status: \u2713 Complete\n\nSpecs to update:\n  greeting: create\nApplying changes to openspec/specs/greeting/spec.md:\n  + 1 added\nTotals: + 1, ~ 0, - 0, \u2192 0\nSpecs updated successfully.\nChange 'format-greeting' archived as '2026-09-14-format-greeting'.\n",
+      "stderr": ""
+    },
+    {
+      "check": "Create isolated store",
+      "command": [
+        "node",
+        "<repository>/node_modules/@fission-ai/openspec/bin/openspec.js",
+        "store",
+        "setup",
+        "smoke-plans",
+        "--path",
+        "<smoke-directory>/plans",
+        "--no-init-git",
+        "--json"
+      ],
+      "cwd": "<repository>",
+      "exit": 0,
+      "stdout": "{\n  \"store\": {\n    \"id\": \"smoke-plans\",\n    \"root\": \"<smoke-directory>/plans\",\n    \"metadata_path\": \"<smoke-directory>/plans/.openspec-store/store.yaml\"\n  },\n  \"registry\": {\n    \"path\": \"<smoke-directory>/data/openspec/stores/registry.yaml\",\n    \"registered\": true,\n    \"already_registered\": false\n  },\n  \"git\": {\n    \"is_repository\": false,\n    \"initialized\": false,\n    \"committed\": false\n  },\n  \"created_files\": [\n    \"openspec/\",\n    \"openspec/specs/\",\n    \"openspec/changes/\",\n    \"openspec/changes/archive/\",\n    \"openspec/config.yaml\",\n    \"openspec/specs/.gitkeep\",\n    \"openspec/changes/archive/.gitkeep\",\n    \".openspec-store/store.yaml\"\n  ],\n  \"status\": []\n}\n",
+      "stderr": ""
+    },
+    {
+      "check": "Install schema into store",
+      "command": [
+        "node",
+        "<repository>/scripts/install.mjs",
+        "--skills-dir",
+        "<smoke-directory>/skills",
+        "--planning-root",
+        "<smoke-directory>/plans",
+        "--select-schema"
+      ],
+      "cwd": "<repository>",
+      "exit": 0,
+      "stdout": "{\n  \"skillsDirectory\": \"<smoke-directory>/skills\",\n  \"planningRoot\": \"<smoke-directory>/plans\",\n  \"schema\": \"client-work\",\n  \"files\": 128,\n  \"changed\": 6\n}\n",
+      "stderr": ""
+    },
+    {
+      "check": "Store-only resolution",
+      "command": [
+        "node",
+        "<repository>/node_modules/@fission-ai/openspec/bin/openspec.js",
+        "context",
+        "--json"
+      ],
+      "cwd": "<smoke-directory>/web",
+      "exit": 0,
+      "stdout": "{\n  \"root\": {\n    \"path\": \"<smoke-directory>/plans\",\n    \"source\": \"declared\",\n    \"store_id\": \"smoke-plans\",\n    \"role\": \"openspec_root\"\n  },\n  \"members\": [],\n  \"status\": []\n}\n",
+      "stderr": ""
+    },
+    {
+      "check": "Create shared change from code repository",
+      "command": [
+        "node",
+        "<repository>/node_modules/@fission-ai/openspec/bin/openspec.js",
+        "new",
+        "change",
+        "shared-greeting",
+        "--store",
+        "smoke-plans",
+        "--schema",
+        "client-work"
+      ],
+      "cwd": "<smoke-directory>/web",
+      "exit": 0,
+      "stdout": "Created change 'shared-greeting' at <smoke-directory>/plans/openspec/changes/shared-greeting/\nSchema: client-work\nNext: openspec status --change shared-greeting --store smoke-plans\n",
+      "stderr": "Using OpenSpec root: smoke-plans (<smoke-directory>/plans)\n- Creating change 'shared-greeting' with schema 'client-work'...\n"
+    },
+    {
+      "check": "Resume shared change from other repository",
+      "command": [
+        "node",
+        "<repository>/node_modules/@fission-ai/openspec/bin/openspec.js",
+        "status",
+        "--change",
+        "shared-greeting",
+        "--store",
+        "smoke-plans",
+        "--json"
+      ],
+      "cwd": "<smoke-directory>/local",
+      "exit": 0,
+      "stdout": "{\n  \"changeName\": \"shared-greeting\",\n  \"schemaName\": \"client-work\",\n  \"planningHome\": {\n    \"kind\": \"repo\",\n    \"root\": \"<smoke-directory>/plans\",\n    \"changesDir\": \"<smoke-directory>/plans/openspec/changes\",\n    \"defaultSchema\": \"spec-driven\"\n  },\n  \"changeRoot\": \"<smoke-directory>/plans/openspec/changes/shared-greeting\",\n  \"artifactPaths\": {\n    \"proposal\": {\n      \"outputPath\": \"proposal.md\",\n      \"resolvedOutputPath\": \"<smoke-directory>/plans/openspec/changes/shared-greeting/proposal.md\",\n      \"existingOutputPaths\": []\n    },\n    \"specs\": {\n      \"outputPath\": \"specs/**/*.md\",\n      \"resolvedOutputPath\": \"<smoke-directory>/plans/openspec/changes/shared-greeting/specs/**/*.md\",\n      \"existingOutputPaths\": []\n    },\n    \"design\": {\n      \"outputPath\": \"design.md\",\n      \"resolvedOutputPath\": \"<smoke-directory>/plans/openspec/changes/shared-greeting/design.md\",\n      \"existingOutputPaths\": []\n    },\n    \"tasks\": {\n      \"outputPath\": \"tasks.md\",\n      \"resolvedOutputPath\": \"<smoke-directory>/plans/openspec/changes/shared-greeting/tasks.md\",\n      \"existingOutputPaths\": []\n    }\n  },\n  \"isPlanningComplete\": false,\n  \"isComplete\": false,\n  \"applyRequires\": [\n    \"tasks\"\n  ],\n  \"nextSteps\": [\n    \"Run openspec instructions proposal --change \\\"shared-greeting\\\" --store smoke-plans --json before writing that artifact.\"\n  ],\n  \"actionContext\": {\n    \"mode\": \"repo-local\",\n    \"sourceOfTruth\": \"repo\",\n    \"planningArtifacts\": [\n      \"proposal\",\n      \"specs\",\n      \"design\",\n      \"tasks\"\n    ],\n    \"linkedContext\": [],\n    \"allowedEditRoots\": [\n      \"<smoke-directory>/plans\"\n    ],\n    \"requiresAffectedAreaSelection\": false,\n    \"constraints\": [\n      \"Repo-local change artifacts and implementation edits are scoped to this project.\"\n    ]\n  },\n  \"artifacts\": [\n    {\n      \"id\": \"proposal\",\n      \"outputPath\": \"proposal.md\",\n      \"status\": \"ready\",\n      \"requires\": []\n    },\n    {\n      \"id\": \"specs\",\n      \"outputPath\": \"specs/**/*.md\",\n      \"status\": \"blocked\",\n      \"requires\": [\n        \"proposal\"\n      ],\n      \"missingDeps\": [\n        \"proposal\"\n      ]\n    },\n    {\n      \"id\": \"design\",\n      \"outputPath\": \"design.md\",\n      \"status\": \"blocked\",\n      \"requires\": [\n        \"proposal\"\n      ],\n      \"missingDeps\": [\n        \"proposal\"\n      ]\n    },\n    {\n      \"id\": \"tasks\",\n      \"outputPath\": \"tasks.md\",\n      \"status\": \"blocked\",\n      \"requires\": [\n        \"specs\",\n        \"design\"\n      ],\n      \"missingDeps\": [\n        \"specs\",\n        \"design\"\n      ]\n    }\n  ],\n  \"root\": {\n    \"path\": \"<smoke-directory>/plans\",\n    \"source\": \"store\",\n    \"store_id\": \"smoke-plans\"\n  }\n}\n",
+      "stderr": ""
+    },
+    {
+      "check": "Store-optional stays local without flag",
+      "command": [
+        "node",
+        "<repository>/node_modules/@fission-ai/openspec/bin/openspec.js",
+        "context",
+        "--json"
+      ],
+      "cwd": "<smoke-directory>/local",
+      "exit": 0,
+      "stdout": "{\n  \"root\": {\n    \"path\": \"<smoke-directory>/local\",\n    \"source\": \"nearest\",\n    \"role\": \"openspec_root\"\n  },\n  \"members\": [],\n  \"status\": []\n}\n",
+      "stderr": ""
+    },
+    {
+      "check": "Store-optional explicit flag selects store",
+      "command": [
+        "node",
+        "<repository>/node_modules/@fission-ai/openspec/bin/openspec.js",
+        "context",
+        "--store",
+        "smoke-plans",
+        "--json"
+      ],
+      "cwd": "<smoke-directory>/local",
+      "exit": 0,
+      "stdout": "{\n  \"root\": {\n    \"path\": \"<smoke-directory>/plans\",\n    \"source\": \"store\",\n    \"store_id\": \"smoke-plans\",\n    \"role\": \"openspec_root\"\n  },\n  \"members\": [],\n  \"status\": []\n}\n",
+      "stderr": ""
+    },
+    {
+      "check": "Pinned schemas store flag",
+      "command": [
+        "node",
+        "<repository>/node_modules/@fission-ai/openspec/bin/openspec.js",
+        "schemas",
+        "--store",
+        "smoke-plans",
+        "--json"
+      ],
+      "cwd": "<smoke-directory>/local",
+      "exit": 0,
+      "stdout": "[\n  {\n    \"name\": \"client-work\",\n    \"description\": \"Linear-linked change planning with behavioral specifications and evidence-backed tasks\",\n    \"artifacts\": [\n      \"proposal\",\n      \"specs\",\n      \"design\",\n      \"tasks\"\n    ],\n    \"source\": \"project\"\n  },\n  {\n    \"name\": \"spec-driven\",\n    \"description\": \"Default OpenSpec workflow - proposal \u2192 specs \u2192 design \u2192 tasks\",\n    \"artifacts\": [\n      \"proposal\",\n      \"specs\",\n      \"design\",\n      \"tasks\"\n    ],\n    \"source\": \"package\"\n  }\n]\n",
+      "stderr": ""
+    },
+    {
+      "check": "Store doctor",
+      "command": [
+        "node",
+        "<repository>/node_modules/@fission-ai/openspec/bin/openspec.js",
+        "store",
+        "doctor",
+        "smoke-plans"
+      ],
+      "cwd": "<smoke-directory>/local",
+      "exit": 0,
+      "stdout": "Store doctor\n\nsmoke-plans\n  Location: <smoke-directory>/plans\n  OpenSpec root: ok\n  Metadata: ok\n  Git: not detected\n  Issues: none\n",
+      "stderr": ""
+    },
+    {
+      "check": "Create reference consumer",
+      "command": [
+        "node",
+        "<repository>/node_modules/@fission-ai/openspec/bin/openspec.js",
+        "new",
+        "change",
+        "consume-reference"
+      ],
+      "cwd": "<smoke-directory>/local",
+      "exit": 0,
+      "stdout": "Created change 'consume-reference' at openspec/changes/consume-reference/\nSchema: client-work\nNext: openspec status --change consume-reference\n",
+      "stderr": "- Creating change 'consume-reference' with schema 'spec-driven'...\n"
+    },
+    {
+      "check": "Read reference-aware instructions",
+      "command": [
+        "node",
+        "<repository>/node_modules/@fission-ai/openspec/bin/openspec.js",
+        "instructions",
+        "proposal",
+        "--change",
+        "consume-reference",
+        "--json"
+      ],
+      "cwd": "<smoke-directory>/local",
+      "exit": 0,
+      "stdout": "{\n  \"changeName\": \"consume-reference\",\n  \"artifactId\": \"proposal\",\n  \"schemaName\": \"client-work\",\n  \"changeDir\": \"<smoke-directory>/local/openspec/changes/consume-reference\",\n  \"planningHome\": {\n    \"kind\": \"repo\",\n    \"root\": \"<smoke-directory>/local\",\n    \"changesDir\": \"<smoke-directory>/local/openspec/changes\",\n    \"defaultSchema\": \"spec-driven\"\n  },\n  \"outputPath\": \"proposal.md\",\n  \"resolvedOutputPath\": \"<smoke-directory>/local/openspec/changes/consume-reference/proposal.md\",\n  \"existingOutputPaths\": [],\n  \"description\": \"Outcome and affected capabilities\",\n  \"instruction\": \"Read the installed workflow skill. Establish the problem, desired outcome and scope from the request and source evidence.\\nUse grilling and domain-modeling when the outcome or vocabulary needs clarification. Reuse settled answers.\\nIdentify existing capabilities with openspec list --specs and read relevant specs with openspec show <id> --type spec.\\nCarry the selected --store flag. Preserve existing capability paths.\\nList introduced and modified capabilities and affected code repositories. Link related Linear entities where they exist.\\nA change with no externally visible specification change declares skip_specs: true in .openspec.yaml.\\nRecord the actual reason; invent no requirements to satisfy validation.\\n\",\n  \"references\": [\n    {\n      \"store_id\": \"smoke-plans\",\n      \"root\": \"<smoke-directory>/plans\",\n      \"specs\": [\n        {\n          \"id\": \"greeting\",\n          \"summary\": \"Provide a predictable greeting command for users supplying a name on the command line.\"\n        }\n      ],\n      \"fetch\": \"openspec show <spec-id> --type spec --store smoke-plans\",\n      \"status\": []\n    }\n  ],\n  \"template\": \"## Why\\n\\nDescribe the problem and desired outcome.\\n\\n## What changes\\n\\nState the agreed scope.\\n\\n## Capabilities\\n\\n### New capabilities\\n\\n### Modified capabilities\\n\\n## Impact\\n\\nName affected repositories and external contracts.\\n\\n## Linear\\n\\nLink related work when available.\\n\",\n  \"dependencies\": [],\n  \"unlocks\": [\n    \"specs\",\n    \"design\"\n  ],\n  \"root\": {\n    \"path\": \"<smoke-directory>/local\",\n    \"source\": \"nearest\"\n  }\n}\n",
+      "stderr": ""
+    },
+    {
+      "check": "Create saved folder group",
+      "command": [
+        "node",
+        "<repository>/node_modules/@fission-ai/openspec/bin/openspec.js",
+        "workset",
+        "create",
+        "smoke-group",
+        "--member",
+        "<smoke-directory>/web",
+        "--member",
+        "<smoke-directory>/plans",
+        "--json"
+      ],
+      "cwd": "<repository>",
+      "exit": 0,
+      "stdout": "{\n  \"workset\": {\n    \"name\": \"smoke-group\",\n    \"members\": [\n      {\n        \"name\": \"web\",\n        \"path\": \"<smoke-directory>/web\"\n      },\n      {\n        \"name\": \"plans\",\n        \"path\": \"<smoke-directory>/plans\"\n      }\n    ]\n  },\n  \"status\": []\n}\n",
+      "stderr": ""
+    },
+    {
+      "check": "Inspect saved folder group",
+      "command": [
+        "node",
+        "<repository>/node_modules/@fission-ai/openspec/bin/openspec.js",
+        "workset",
+        "list",
+        "--json"
+      ],
+      "cwd": "<repository>",
+      "exit": 0,
+      "stdout": "{\n  \"worksets\": [\n    {\n      \"name\": \"smoke-group\",\n      \"members\": [\n        {\n          \"name\": \"web\",\n          \"path\": \"<smoke-directory>/web\"\n        },\n        {\n          \"name\": \"plans\",\n          \"path\": \"<smoke-directory>/plans\"\n        }\n      ]\n    }\n  ],\n  \"status\": []\n}\n",
+      "stderr": ""
+    },
+    {
+      "check": "Remove saved folder group",
+      "command": [
+        "node",
+        "<repository>/node_modules/@fission-ai/openspec/bin/openspec.js",
+        "workset",
+        "remove",
+        "smoke-group"
+      ],
+      "cwd": "<repository>",
+      "exit": 1,
+      "stdout": "",
+      "stderr": "Error: Pass --yes to remove a workset non-interactively.\nFix: openspec workset remove smoke-group --yes\n"
+    },
+    {
+      "check": "Open saved folder group",
+      "command": [
+        "node",
+        "<repository>/node_modules/@fission-ai/openspec/bin/openspec.js",
+        "workset",
+        "open",
+        "smoke-group",
+        "--tool",
+        "code"
+      ],
+      "cwd": "<repository>",
+      "exit": 0,
+      "stdout": "Opening 'smoke-group' in VS Code (a window opens; this command returns).\n",
+      "stderr": ""
+    },
+    {
+      "check": "Remove saved folder group with confirmation",
+      "command": [
+        "node",
+        "<repository>/node_modules/@fission-ai/openspec/bin/openspec.js",
+        "workset",
+        "remove",
+        "smoke-group",
+        "--yes",
+        "--json"
+      ],
+      "cwd": "<repository>",
+      "exit": 0,
+      "stdout": "{\n  \"removed\": {\n    \"name\": \"smoke-group\"\n  },\n  \"status\": []\n}\n",
+      "stderr": ""
+    },
+    {
+      "check": "Preserve locally edited skill",
+      "command": [
+        "node",
+        "<repository>/scripts/install.mjs",
+        "--skills-dir",
+        "<smoke-directory>/skills",
+        "--planning-root",
+        "<smoke-directory>/local",
+        "--select-schema"
+      ],
+      "cwd": "<repository>",
+      "exit": 1,
+      "stdout": "",
+      "stderr": "Installation stopped before writing. Review locally owned files:\n<smoke-directory>/skills/ask-skuddy/SKILL.md\n"
+    },
+    {
+      "check": "Reject store pointer as planning root",
+      "command": [
+        "node",
+        "<repository>/scripts/install.mjs",
+        "--skills-dir",
+        "<smoke-directory>/other-skills",
+        "--planning-root",
+        "<smoke-directory>/web",
+        "--select-schema"
+      ],
+      "cwd": "<repository>",
+      "exit": 1,
+      "stdout": "",
+      "stderr": "The planning root is a store pointer. Select the actual registered store directory.\n"
+    },
+    {
+      "check": "Bundle integrity after integration",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "cwd": "<repository>",
+      "exit": 0,
+      "stdout": "\n> client-skills@1.0.0 check\n> node scripts/check.mjs\n\n{\n  \"skills\": 51,\n  \"templates\": 45,\n  \"files\": 119,\n  \"localReferences\": \"valid\",\n  \"portableMetadata\": \"valid\",\n  \"schemaTemplates\": \"present\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "check": "Shared greeting in local",
+      "command": [
+        "node",
+        "<smoke-directory>/local/greet.mjs",
+        "Ada"
+      ],
+      "cwd": "<smoke-directory>/local",
+      "exit": 0,
+      "stdout": "Hello Ada!\n",
+      "stderr": ""
+    },
+    {
+      "check": "Shared greeting in web",
+      "command": [
+        "node",
+        "<smoke-directory>/web/greet.mjs",
+        "Ada"
+      ],
+      "cwd": "<smoke-directory>/web",
+      "exit": 0,
+      "stdout": "Hello Ada!\n",
+      "stderr": ""
+    },
+    {
+      "check": "Validate shared change from code checkout",
+      "command": [
+        "node",
+        "<repository>/node_modules/@fission-ai/openspec/bin/openspec.js",
+        "validate",
+        "shared-greeting",
+        "--store",
+        "smoke-plans",
+        "--strict"
+      ],
+      "cwd": "<smoke-directory>/web",
+      "exit": 0,
+      "stdout": "Change 'shared-greeting' is valid\n",
+      "stderr": "Using OpenSpec root: smoke-plans (<smoke-directory>/plans)\n"
+    },
+    {
+      "check": "Archive shared change from another repository",
+      "command": [
+        "node",
+        "<repository>/node_modules/@fission-ai/openspec/bin/openspec.js",
+        "archive",
+        "shared-greeting",
+        "--store",
+        "smoke-plans",
+        "--yes"
+      ],
+      "cwd": "<smoke-directory>/local",
+      "exit": 0,
+      "stdout": "Task status: \u2713 Complete\n\nSpecs to update:\n  shared-greeting: create\nApplying changes to <smoke-directory>/plans/openspec/specs/shared-greeting/spec.md:\n  + 1 added\nTotals: + 1, ~ 0, - 0, \u2192 0\nSpecs updated successfully.\nChange 'shared-greeting' archived as '2026-09-14-shared-greeting'.\n",
+      "stderr": "Using OpenSpec root: smoke-plans (<smoke-directory>/plans)\n"
+    },
+    {
+      "check": "Create documentation-only change",
+      "command": [
+        "node",
+        "<repository>/node_modules/@fission-ai/openspec/bin/openspec.js",
+        "new",
+        "change",
+        "clarify-readme",
+        "--schema",
+        "client-work"
+      ],
+      "cwd": "<smoke-directory>/local",
+      "exit": 0,
+      "stdout": "Created change 'clarify-readme' at openspec/changes/clarify-readme/\nSchema: client-work\nNext: openspec status --change clarify-readme\n",
+      "stderr": "- Creating change 'clarify-readme' with schema 'client-work'...\n"
+    },
+    {
+      "check": "Skipped specs readiness",
+      "command": [
+        "node",
+        "<repository>/node_modules/@fission-ai/openspec/bin/openspec.js",
+        "status",
+        "--change",
+        "clarify-readme",
+        "--json"
+      ],
+      "cwd": "<smoke-directory>/local",
+      "exit": 0,
+      "stdout": "{\n  \"changeName\": \"clarify-readme\",\n  \"schemaName\": \"client-work\",\n  \"planningHome\": {\n    \"kind\": \"repo\",\n    \"root\": \"<smoke-directory>/local\",\n    \"changesDir\": \"<smoke-directory>/local/openspec/changes\",\n    \"defaultSchema\": \"spec-driven\"\n  },\n  \"changeRoot\": \"<smoke-directory>/local/openspec/changes/clarify-readme\",\n  \"artifactPaths\": {\n    \"proposal\": {\n      \"outputPath\": \"proposal.md\",\n      \"resolvedOutputPath\": \"<smoke-directory>/local/openspec/changes/clarify-readme/proposal.md\",\n      \"existingOutputPaths\": [\n        \"<smoke-directory>/local/openspec/changes/clarify-readme/proposal.md\"\n      ]\n    },\n    \"specs\": {\n      \"outputPath\": \"specs/**/*.md\",\n      \"resolvedOutputPath\": \"<smoke-directory>/local/openspec/changes/clarify-readme/specs/**/*.md\",\n      \"existingOutputPaths\": []\n    },\n    \"design\": {\n      \"outputPath\": \"design.md\",\n      \"resolvedOutputPath\": \"<smoke-directory>/local/openspec/changes/clarify-readme/design.md\",\n      \"existingOutputPaths\": [\n        \"<smoke-directory>/local/openspec/changes/clarify-readme/design.md\"\n      ]\n    },\n    \"tasks\": {\n      \"outputPath\": \"tasks.md\",\n      \"resolvedOutputPath\": \"<smoke-directory>/local/openspec/changes/clarify-readme/tasks.md\",\n      \"existingOutputPaths\": [\n        \"<smoke-directory>/local/openspec/changes/clarify-readme/tasks.md\"\n      ]\n    }\n  },\n  \"isPlanningComplete\": true,\n  \"isComplete\": true,\n  \"applyRequires\": [\n    \"tasks\"\n  ],\n  \"nextSteps\": [\n    \"All planning artifacts are complete. Run openspec instructions apply --change \\\"clarify-readme\\\" --json to inspect implementation progress.\"\n  ],\n  \"actionContext\": {\n    \"mode\": \"repo-local\",\n    \"sourceOfTruth\": \"repo\",\n    \"planningArtifacts\": [\n      \"proposal\",\n      \"specs\",\n      \"design\",\n      \"tasks\"\n    ],\n    \"linkedContext\": [],\n    \"allowedEditRoots\": [\n      \"<smoke-directory>/local\"\n    ],\n    \"requiresAffectedAreaSelection\": false,\n    \"constraints\": [\n      \"Repo-local change artifacts and implementation edits are scoped to this project.\"\n    ]\n  },\n  \"artifacts\": [\n    {\n      \"id\": \"proposal\",\n      \"outputPath\": \"proposal.md\",\n      \"status\": \"done\",\n      \"requires\": []\n    },\n    {\n      \"id\": \"specs\",\n      \"outputPath\": \"specs/**/*.md\",\n      \"status\": \"skipped\",\n      \"requires\": [\n        \"proposal\"\n      ]\n    },\n    {\n      \"id\": \"design\",\n      \"outputPath\": \"design.md\",\n      \"status\": \"done\",\n      \"requires\": [\n        \"proposal\"\n      ]\n    },\n    {\n      \"id\": \"tasks\",\n      \"outputPath\": \"tasks.md\",\n      \"status\": \"done\",\n      \"requires\": [\n        \"specs\",\n        \"design\"\n      ]\n    }\n  ],\n  \"root\": {\n    \"path\": \"<smoke-directory>/local\",\n    \"source\": \"nearest\"\n  }\n}\n",
+      "stderr": ""
+    },
+    {
+      "check": "Validate documentation-only change",
+      "command": [
+        "node",
+        "<repository>/node_modules/@fission-ai/openspec/bin/openspec.js",
+        "validate",
+        "clarify-readme",
+        "--strict"
+      ],
+      "cwd": "<smoke-directory>/local",
+      "exit": 0,
+      "stdout": "Change 'clarify-readme' is valid\n",
+      "stderr": "\u2139 [INFO] file: skip_specs is set in .openspec.yaml: change declares no spec-level behavior changes, zero deltas accepted\n"
+    },
+    {
+      "check": "Shell syntax skills/wizard/template.sh",
+      "command": [
+        "bash",
+        "-n",
+        "<repository>/skills/wizard/template.sh"
+      ],
+      "cwd": "<repository>",
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "check": "Shell syntax skills/diagnosing-bugs/scripts/hitl-loop.template.sh",
+      "command": [
+        "bash",
+        "-n",
+        "<repository>/skills/diagnosing-bugs/scripts/hitl-loop.template.sh"
+      ],
+      "cwd": "<repository>",
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "check": "JavaScript syntax scripts/check.mjs",
+      "command": [
+        "node",
+        "--check",
+        "<repository>/scripts/check.mjs"
+      ],
+      "cwd": "<repository>",
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "check": "JavaScript syntax scripts/install.mjs",
+      "command": [
+        "node",
+        "--check",
+        "<repository>/scripts/install.mjs"
+      ],
+      "cwd": "<repository>",
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "check": "JavaScript syntax skills/setup-ts-deep-modules/dependency-cruiser.config.cjs",
+      "command": [
+        "node",
+        "--check",
+        "<repository>/skills/setup-ts-deep-modules/dependency-cruiser.config.cjs"
+      ],
+      "cwd": "<repository>",
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "check": "Source nesting rejected",
+      "command": [
+        "node",
+        "<repository>/scripts/install.mjs",
+        "--skills-dir",
+        "<repository>/skills/nested"
+      ],
+      "cwd": "<repository>",
+      "exit": 1,
+      "stdout": "",
+      "stderr": "Choose a destination separate from the bundle source.\n"
+    },
+    {
+      "check": "Final bundle integrity",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "cwd": "<repository>",
+      "exit": 0,
+      "stdout": "\n> client-skills@1.0.0 check\n> node scripts/check.mjs\n\n{\n  \"skills\": 51,\n  \"templates\": 45,\n  \"files\": 119,\n  \"localReferences\": \"valid\",\n  \"portableMetadata\": \"valid\",\n  \"schemaTemplates\": \"present\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "check": "Distribute final owned adaptations",
+      "command": [
+        "node",
+        "<repository>/scripts/install.mjs",
+        "--skills-dir",
+        "<smoke-directory>/skills",
+        "--planning-root",
+        "<smoke-directory>/local",
+        "--select-schema"
+      ],
+      "cwd": "<repository>",
+      "exit": 0,
+      "stdout": "{\n  \"skillsDirectory\": \"<smoke-directory>/skills\",\n  \"planningRoot\": \"<smoke-directory>/local\",\n  \"schema\": \"client-work\",\n  \"files\": 128,\n  \"changed\": 6\n}\n",
+      "stderr": ""
+    },
+    {
+      "check": "Final idempotent installation",
+      "command": [
+        "node",
+        "<repository>/scripts/install.mjs",
+        "--skills-dir",
+        "<smoke-directory>/skills",
+        "--planning-root",
+        "<smoke-directory>/local",
+        "--select-schema"
+      ],
+      "cwd": "<repository>",
+      "exit": 0,
+      "stdout": "{\n  \"skillsDirectory\": \"<smoke-directory>/skills\",\n  \"planningRoot\": \"<smoke-directory>/local\",\n  \"schema\": \"client-work\",\n  \"files\": 128,\n  \"changed\": 0\n}\n",
+      "stderr": ""
+    },
+    {
+      "check": "Final schema validation",
+      "command": [
+        "node",
+        "<repository>/node_modules/@fission-ai/openspec/bin/openspec.js",
+        "schema",
+        "validate",
+        "client-work",
+        "--json"
+      ],
+      "cwd": "<smoke-directory>/local",
+      "exit": 0,
+      "stdout": "{\n  \"name\": \"client-work\",\n  \"path\": \"<smoke-directory>/local/openspec/schemas/client-work\",\n  \"valid\": true,\n  \"issues\": []\n}\n",
+      "stderr": "Note: Schema commands are experimental and may change.\n"
+    },
+    {
+      "check": "Install complete bundle with standard skills CLI",
+      "command": [
+        "npx",
+        "--yes",
+        "skills",
+        "add",
+        "<repository>",
+        "--skill",
+        "*",
+        "--agent",
+        "universal",
+        "--copy",
+        "--yes"
+      ],
+      "cwd": "<smoke-directory>/standalone-client",
+      "exit": 0,
+      "stdout": "\n\u001b[38;5;250m\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2557\u2588\u2588\u2557  \u2588\u2588\u2557\u2588\u2588\u2557\u2588\u2588\u2557     \u2588\u2588\u2557     \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2557\u001b[0m\n\u001b[38;5;248m\u2588\u2588\u2554\u2550\u2550\u2550\u2550\u255d\u2588\u2588\u2551 \u2588\u2588\u2554\u255d\u2588\u2588\u2551\u2588\u2588\u2551     \u2588\u2588\u2551     \u2588\u2588\u2554\u2550\u2550\u2550\u2550\u255d\u001b[0m\n\u001b[38;5;245m\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2557\u2588\u2588\u2588\u2588\u2588\u2554\u255d \u2588\u2588\u2551\u2588\u2588\u2551     \u2588\u2588\u2551     \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2557\u001b[0m\n\u001b[38;5;243m\u255a\u2550\u2550\u2550\u2550\u2588\u2588\u2551\u2588\u2588\u2554\u2550\u2588\u2588\u2557 \u2588\u2588\u2551\u2588\u2588\u2551     \u2588\u2588\u2551     \u255a\u2550\u2550\u2550\u2550\u2588\u2588\u2551\u001b[0m\n\u001b[38;5;240m\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2551\u2588\u2588\u2551  \u2588\u2588\u2557\u2588\u2588\u2551\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2557\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2557\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2551\u001b[0m\n\u001b[38;5;238m\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u255d\u255a\u2550\u255d  \u255a\u2550\u255d\u255a\u2550\u255d\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u255d\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u255d\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u255d\u001b[0m\n\n\u250c   skills \n\u2502\n\u2502  Tip: use the --yes (-y) and --global (-g) flags to install without prompts.\n\u001b[?25l\u2502\n\u25c7  Source: <repository>\n\u001b[?25h\u001b[?25l\u2502\n\u25c7  Local path validated\n\u001b[?25h\u001b[?25l\u2502\n\u25c7  Found 51 skills\n\u001b[?25h\u2502\n\u25cf  Installing all 51 skills\n\n\u2502\n\u25c7  Installation Summary \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e\n\u2502                                                  \u2502\n\u2502  ./.agents/skills/ask-skuddy                     \u2502\n\u2502    copy \u2192 Universal                              \u2502\n\u2502                                                  \u2502\n\u2502  ./.agents/skills/code-review                    \u2502\n\u2502    copy \u2192 Universal                              \u2502\n\u2502                                                  \u2502\n\u2502  ./.agents/skills/codebase-design                \u2502\n\u2502    copy \u2192 Universal                              \u2502\n\u2502                                                  \u2502\n\u2502  ./.agents/skills/diagnosing-bugs                \u2502\n\u2502    copy \u2192 Universal                              \u2502\n\u2502                                                  \u2502\n\u2502  ./.agents/skills/domain-modeling                \u2502\n\u2502    copy \u2192 Universal                              \u2502\n\u2502                                                  \u2502\n\u2502  ./.agents/skills/grill-me                       \u2502\n\u2502    copy \u2192 Universal                              \u2502\n\u2502                                                  \u2502\n\u2502  ./.agents/skills/grill-with-docs                \u2502\n\u2502    copy \u2192 Universal                              \u2502\n\u2502                                                  \u2502\n\u2502  ./.agents/skills/grilling                       \u2502\n\u2502    copy \u2192 Universal                              \u2502\n\u2502                                                  \u2502\n\u2502  ./.agents/skills/handoff                        \u2502\n\u2502    copy \u2192 Universal                              \u2502\n\u2502                                                  \u2502\n\u2502  ./.agents/skills/implement                      \u2502\n\u2502    copy \u2192 Universal                              \u2502\n\u2502                                                  \u2502\n\u2502  ./.agents/skills/implement-spec                 \u2502\n\u2502    copy \u2192 Universal                              \u2502\n\u2502                                                  \u2502\n\u2502  ./.agents/skills/improve-codebase-architecture  \u2502\n\u2502    copy \u2192 Universal                              \u2502\n\u2502                                                  \u2502\n\u2502  ./.agents/skills/linear                         \u2502\n\u2502    copy \u2192 Universal                              \u2502\n\u2502                                                  \u2502\n\u2502  ./.agents/skills/loop-me                        \u2502\n\u2502    copy \u2192 Universal                              \u2502\n\u2502                                                  \u2502\n\u2502  ./.agents/skills/migrate-to-shoehorn            \u2502\n\u2502    copy \u2192 Universal                              \u2502\n\u2502                                                  \u2502\n\u2502  ./.agents/skills/openspec-apply-change          \u2502\n\u2502    copy \u2192 Universal                              \u2502\n\u2502                                                  \u2502\n\u2502  ./.agents/skills/openspec-archive-change        \u2502\n\u2502    copy \u2192 Universal                              \u2502\n\u2502                                                  \u2502\n\u2502  ./.agents/skills/openspec-bulk-archive-change   \u2502\n\u2502    copy \u2192 Universal                              \u2502\n\u2502                                                  \u2502\n\u2502  ./.agents/skills/openspec-continue-change       \u2502\n\u2502    copy \u2192 Universal                              \u2502\n\u2502                                                  \u2502\n\u2502  ./.agents/skills/openspec-explore               \u2502\n\u2502    copy \u2192 Universal                              \u2502\n\u2502                                                  \u2502\n\u2502  ./.agents/skills/openspec-ff-change             \u2502\n\u2502    copy \u2192 Universal                              \u2502\n\u2502                                                  \u2502\n\u2502  ./.agents/skills/openspec-new-change            \u2502\n\u2502    copy \u2192 Universal                              \u2502\n\u2502                                                  \u2502\n\u2502  ./.agents/skills/openspec-onboard               \u2502\n\u2502    copy \u2192 Universal                              \u2502\n\u2502                                                  \u2502\n\u2502  ./.agents/skills/openspec-propose               \u2502\n\u2502    copy \u2192 Universal                              \u2502\n\u2502                                                  \u2502\n\u2502  ./.agents/skills/openspec-store                 \u2502\n\u2502    copy \u2192 Universal                              \u2502\n\u2502                                                  \u2502\n\u2502  ./.agents/skills/openspec-sync-specs            \u2502\n\u2502    copy \u2192 Universal                              \u2502\n\u2502                                                  \u2502\n\u2502  ./.agents/skills/openspec-update-change         \u2502\n\u2502    copy \u2192 Universal                              \u2502\n\u2502                                                  \u2502\n\u2502  ./.agents/skills/openspec-verify-change         \u2502\n\u2502    copy \u2192 Universal                              \u2502\n\u2502                                                  \u2502\n\u2502  ./.agents/skills/openspec-workset               \u2502\n\u2502    copy \u2192 Universal                              \u2502\n\u2502                                                  \u2502\n\u2502  ./.agents/skills/prototype                      \u2502\n\u2502    copy \u2192 Universal                              \u2502\n\u2502                                                  \u2502\n\u2502  ./.agents/skills/research                       \u2502\n\u2502    copy \u2192 Universal                              \u2502\n\u2502                                                  \u2502\n\u2502  ./.agents/skills/resolving-merge-conflicts      \u2502\n\u2502    copy \u2192 Universal                              \u2502\n\u2502                                                  \u2502\n\u2502  ./.agents/skills/retro                          \u2502\n\u2502    copy \u2192 Universal                              \u2502\n\u2502                                                  \u2502\n\u2502  ./.agents/skills/scaffold-exercises             \u2502\n\u2502    copy \u2192 Universal                              \u2502\n\u2502                                                  \u2502\n\u2502  ./.agents/skills/setup-pre-commit               \u2502\n\u2502    copy \u2192 Universal                              \u2502\n\u2502                                                  \u2502\n\u2502  ./.agents/skills/setup-ts-deep-modules          \u2502\n\u2502    copy \u2192 Universal                              \u2502\n\u2502                                                  \u2502\n\u2502  ./.agents/skills/setup-work-skills              \u2502\n\u2502    copy \u2192 Universal                              \u2502\n\u2502                                                  \u2502\n\u2502  ./.agents/skills/tdd                            \u2502\n\u2502    copy \u2192 Universal                              \u2502\n\u2502                                                  \u2502\n\u2502  ./.agents/skills/teach                          \u2502\n\u2502    copy \u2192 Universal                              \u2502\n\u2502                                                  \u2502\n\u2502  ./.agents/skills/to-questionnaire               \u2502\n\u2502    copy \u2192 Universal                              \u2502\n\u2502                                                  \u2502\n\u2502  ./.agents/skills/to-spec                        \u2502\n\u2502    copy \u2192 Universal                              \u2502\n\u2502                                                  \u2502\n\u2502  ./.agents/skills/to-tickets                     \u2502\n\u2502    copy \u2192 Universal                              \u2502\n\u2502                                                  \u2502\n\u2502  ./.agents/skills/triage                         \u2502\n\u2502    copy \u2192 Universal                              \u2502\n\u2502                                                  \u2502\n\u2502  ./.agents/skills/wait-what                      \u2502\n\u2502    copy \u2192 Universal                              \u2502\n\u2502                                                  \u2502\n\u2502  ./.agents/skills/wayfinder                      \u2502\n\u2502    copy \u2192 Universal                              \u2502\n\u2502                                                  \u2502\n\u2502  ./.agents/skills/wizard                         \u2502\n\u2502    copy \u2192 Universal                              \u2502\n\u2502                                                  \u2502\n\u2502  ./.agents/skills/workflow                       \u2502\n\u2502    copy \u2192 Universal                              \u2502\n\u2502                                                  \u2502\n\u2502  ./.agents/skills/writing-beats                  \u2502\n\u2502    copy \u2192 Universal                              \u2502\n\u2502                                                  \u2502\n\u2502  ./.agents/skills/writing-for-agents             \u2502\n\u2502    copy \u2192 Universal                              \u2502\n\u2502                                                  \u2502\n\u2502  ./.agents/skills/writing-fragments              \u2502\n\u2502    copy \u2192 Universal                              \u2502\n\u2502                                                  \u2502\n\u2502  ./.agents/skills/writing-shape                  \u2502\n\u2502    copy \u2192 Universal                              \u2502\n\u2502                                                  \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\u001b[?25l\u2502\n\u25d2  Installing skills\u2026\u001b[1G\u001b[J\u25c7  Installation complete\n\u001b[?25h\n\u2502\n\u25c7  Installed 51 skills \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e\n\u2502                                                      \u2502\n\u2502  \u2713 ask-skuddy (copied)                               \u2502\n\u2502    \u2192 ./.agents/skills/ask-skuddy                     \u2502\n\u2502  \u2713 code-review (copied)                              \u2502\n\u2502    \u2192 ./.agents/skills/code-review                    \u2502\n\u2502  \u2713 codebase-design (copied)                          \u2502\n\u2502    \u2192 ./.agents/skills/codebase-design                \u2502\n\u2502  \u2713 diagnosing-bugs (copied)                          \u2502\n\u2502    \u2192 ./.agents/skills/diagnosing-bugs                \u2502\n\u2502  \u2713 domain-modeling (copied)                          \u2502\n\u2502    \u2192 ./.agents/skills/domain-modeling                \u2502\n\u2502  \u2713 grill-me (copied)                                 \u2502\n\u2502    \u2192 ./.agents/skills/grill-me                       \u2502\n\u2502  \u2713 grill-with-docs (copied)                          \u2502\n\u2502    \u2192 ./.agents/skills/grill-with-docs                \u2502\n\u2502  \u2713 grilling (copied)                                 \u2502\n\u2502    \u2192 ./.agents/skills/grilling                       \u2502\n\u2502  \u2713 handoff (copied)                                  \u2502\n\u2502    \u2192 ./.agents/skills/handoff                        \u2502\n\u2502  \u2713 implement (copied)                                \u2502\n\u2502    \u2192 ./.agents/skills/implement                      \u2502\n\u2502  \u2713 implement-spec (copied)                           \u2502\n\u2502    \u2192 ./.agents/skills/implement-spec                 \u2502\n\u2502  \u2713 improve-codebase-architecture (copied)            \u2502\n\u2502    \u2192 ./.agents/skills/improve-codebase-architecture  \u2502\n\u2502  \u2713 linear (copied)                                   \u2502\n\u2502    \u2192 ./.agents/skills/linear                         \u2502\n\u2502  \u2713 loop-me (copied)                                  \u2502\n\u2502    \u2192 ./.agents/skills/loop-me                        \u2502\n\u2502  \u2713 migrate-to-shoehorn (copied)                      \u2502\n\u2502    \u2192 ./.agents/skills/migrate-to-shoehorn            \u2502\n\u2502  \u2713 openspec-apply-change (copied)                    \u2502\n\u2502    \u2192 ./.agents/skills/openspec-apply-change          \u2502\n\u2502  \u2713 openspec-archive-change (copied)                  \u2502\n\u2502    \u2192 ./.agents/skills/openspec-archive-change        \u2502\n\u2502  \u2713 openspec-bulk-archive-change (copied)             \u2502\n\u2502    \u2192 ./.agents/skills/openspec-bulk-archive-change   \u2502\n\u2502  \u2713 openspec-continue-change (copied)                 \u2502\n\u2502    \u2192 ./.agents/skills/openspec-continue-change       \u2502\n\u2502  \u2713 openspec-explore (copied)                         \u2502\n\u2502    \u2192 ./.agents/skills/openspec-explore               \u2502\n\u2502  \u2713 openspec-ff-change (copied)                       \u2502\n\u2502    \u2192 ./.agents/skills/openspec-ff-change             \u2502\n\u2502  \u2713 openspec-new-change (copied)                      \u2502\n\u2502    \u2192 ./.agents/skills/openspec-new-change            \u2502\n\u2502  \u2713 openspec-onboard (copied)                         \u2502\n\u2502    \u2192 ./.agents/skills/openspec-onboard               \u2502\n\u2502  \u2713 openspec-propose (copied)                         \u2502\n\u2502    \u2192 ./.agents/skills/openspec-propose               \u2502\n\u2502  \u2713 openspec-store (copied)                           \u2502\n\u2502    \u2192 ./.agents/skills/openspec-store                 \u2502\n\u2502  \u2713 openspec-sync-specs (copied)                      \u2502\n\u2502    \u2192 ./.agents/skills/openspec-sync-specs            \u2502\n\u2502  \u2713 openspec-update-change (copied)                   \u2502\n\u2502    \u2192 ./.agents/skills/openspec-update-change         \u2502\n\u2502  \u2713 openspec-verify-change (copied)                   \u2502\n\u2502    \u2192 ./.agents/skills/openspec-verify-change         \u2502\n\u2502  \u2713 openspec-workset (copied)                         \u2502\n\u2502    \u2192 ./.agents/skills/openspec-workset               \u2502\n\u2502  \u2713 prototype (copied)                                \u2502\n\u2502    \u2192 ./.agents/skills/prototype                      \u2502\n\u2502  \u2713 research (copied)                                 \u2502\n\u2502    \u2192 ./.agents/skills/research                       \u2502\n\u2502  \u2713 resolving-merge-conflicts (copied)                \u2502\n\u2502    \u2192 ./.agents/skills/resolving-merge-conflicts      \u2502\n\u2502  \u2713 retro (copied)                                    \u2502\n\u2502    \u2192 ./.agents/skills/retro                          \u2502\n\u2502  \u2713 scaffold-exercises (copied)                       \u2502\n\u2502    \u2192 ./.agents/skills/scaffold-exercises             \u2502\n\u2502  \u2713 setup-pre-commit (copied)                         \u2502\n\u2502    \u2192 ./.agents/skills/setup-pre-commit               \u2502\n\u2502  \u2713 setup-ts-deep-modules (copied)                    \u2502\n\u2502    \u2192 ./.agents/skills/setup-ts-deep-modules          \u2502\n\u2502  \u2713 setup-work-skills (copied)                        \u2502\n\u2502    \u2192 ./.agents/skills/setup-work-skills              \u2502\n\u2502  \u2713 tdd (copied)                                      \u2502\n\u2502    \u2192 ./.agents/skills/tdd                            \u2502\n\u2502  \u2713 teach (copied)                                    \u2502\n\u2502    \u2192 ./.agents/skills/teach                          \u2502\n\u2502  \u2713 to-questionnaire (copied)                         \u2502\n\u2502    \u2192 ./.agents/skills/to-questionnaire               \u2502\n\u2502  \u2713 to-spec (copied)                                  \u2502\n\u2502    \u2192 ./.agents/skills/to-spec                        \u2502\n\u2502  \u2713 to-tickets (copied)                               \u2502\n\u2502    \u2192 ./.agents/skills/to-tickets                     \u2502\n\u2502  \u2713 triage (copied)                                   \u2502\n\u2502    \u2192 ./.agents/skills/triage                         \u2502\n\u2502  \u2713 wait-what (copied)                                \u2502\n\u2502    \u2192 ./.agents/skills/wait-what                      \u2502\n\u2502  \u2713 wayfinder (copied)                                \u2502\n\u2502    \u2192 ./.agents/skills/wayfinder                      \u2502\n\u2502  \u2713 wizard (copied)                                   \u2502\n\u2502    \u2192 ./.agents/skills/wizard                         \u2502\n\u2502  \u2713 workflow (copied)                                 \u2502\n\u2502    \u2192 ./.agents/skills/workflow                       \u2502\n\u2502  \u2713 writing-beats (copied)                            \u2502\n\u2502    \u2192 ./.agents/skills/writing-beats                  \u2502\n\u2502  \u2713 writing-for-agents (copied)                       \u2502\n\u2502    \u2192 ./.agents/skills/writing-for-agents             \u2502\n\u2502  \u2713 writing-fragments (copied)                        \u2502\n\u2502    \u2192 ./.agents/skills/writing-fragments              \u2502\n\u2502  \u2713 writing-shape (copied)                            \u2502\n\u2502    \u2192 ./.agents/skills/writing-shape                  \u2502\n\u2502                                                      \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\n\u2502\n\u2514  Done!  Review skills before use; they run with full agent permissions.\n\n",
+      "stderr": ""
+    },
+    {
+      "check": "Independent runtime and installed schema",
+      "command": [
+        "npx",
+        "--yes",
+        "--package",
+        "@fission-ai/openspec@1.13.0",
+        "openspec",
+        "schema",
+        "validate",
+        "client-work",
+        "--json"
+      ],
+      "cwd": "<smoke-directory>/standalone-client",
+      "exit": 0,
+      "stdout": "{\n  \"name\": \"client-work\",\n  \"path\": \"<smoke-directory>/standalone-client/openspec/schemas/client-work\",\n  \"valid\": true,\n  \"issues\": []\n}\n",
+      "stderr": "Note: Schema commands are experimental and may change.\n"
+    },
+    {
+      "check": "Renamed bundle integrity",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "cwd": "<repository>",
+      "exit": 0,
+      "stdout": "\n> client-skills@1.0.0 check\n> node scripts/check.mjs\n\n{\n  \"skills\": 51,\n  \"templates\": 45,\n  \"files\": 127,\n  \"localReferences\": \"valid\",\n  \"portableMetadata\": \"valid\",\n  \"schemaTemplates\": \"present\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "check": "Final renamed repository integrity",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "cwd": "<repository>",
+      "exit": 0,
+      "stdout": "\n> client-skills@1.0.0 check\n> node scripts/check.mjs\n\n{\n  \"skills\": 51,\n  \"templates\": 45,\n  \"files\": 127,\n  \"localReferences\": \"valid\",\n  \"portableMetadata\": \"valid\",\n  \"schemaTemplates\": \"present\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "check": "Final packaged source validation",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "cwd": "<repository>",
+      "exit": 0,
+      "stdout": "\n> client-skills@1.0.0 check\n> node scripts/check.mjs\n\n{\n  \"skills\": 51,\n  \"templates\": 45,\n  \"files\": 127,\n  \"localReferences\": \"valid\",\n  \"portableMetadata\": \"valid\",\n  \"schemaTemplates\": \"present\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "check": "Install final packaged assets",
+      "command": [
+        "node",
+        "<repository>/scripts/install.mjs",
+        "--skills-dir",
+        "<smoke-directory>/final-skills"
+      ],
+      "cwd": "<repository>",
+      "exit": 0,
+      "stdout": "{\n  \"skillsDirectory\": \"<smoke-directory>/final-skills\",\n  \"planningRoot\": null,\n  \"schema\": null,\n  \"files\": 127,\n  \"changed\": 127\n}\n",
+      "stderr": ""
+    },
+    {
+      "check": "Reinstall final packaged assets",
+      "command": [
+        "node",
+        "<repository>/scripts/install.mjs",
+        "--skills-dir",
+        "<smoke-directory>/final-skills"
+      ],
+      "cwd": "<repository>",
+      "exit": 0,
+      "stdout": "{\n  \"skillsDirectory\": \"<smoke-directory>/final-skills\",\n  \"planningRoot\": null,\n  \"schema\": null,\n  \"files\": 127,\n  \"changed\": 0\n}\n",
+      "stderr": ""
+    }
+  ],
+  "pathRedaction": "Workstation repository and temporary paths replaced with symbolic locations; command results unchanged."
+}

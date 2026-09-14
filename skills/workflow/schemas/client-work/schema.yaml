@@ -1,0 +1,68 @@
+name: client-work
+version: 1
+description: Linear-linked change planning with behavioral specifications and evidence-backed tasks
+artifacts:
+  - id: proposal
+    generates: proposal.md
+    description: Outcome and affected capabilities
+    template: proposal.md
+    instruction: |
+      Read the installed workflow skill. Establish the problem, desired outcome and scope from the request and source evidence.
+      Use grilling and domain-modeling when the outcome or vocabulary needs clarification. Reuse settled answers.
+      Identify existing capabilities with openspec list --specs and read relevant specs with openspec show <id> --type spec.
+      Carry the selected --store flag. Preserve existing capability paths.
+      List introduced and modified capabilities and affected code repositories. Link related Linear entities where they exist.
+      A change with no externally visible specification change declares skip_specs: true in .openspec.yaml.
+      Record the actual reason; invent no requirements to satisfy validation.
+    requires: []
+  - id: specs
+    generates: specs/**/*.md
+    description: Behavioral requirement deltas
+    template: spec.md
+    instruction: |
+      Describe observable behavior rather than implementation. Use project terminology and the agreed outcome.
+      Write one specs/<capability-path>/spec.md per affected capability using its exact existing path or agreed new kebab-case path.
+      Use ## ADDED Requirements, ## MODIFIED Requirements, ## REMOVED Requirements and ## RENAMED Requirements as applicable.
+      Each requirement has a ### Requirement: <name> heading, SHALL or MUST behavior, and at least one #### Scenario: <name> with WHEN and THEN.
+      A MODIFIED requirement includes the full updated requirement and every retained scenario; match its existing name exactly.
+      A REMOVED requirement records Reason and Migration in the historical delta. RENAMED uses FROM and TO names.
+      For an introduced capability, include a ## Purpose of at least 50 characters describing its lasting behavior.
+      Current specs are resolved beneath planningHome.root/openspec/specs, not the code checkout.
+      Read the selected root's specs before writing deltas. Keep source code unchanged during planning.
+      When instructions report skipped, leave the specs artifact absent.
+    requires: [proposal]
+  - id: design
+    generates: design.md
+    description: Grounded design and implementation authorization
+    template: design.md
+    instruction: |
+      Read the proposal and relevant code, configuration, tests and domain decisions.
+      Record implementation decisions, participating repositories, behavioral test seams, dependencies and real risks.
+      Link research or prototypes that resolve a design choice rather than duplicating them.
+      Resolve questions that would change scope, contracts or task breakdown before preparing tasks.
+      Record explicit implementation approval and the scope it covers when supplied. Otherwise state that approval is pending.
+      Finished source must present a coherent current implementation. Historical explanation belongs in change records.
+    requires: [proposal]
+  - id: tasks
+    generates: tasks.md
+    description: Ordered implementation work linked to Linear
+    template: tasks.md
+    instruction: |
+      Read specs and design. Use the to-tickets skill's vertical slicing method without recursively rebuilding this artifact.
+      Write numbered - [ ] tasks grouped under numbered headings. Each task names observable completion and its check.
+      Order by real dependencies and identify repository ownership for multi-repository work.
+      Link each related Linear issue beside its task when one exists. Create issues only within the requested authority using the linear skill and supplied issue templates.
+      Task artifacts track evolving execution. Initial issue descriptions retain their template brief; relevant follow-ups go in concise comments.
+      Supporting task records may carry detailed context while this checklist tracks completion.
+      Revising requirements requires reconsidering checked tasks and invalidated evidence, leaving affected work unchecked.
+    requires: [specs, design]
+apply:
+  requires: [tasks]
+  tracks: tasks.md
+  instruction: |
+    Read every context file, the workflow skill and the explicit implementation approval before source edits.
+    Work through ready tasks using tdd at useful behavioral seams and the project's conventions.
+    Exercise each changed behavior and record commands, observations and limitations in evidence.md beside tasks.md.
+    Check a task only after its behavior and applicable checks succeed. Preserve blocked work as incomplete.
+    Use code-review on the full relevant diff including uncommitted changes. Verify conformance before proposing sync or archive.
+    Comment on linked Linear issues only for relevant developments. Issue descriptions retain their initial brief.

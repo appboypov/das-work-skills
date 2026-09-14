@@ -1,0 +1,25 @@
+node_modules/
+.DS_Store
+
+# Local editor state
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Credentials and machine-local configuration
+.env
+.env.*
+!.env.example
+!.env.*.example
+.npmrc
+.linear.toml
+*.pem
+*.key
+
+# Generated output
+coverage/
+dist/
+*.log
+*.tgz
+.client-skills-install.json

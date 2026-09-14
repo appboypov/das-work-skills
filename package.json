@@ -1,0 +1,17 @@
+{
+  "name": "client-skills",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Portable Linear-first skills with OpenSpec change management",
+  "type": "module",
+  "engines": { "node": ">=20.19.0" },
+  "scripts": {
+    "install:skills": "node scripts/install.mjs",
+    "check": "node scripts/check.mjs",
+    "openspec": "openspec"
+  },
+  "dependencies": {
+    "@fission-ai/openspec": "1.13.0",
+    "yaml": "2.8.3"
+  }
+}
