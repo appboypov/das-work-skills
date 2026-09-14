@@ -2,6 +2,14 @@
 
 Use the installed files for every step. The source repository is only needed by maintainers. Install the full bundle together because skills link to their siblings. Each installed skill directory includes its supporting files.
 
+Install globally from any directory and select the desired agents when prompted:
+
+```sh
+npx skills add appboypov/das-work-skills --global --skill '*'
+```
+
+`--skill '*'` selects the complete bundle. The skills CLI manages the shared global installation and links it into the selected agents.
+
 ## Runtime
 
 OpenSpec requires Node.js 20.19 or later. Check `node --version` and `openspec --version`. This bundle targets OpenSpec 1.13.0, including its experimental store and workset commands.
@@ -41,4 +49,10 @@ Start with the current outcome and evidence. Skuddy recommends exact installed s
 
 The supplied [issue](../templates/issues/), [task](../templates/tasks/) and [action](../templates/actions/) templates are available here after installation. [Provenance](../upstream.json) and [licenses](../licenses/) travel with them.
 
-Use the skills package manager's update operation when requesting a bundle update. Review local skill customizations before updating. Existing project schemas retain their own copies; compare them with the updated installed schema and revalidate after an approved schema update.
+Update globally installed skills from any directory:
+
+```sh
+npx skills update --global
+```
+
+This updates all global skills, including this bundle. Review local skill customizations before updating. Existing project schemas retain their own copies; compare them with the updated installed schema and revalidate after an approved schema update.

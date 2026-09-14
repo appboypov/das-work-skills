@@ -4,17 +4,25 @@ Skuddy coordinates 51 skills combining AI Hero's engineering, research and writi
 
 ## Install
 
-From the client project, install this bundle with the skills CLI. Select the desired agent when prompted; keep all skills selected so sibling references resolve:
+Install the complete bundle globally with the skills CLI. Select the desired agents when prompted. `--skill '*'` selects every skill so sibling references resolve:
 
 ```sh
-npx skills add appboypov/das-work-skills --skill '*' --copy
+npx skills add appboypov/das-work-skills --global --skill '*'
 ```
 
-Use `--global` for user-level installation. `--copy` makes the installation independent of a source checkout.
+The skills CLI manages the global installation and links it into the selected agents. Run this command from any directory.
 
 Then ask the agent to run **setup-work-skills**. It records project context in `.das-work` and selects `das-work-schema` in OpenSpec. Setup instructions, schema templates, acceptance journeys, provenance and licenses are all inside the installed skills. OpenSpec installs independently of this repository. Clients do not need to return here.
 
 Start everyday work with **ask-skuddy**. It recommends exact skill names with links, explains why they fit and lays out the relevant skill sequence. Linear holds the initial templated briefs and meaningful comments. OpenSpec holds evolving specs, design, tasks and evidence.
+
+## Update
+
+```sh
+npx skills update --global
+```
+
+This updates all globally installed skills, including this bundle. Review local skill customizations before updating. Project-local OpenSpec schema copies are updated separately through **setup-work-skills**.
 
 ## Maintainers
 

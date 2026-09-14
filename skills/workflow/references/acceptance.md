@@ -8,11 +8,11 @@ Use temporary `XDG_CONFIG_HOME` and `XDG_DATA_HOME` directories for store and wo
 
 ## Install and discover
 
-1. Install the complete bundle through the skills CLI with `--copy` in a temporary project. Expect 51 skill directories including `ask-skuddy`, `setup-work-skills` and `workflow`.
+1. In an isolated user environment, run `npx skills add appboypov/das-work-skills --global --skill '*'` and select the desired agents. Expect 51 globally installed skills including `ask-skuddy`, `setup-work-skills` and `workflow`, discoverable from different project directories.
 2. Read the installed setup guide, schema and issue templates without opening the source repository. Expect all local references to resolve inside the installed bundle.
 3. Follow installed setup to select `das-work-schema` and record confirmed project context in `.das-work` at the project root. Expect native schema validation to pass, unrelated OpenSpec configuration to remain intact, and the project instructions to point to `.das-work`.
 4. Ask the host to read `ask-skuddy/SKILL.md` from the installed directory. Expect a recommendation naming the exact next skill, its link, why it fits and its expected result, followed by the relevant conditional skill path.
-5. Review local skill customizations before requesting package-manager updates. The optional maintainer installer has separate collision and idempotence checks recorded in verification.
+5. Review local skill customizations, then run `npx skills update --global` in that isolated environment. Expect the CLI to check and update global installations, including this bundle. Confirm project-local OpenSpec schema copies remain separate. The optional maintainer installer has separate collision and idempotence checks recorded in verification.
 
 ## Receive skill-based advice
 
