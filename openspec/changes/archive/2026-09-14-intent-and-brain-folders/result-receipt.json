@@ -1,0 +1,83 @@
+{
+  "identifier": "RESULT-4",
+  "title": "Configurable intent storage and permanent archive ingestion",
+  "description": "**Origin:** `/Users/codaveto/Work/intents/das/intent-and-brain-folders/intent-and-brain-folders.md`\n\n## Delivered outcome\n\nThe das-work-skills bundle now configures an intent folder and one second-brain folder. Framework work discovers active intents and confirms capture with the user. Advice-only requests and explicit framework opt-out retain their write boundaries.\n\nSingle and bulk archive skills share instruction-led source gathering, curated knowledge with sources, output readback and resumable incomplete ingestion. Handoffs preserve the owning intent and project configuration. The repository uses `/Users/codaveto/Work/intents` and `/Users/codaveto/Work/brain` as confirmed by the user.\n\n## Artifacts\n\n* Code checkout: `/Users/codaveto/Repos/das/das-work-skills`\n* Current specifications: `openspec/specs/intent-context/spec.md` and `openspec/specs/brain-ingestion/spec.md`\n* Archived change: `openspec/changes/archive/2026-09-14-intent-and-brain-folders/`\n* Walkthrough: `skills/workflow/references/acceptance.md`\n* Permanent work record: `/Users/codaveto/Work/brain/memories/worklogs/das/2026-09-14-569.md`\n* Attached evidence: implementation evidence, both independent verification reports and the read-back smoke results.\n\n## Verification evidence\n\n* Repository checks passed for 51 skills, 45 templates and 128 files.\n* Bundled and repository-local schema copies match and validate. Repeat installation changed zero files.\n* Twelve controlled workflow checks cover confirmed intent capture, configuration, opt-out, source gathering, archive outcomes and failure/resumption paths. Saved records and confirmation boundaries were inspected.\n* Two fresh verifier agents reviewed all 11 requirements and 22 scenarios and returned PASS with no blocking source findings.\n* Both current specifications were reconciled and passed strict OpenSpec validation.\n\n## Proof limits\n\nThe delivered source is in the local checkout. No release, commit or PR was published. Controlled local source fixtures do not establish live Linear source ingestion. Binary attachment failure and an explicitly verified-versus-delivered fixture remain unexercised. No preexisting Linear work issue was linked to this change.",
+  "url": "https://linear.app/skuddy/issue/RESULT-4/configurable-intent-storage-and-permanent-archive-ingestion",
+  "branchName": "info/result-4-configurable-intent-storage-and-permanent-archive-ingestion",
+  "state": {
+    "name": "Done",
+    "color": "#f2c94c"
+  },
+  "assignee": null,
+  "priority": 0,
+  "project": null,
+  "projectMilestone": null,
+  "cycle": {
+    "id": "2aac15db-501a-497b-9444-ed93042efa3e",
+    "number": 1,
+    "name": "Cycle 1",
+    "isActive": true,
+    "isNext": false,
+    "isPrevious": false,
+    "isFuture": false,
+    "isPast": false
+  },
+  "team": {
+    "activeCycle": {
+      "number": 1
+    }
+  },
+  "labels": {
+    "nodes": []
+  },
+  "parent": null,
+  "children": {
+    "nodes": []
+  },
+  "comments": {
+    "nodes": []
+  },
+  "attachments": {
+    "nodes": [
+      {
+        "id": "4d1d306e-878b-4e00-961a-e43adfa091e5",
+        "title": "evidence.md",
+        "url": "https://uploads.linear.app/00dab7e6-d90f-4d0b-89e7-b9436c20ff37/62a33b5e-0854-4a79-a84f-4c27c4260e94/e7e63202-b355-41f8-a16f-605a54127694",
+        "subtitle": null,
+        "sourceType": "unknown",
+        "metadata": {},
+        "createdAt": "2026-09-14T20:42:02.347Z"
+      },
+      {
+        "id": "28684070-b770-44e1-b014-4d89de90a9ad",
+        "title": "smoke-results.json",
+        "url": "https://uploads.linear.app/00dab7e6-d90f-4d0b-89e7-b9436c20ff37/4f46a88f-ffdb-4d3a-ba5d-715249c0e67f/20b9f7bc-034e-41be-829a-fcf680fe9570",
+        "subtitle": null,
+        "sourceType": "unknown",
+        "metadata": {},
+        "createdAt": "2026-09-14T20:40:58.777Z"
+      },
+      {
+        "id": "8266009f-87a4-43a0-a03b-e267d7836f41",
+        "title": "verification-brain.md",
+        "url": "https://uploads.linear.app/00dab7e6-d90f-4d0b-89e7-b9436c20ff37/f9ca0a8f-0d83-4ab6-b833-5722a889ae46/28fdea7f-a497-4fac-ac70-b9712822e383",
+        "subtitle": null,
+        "sourceType": "unknown",
+        "metadata": {},
+        "createdAt": "2026-09-14T20:40:57.891Z"
+      },
+      {
+        "id": "24cedbc9-55c3-43f9-ae0b-122ae707e993",
+        "title": "verification-intent.md",
+        "url": "https://uploads.linear.app/00dab7e6-d90f-4d0b-89e7-b9436c20ff37/89cdfad4-2baf-4c04-a46a-777203ed05d2/1c0af8dd-10b8-4924-a000-25a9e8ae8055",
+        "subtitle": null,
+        "sourceType": "unknown",
+        "metadata": {},
+        "createdAt": "2026-09-14T20:40:56.987Z"
+      }
+    ]
+  },
+  "documents": {
+    "nodes": []
+  }
+}

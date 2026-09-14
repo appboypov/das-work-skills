@@ -1,0 +1,13 @@
+# Project context
+
+Purpose: Portable workflow skills for planning, implementing and preserving work outcomes.
+Repository: /Users/codaveto/Repos/das/das-work-skills
+Skill source: skills/
+Planning mode: Repository-local OpenSpec
+OpenSpec configuration: openspec/config.yaml
+Intent folder: /Users/codaveto/Work/intents
+Brain folder: /Users/codaveto/Work/brain
+
+## Instructions
+
+Follow [workflow](skills/workflow/SKILL.md) and [project context](skills/workflow/references/setup.md#project-context). OpenSpec configuration owns the schema and planning settings. Read the selected folders' applicable instructions before writing records there.

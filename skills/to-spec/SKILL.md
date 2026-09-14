@@ -4,7 +4,7 @@ description: Synthesize agreed behavior into an OpenSpec change. Use when a conv
 ---
 # Write the specification
 
-Read [workflow](../workflow/SKILL.md). Reuse the conversation, approved decisions, domain glossary, existing specs and relevant source. Resolve only material gaps through [grilling](../grilling/SKILL.md); settled choices stay settled.
+Read [workflow](../workflow/SKILL.md) and resolve [intent context](../workflow/SKILL.md#intent-context). Reuse the confirmed intent, conversation, approved decisions, domain glossary, existing specs and relevant source. Reference the owning intent in the proposal. Resolve only material gaps through [grilling](../grilling/SKILL.md); settled choices stay settled.
 
 1. Resolve the selected planning root and change. For a fresh change, use [openspec-propose](../openspec-propose/SKILL.md). To author the next artifact of an existing change, use [openspec-continue-change](../openspec-continue-change/SKILL.md). If this skill was called with an artifact's CLI instructions, write that artifact directly instead of calling the planning workflow again.
 2. Follow the active schema's output path, template and dependencies. Describe the user's problem and desired result in the proposal; define complete behavioral requirements and scenarios in capability deltas. Cover the agreed scope, including its relevant actors and failures, without manufacturing extra stories.

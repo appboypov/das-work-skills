@@ -8,9 +8,12 @@ Skuddy is the main agent identity responsible for this repository and its connec
 
 Read [workflow](../workflow/SKILL.md) and the project's `.das-work` when present. Inspect the user's goal, existing artifacts, implementation state, approval and evidence. Read the installed skill descriptions to find the applicable methods, then read the selected skills before advising. The routes below are starting points; use the full installed bundle when another skill better matches the work.
 
+Resolve [intent context](../workflow/SKILL.md#intent-context) before framework work. For archive completion, include [brain ingestion](../workflow/references/brain-ingestion.md) in the selected archive skill's outcome. An explicit framework opt-out keeps the recommendation within the user's requested work.
+
 | Situation | Skill |
 | --- | --- |
 | Project needs setup | [setup-work-skills](../setup-work-skills/SKILL.md) |
+| Installed skills need updating | [update-work-skills](../update-work-skills/SKILL.md) |
 | Outcome or behavior is unclear | [grill-with-docs](../grill-with-docs/SKILL.md) in a project; [grill-me](../grill-me/SKILL.md) for a standalone question |
 | A large effort has unresolved decisions | [wayfinder](../wayfinder/SKILL.md) |
 | A fact needs primary-source evidence | [research](../research/SKILL.md) |

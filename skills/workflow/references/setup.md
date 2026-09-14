@@ -39,7 +39,11 @@ Make all installed sibling skills discoverable to the host. Start with [ask-skud
 
 ## Project context
 
-Maintain a plain-text Markdown file named `.das-work` at the project root. Read it before setup, advice or resumed work, and update it with confirmed project agreements. Record the project's purpose, relevant repositories, installed skill location, Linear workspace/team/project identifiers and links, planning mode, and references to the selected OpenSpec configuration and project conventions. Include only facts established for this project; use project-relative paths where practical.
+Maintain a plain-text Markdown file named `.das-work` at the project root. Read it before setup, advice or resumed work, and update it with confirmed project agreements. Record the project's purpose, relevant repositories, installed skill location, Linear workspace, team and project identifiers and links, planning mode, labelled `Intent folder` and `Brain folder` entries, and references to the selected OpenSpec configuration and project conventions. Include only facts established for this project.
+
+The labelled `Intent folder` and `Brain folder` entries configure storage for the workflow. Each entry holds one filesystem path. Relative paths resolve from the defining `.das-work` file rather than the agent's working directory, keeping folder resolution consistent during multi-repository work, shared planning or handoffs. The project configures exactly one brain folder. Intent and brain paths may point to separate roots or a nested arrangement. Read each destination folder for applicable instructions and follow them before creating or modifying records. When a framework operation needs an intent or brain folder that has not been configured, prompt the user for their location choice before writing there.
+
+Honour an explicit choice to work outside the framework without creating `.das-work` or capturing intents. Advice-only and read-only requests inspect relevant records while leaving `.das-work`, intent records, brain records and Linear state unchanged.
 
 OpenSpec's configuration remains authoritative for its schema and store settings. `.das-work` points to that configuration and supplies the context the agent needs to use it. Specs, task progress and implementation approval remain in their existing change artifacts. Credentials stay in the authenticated connection.
 

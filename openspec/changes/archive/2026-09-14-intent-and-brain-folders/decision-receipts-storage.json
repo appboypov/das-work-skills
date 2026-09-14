@@ -1,0 +1,97 @@
+{
+  "ok": true,
+  "input_rows_in": 3,
+  "receipt_rows_out": 3,
+  "published": 3,
+  "reused": 0,
+  "unchanged": 0,
+  "source_file": "/Users/codaveto/Repos/das/das-work-skills/openspec/changes/archive/2026-09-14-intent-and-brain-folders/ingestion-decisions.json",
+  "receipt_file": "/Users/codaveto/Repos/das/das-work-skills/openspec/changes/archive/2026-09-14-intent-and-brain-folders/decision-receipts-storage.json",
+  "errors": [],
+  "records": [
+    {
+      "input_index": 2,
+      "input_id": "2026-09-14-das-work-skills-intent-folder",
+      "source_file": "/Users/codaveto/Repos/das/das-work-skills/openspec/changes/archive/2026-09-14-intent-and-brain-folders/ingestion-decisions.json",
+      "action": "published",
+      "logger_exit_code": 0,
+      "logger_result": {
+        "ok": true,
+        "records": [
+          {
+            "decision_id": "2026-09-14-das-work-skills-intent-folder",
+            "decided_on": "2026-09-14",
+            "subject": "das-work-skills intent and brain folders",
+            "title": "Intent storage for das-work-skills",
+            "target": "[[intents/das/intent-and-brain-folders/intent-and-brain-folders]]",
+            "question": "Your current conventions save intents under /Users/codaveto/Work/intents. Should this repository use that intent folder?",
+            "answer": "Use the existing intents folder",
+            "options": 2,
+            "supersedes": null
+          }
+        ]
+      },
+      "readback": {
+        "question": "Your current conventions save intents under /Users/codaveto/Work/intents. Should this repository use that intent folder?\n",
+        "answer": "Use the existing intents folder\n",
+        "path": "/Users/codaveto/Work/brain/memories/decisions/das/2026-09-14-das-work-skills-intent-folder.md"
+      }
+    },
+    {
+      "input_index": 3,
+      "input_id": "2026-09-14-das-work-skills-brain-folder",
+      "source_file": "/Users/codaveto/Repos/das/das-work-skills/openspec/changes/archive/2026-09-14-intent-and-brain-folders/ingestion-decisions.json",
+      "action": "published",
+      "logger_exit_code": 0,
+      "logger_result": {
+        "ok": true,
+        "records": [
+          {
+            "decision_id": "2026-09-14-das-work-skills-brain-folder",
+            "decided_on": "2026-09-14",
+            "subject": "das-work-skills intent and brain folders",
+            "title": "Second brain for das-work-skills",
+            "target": "[[intents/das/intent-and-brain-folders/intent-and-brain-folders]]",
+            "question": "Your permanent records span brain/, specs/, reports/ and other homes inside /Users/codaveto/Work. Should that whole workspace be this repository's second brain?",
+            "answer": "~/Work/brain",
+            "options": 2,
+            "supersedes": null
+          }
+        ]
+      },
+      "readback": {
+        "question": "Your permanent records span brain/, specs/, reports/ and other homes inside /Users/codaveto/Work. Should that whole workspace be this repository's second brain?\n",
+        "answer": "~/Work/brain\n",
+        "path": "/Users/codaveto/Work/brain/memories/decisions/das/2026-09-14-das-work-skills-brain-folder.md"
+      }
+    },
+    {
+      "input_index": 4,
+      "input_id": "2026-09-14-separate-intent-and-brain-folders-intent",
+      "source_file": "/Users/codaveto/Repos/das/das-work-skills/openspec/changes/archive/2026-09-14-intent-and-brain-folders/ingestion-decisions.json",
+      "action": "published",
+      "logger_exit_code": 0,
+      "logger_result": {
+        "ok": true,
+        "records": [
+          {
+            "decision_id": "2026-09-14-separate-intent-and-brain-folders-intent",
+            "decided_on": "2026-09-14",
+            "subject": "das-work-skills intent and brain folders",
+            "title": "Owning intent for portable folder configuration",
+            "target": "[[intents/das/intent-and-brain-folders/intent-and-brain-folders]]",
+            "question": "The related active intents cover other projects or personal conventions. I recommend a separate intent for this bundle's configured intent capture and archive ingestion. Should I create that intent and link the completed specification and evidence?",
+            "answer": "Create the separate intent",
+            "options": 2,
+            "supersedes": null
+          }
+        ]
+      },
+      "readback": {
+        "question": "The related active intents cover other projects or personal conventions. I recommend a separate intent for this bundle's configured intent capture and archive ingestion. Should I create that intent and link the completed specification and evidence?\n",
+        "answer": "Create the separate intent\n",
+        "path": "/Users/codaveto/Work/brain/memories/decisions/das/2026-09-14-separate-intent-and-brain-folders-intent.md"
+      }
+    }
+  ]
+}

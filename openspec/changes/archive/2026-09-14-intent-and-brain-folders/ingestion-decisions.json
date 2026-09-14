@@ -1,0 +1,72 @@
+[
+  {
+    "id": "2026-09-14-portable-intent-and-brain-workflow",
+    "title": "Confirmed intent capture and brain ingestion",
+    "question": "What surgical update do you suggest? Please answer this without taking action. I'm merely requesting an expert honest answer.",
+    "answer": "the intent should alos be configured. where to save the intents\n\nbut just like our intent currnetly it also checks if an existing intnent is already active to add to and discusses that with the user\n\ncurated records with sources by default unless brain instructions say otherwise, there is always only 1 brain\n\nintent is always captured once intent becomes clear and confirmed with the user before creating/updating. user may also just want to do somryhing without the frameowkr or an intent",
+    "organisation": "das",
+    "subject": "das-work-skills intent and brain folders",
+    "target": "[[intents/das/intent-and-brain-folders/intent-and-brain-folders]]",
+    "actor": "agent"
+  },
+  {
+    "id": "2026-09-14-das-work-skills-local-planning",
+    "title": "Repository-local planning for das-work-skills",
+    "question": "I recommend keeping this bundle's specification in its own repository, since the shared store has no established ownership of it. Shall I initialize local OpenSpec planning and write the agreed specification for review?",
+    "answer": "Yes, write it locally",
+    "options": [
+      "Yes, write it locally",
+      "Use the das-work store"
+    ],
+    "recommended": 1,
+    "organisation": "das",
+    "subject": "das-work-skills intent and brain folders",
+    "target": "[[intents/das/intent-and-brain-folders/intent-and-brain-folders]]",
+    "actor": "agent"
+  },
+  {
+    "id": "2026-09-14-das-work-skills-intent-folder",
+    "title": "Intent storage for das-work-skills",
+    "question": "Your current conventions save intents under /Users/codaveto/Work/intents. Should this repository use that intent folder?",
+    "answer": "Use the existing intents folder",
+    "options": [
+      "Use the existing intents folder",
+      "Use a different folder"
+    ],
+    "recommended": 1,
+    "organisation": "das",
+    "subject": "das-work-skills intent and brain folders",
+    "target": "[[intents/das/intent-and-brain-folders/intent-and-brain-folders]]",
+    "actor": "agent"
+  },
+  {
+    "id": "2026-09-14-das-work-skills-brain-folder",
+    "title": "Second brain for das-work-skills",
+    "question": "Your permanent records span brain/, specs/, reports/ and other homes inside /Users/codaveto/Work. Should that whole workspace be this repository's second brain?",
+    "answer": "~/Work/brain",
+    "options": [
+      "Use /Users/codaveto/Work",
+      "Use a different brain"
+    ],
+    "recommended": 1,
+    "organisation": "das",
+    "subject": "das-work-skills intent and brain folders",
+    "target": "[[intents/das/intent-and-brain-folders/intent-and-brain-folders]]",
+    "actor": "agent"
+  },
+  {
+    "id": "2026-09-14-separate-intent-and-brain-folders-intent",
+    "title": "Owning intent for portable folder configuration",
+    "question": "The related active intents cover other projects or personal conventions. I recommend a separate intent for this bundle's configured intent capture and archive ingestion. Should I create that intent and link the completed specification and evidence?",
+    "answer": "Create the separate intent",
+    "options": [
+      "Create the separate intent",
+      "Extend an existing intent"
+    ],
+    "recommended": 1,
+    "organisation": "das",
+    "subject": "das-work-skills intent and brain folders",
+    "target": "[[intents/das/intent-and-brain-folders/intent-and-brain-folders]]",
+    "actor": "agent"
+  }
+]

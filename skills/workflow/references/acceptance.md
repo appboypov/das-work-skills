@@ -10,7 +10,7 @@ Use temporary `XDG_CONFIG_HOME` and `XDG_DATA_HOME` directories for store and wo
 
 1. In an isolated user environment, run `npx skills add appboypov/das-work-skills --global --skill '*'` and select the desired agents. Expect 51 globally installed skills including `ask-skuddy`, `setup-work-skills` and `workflow`, discoverable from different project directories.
 2. Read the installed setup guide, schema and issue templates without opening the source repository. Expect all local references to resolve inside the installed bundle.
-3. Follow installed setup to select `das-work-schema` and record confirmed project context in `.das-work` at the project root. Expect native schema validation to pass, unrelated OpenSpec configuration to remain intact, and the project instructions to point to `.das-work`.
+3. Follow installed setup to select `das-work-schema` and record confirmed project context in `.das-work` at the project root, including the intent folder and one brain folder. Expect native schema validation to pass, unrelated OpenSpec configuration to remain intact, and the project instructions to point to `.das-work`.
 4. Ask the host to read `ask-skuddy/SKILL.md` from the installed directory. Expect a recommendation naming the exact next skill, its link, why it fits and its expected result, followed by the relevant conditional skill path.
 5. Review local skill customizations, then run `npx skills update --global` in that isolated environment. Expect the CLI to check and update global installations, including this bundle. Confirm project-local OpenSpec schema copies remain separate. The optional maintainer installer has separate collision and idempotence checks recorded in verification.
 
@@ -30,7 +30,7 @@ Use temporary `XDG_CONFIG_HOME` and `XDG_DATA_HOME` directories for store and wo
 3. Run `openspec validate <change> --strict`. Expect a valid change with a requirement and scenario.
 4. Approve implementation and ask Skuddy to implement the change. Expect the actual command to print `Hello Ada`, task completion after the check, and recorded execution evidence.
 5. Ask for review. Expect current requirements and the complete relevant implementation, including uncommitted work, to be examined.
-6. Ask for verification and then archive the completed change. Expect the current greeting specification under `openspec/specs/` and the change under `openspec/changes/archive/`.
+6. Ask for verification and then archive the completed change. Expect the current greeting specification under `openspec/specs/`, the change under `openspec/changes/archive/`, and read-back brain records containing the outcome and its sources. Expect the completion report to name both archive and brain paths.
 
 ## Revise completed work
 
@@ -52,10 +52,10 @@ Use temporary `XDG_CONFIG_HOME` and `XDG_DATA_HOME` directories for store and wo
 1. Create and register a temporary store using `openspec store setup <id> --path <path> --no-init-git --json`. Install the schema into that store root.
 2. In an empty code repository, create only `openspec/config.yaml` with `store: <id>`. Run `openspec context --json`. Expect the registered store root.
 3. Create a shared change with `--store <id>`. Expect its artifacts in the store and source work in the specified code repositories.
-4. Resume status from a second repository with the same flag. Expect the same change path and task state.
+4. Resume status from a second repository with the same flag. Expect the same change path and task state. Continue from a handoff carrying the owning intent and defining `.das-work`; expect its relative intent and brain paths to retain their original destinations.
 5. In a repository with local specs, run context without the flag. Expect local planning. Repeat with `--store <id>` and expect the store.
 6. Add the store to local `references`. Read proposal instructions. Expect referenced specification summaries and fetch commands while the write destination stays local.
-7. Implement and check the shared behavior in both repositories. Archive with the store flag. Expect current specs and archived history in the store, with reference-only specifications untouched.
+7. Implement and check the shared behavior in both repositories. Archive with the store flag. Expect current specs and archived history in the store, reference-only specifications untouched, and ingested knowledge in the owning project's configured brain.
 
 ## Worksets
 
@@ -70,3 +70,25 @@ Use temporary `XDG_CONFIG_HOME` and `XDG_DATA_HOME` directories for store and wo
 3. Attempt installation using a store-pointer code repository as the planning root. Expect an error directing you to the actual store and no destination writes.
 4. Exercise a documentation-only change with `skip_specs: true`. Expect skipped specs and valid planning without invented behavior requirements.
 5. Use a host without background workers. Expect direct sequential work in dependency order. Delegation follows explicit user permission.
+
+## Confirm intent capture
+
+1. Configure relative intent and brain folders in a temporary project's `.das-work`. Add an active intent with linked preparation and a separate completed intent. Resume from a different working directory. Expect discovery to read the relevant active record and preparation using the defining project paths.
+2. Request related work. Expect the agent to identify the existing intent, describe the proposed update and wait for confirmation. Correct its interpretation before confirming. Expect unchanged files until confirmation, then the corrected request preserved separately from interpretation.
+3. Request an independent outcome and confirm creation. Expect a separate descriptively named intent in the configured folder and a proposal reference to that record.
+4. Request advice only. Compare intent, project, brain and Linear state before and after. Expect no changes.
+5. In a project without configured folders, explicitly request a small action without the framework or an intent. Expect that action within its authorization, without setup or intent creation.
+6. Link two unfinished changes to one intent. Archive one through the archive skill. Expect the intent's result references to reflect that change while the intent remains active for its unfinished outcome.
+
+## Preserve archive knowledge
+
+1. Use an authorized test issue with a description, a substantive comment and a relevant document or attachment. Link it to a completed temporary change and its confirmed intent. Give the brain an existing related knowledge record.
+2. Archive through the installed skill. Expect the agent to gather the linked material before the move and then update the existing brain record with substantive intent, change, evidence and issue knowledge plus sources. Read the files behind every reported path.
+3. Repeat with a brain instruction prescribing a different record format or subfolder. Expect that instruction to govern output within the same brain.
+4. Include a proposed or unverified part of the archived work. Expect the brain record to retain that status rather than claim delivery or verification.
+5. Make a required source unavailable before starting. Expect a specific blocker and the change to remain at its active path.
+6. After preflight, make the brain destination unavailable before ingestion. Expect the change to be archived, ingestion reported incomplete, and its archived identity, known output paths and remaining work preserved in change evidence.
+7. Restore access and resume ingestion using the archived path, including when there are no active changes. Expect read-back completion with the same archived identity and reconciled existing brain records. Repeat resumption and check that records are not duplicated.
+8. Bulk archive independent changes with a common inaccessible brain. Expect the shared blocker before any move. Restore the brain and make one change's required source unavailable. Expect independent changes to complete and the blocked change to remain active, with an outcome for every selected change.
+
+These journeys exercise agent-driven skills. Record source-access limitations explicitly; controlled local source fixtures do not establish live Linear integration.

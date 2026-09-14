@@ -1,0 +1,165 @@
+{
+  "status": "complete",
+  "archive": "/Users/codaveto/Repos/das/das-work-skills/openspec/changes/archive/2026-09-14-intent-and-brain-folders",
+  "intent": "/Users/codaveto/Work/intents/das/intent-and-brain-folders/intent-and-brain-folders.md",
+  "brain_records": [
+    "/Users/codaveto/Work/brain/memories/worklogs/das/2026-09-14-569.md",
+    "/Users/codaveto/Work/brain/memories/decisions/das/2026-09-14-portable-intent-and-brain-workflow.md",
+    "/Users/codaveto/Work/brain/memories/decisions/das/2026-09-14-das-work-skills-local-planning.md",
+    "/Users/codaveto/Work/brain/memories/decisions/das/2026-09-14-das-work-skills-intent-folder.md",
+    "/Users/codaveto/Work/brain/memories/decisions/das/2026-09-14-das-work-skills-brain-folder.md",
+    "/Users/codaveto/Work/brain/memories/decisions/das/2026-09-14-separate-intent-and-brain-folders-intent.md"
+  ],
+  "links": [
+    {
+      "source": "/Users/codaveto/Work/intents/das/intent-and-brain-folders/intent-and-brain-folders.md",
+      "target": "/Users/codaveto/Work/brain/context/organisations/das.md"
+    },
+    {
+      "source": "/Users/codaveto/Work/intents/das/intent-and-brain-folders/intent-and-brain-folders.md",
+      "target": "/Users/codaveto/Repos/das/das-work-skills/openspec/changes/archive/2026-09-14-intent-and-brain-folders"
+    },
+    {
+      "source": "/Users/codaveto/Work/intents/das/intent-and-brain-folders/intent-and-brain-folders.md",
+      "target": "/Users/codaveto/Repos/das/das-work-skills/openspec/changes/archive/2026-09-14-intent-and-brain-folders/design.md"
+    },
+    {
+      "source": "/Users/codaveto/Work/intents/das/intent-and-brain-folders/intent-and-brain-folders.md",
+      "target": "/Users/codaveto/Repos/das/das-work-skills/openspec/changes/archive/2026-09-14-intent-and-brain-folders/evidence.md"
+    },
+    {
+      "source": "/Users/codaveto/Work/intents/das/intent-and-brain-folders/intent-and-brain-folders.md",
+      "target": "/Users/codaveto/Repos/das/das-work-skills/.das-work"
+    },
+    {
+      "source": "/Users/codaveto/Work/intents/das/intent-and-brain-folders/intent-and-brain-folders.md",
+      "target": "/Users/codaveto/Repos/das/das-work-skills/openspec/changes/archive/2026-09-14-intent-and-brain-folders/proposal.md"
+    },
+    {
+      "source": "/Users/codaveto/Work/intents/das/intent-and-brain-folders/intent-and-brain-folders.md",
+      "target": "/Users/codaveto/Repos/das/das-work-skills/openspec/specs/intent-context/spec.md"
+    },
+    {
+      "source": "/Users/codaveto/Work/intents/das/intent-and-brain-folders/intent-and-brain-folders.md",
+      "target": "/Users/codaveto/Repos/das/das-work-skills/openspec/specs/brain-ingestion/spec.md"
+    },
+    {
+      "source": "/Users/codaveto/Work/intents/das/intent-and-brain-folders/intent-and-brain-folders.md",
+      "target": "/Users/codaveto/Repos/das/das-work-skills/openspec/changes/archive/2026-09-14-intent-and-brain-folders/design.md"
+    },
+    {
+      "source": "/Users/codaveto/Work/intents/das/intent-and-brain-folders/intent-and-brain-folders.md",
+      "target": "/Users/codaveto/Repos/das/das-work-skills/openspec/changes/archive/2026-09-14-intent-and-brain-folders/tasks.md"
+    },
+    {
+      "source": "/Users/codaveto/Work/intents/das/intent-and-brain-folders/intent-and-brain-folders.md",
+      "target": "/Users/codaveto/Repos/das/das-work-skills/openspec/changes/archive/2026-09-14-intent-and-brain-folders/evidence.md"
+    },
+    {
+      "source": "/Users/codaveto/Work/intents/das/intent-and-brain-folders/intent-and-brain-folders.md",
+      "target": "/Users/codaveto/Repos/das/das-work-skills/openspec/changes/archive/2026-09-14-intent-and-brain-folders/verification-intent.md"
+    },
+    {
+      "source": "/Users/codaveto/Work/intents/das/intent-and-brain-folders/intent-and-brain-folders.md",
+      "target": "/Users/codaveto/Repos/das/das-work-skills/openspec/changes/archive/2026-09-14-intent-and-brain-folders/verification-brain.md"
+    },
+    {
+      "source": "/Users/codaveto/Work/intents/das/intent-and-brain-folders/intent-and-brain-folders.md",
+      "target": "/Users/codaveto/Work/brain/memories/worklogs/das/2026-09-14-569.md"
+    },
+    {
+      "source": "/Users/codaveto/Work/intents/das/intent-and-brain-folders/intent-and-brain-folders.md",
+      "target": "/Users/codaveto/Work/brain/memories/decisions/das/2026-09-14-portable-intent-and-brain-workflow.md"
+    },
+    {
+      "source": "/Users/codaveto/Work/intents/das/intent-and-brain-folders/intent-and-brain-folders.md",
+      "target": "/Users/codaveto/Work/brain/memories/decisions/das/2026-09-14-das-work-skills-local-planning.md"
+    },
+    {
+      "source": "/Users/codaveto/Work/intents/das/intent-and-brain-folders/intent-and-brain-folders.md",
+      "target": "/Users/codaveto/Work/brain/memories/decisions/das/2026-09-14-das-work-skills-intent-folder.md"
+    },
+    {
+      "source": "/Users/codaveto/Work/intents/das/intent-and-brain-folders/intent-and-brain-folders.md",
+      "target": "/Users/codaveto/Work/brain/memories/decisions/das/2026-09-14-das-work-skills-brain-folder.md"
+    },
+    {
+      "source": "/Users/codaveto/Work/intents/das/intent-and-brain-folders/intent-and-brain-folders.md",
+      "target": "/Users/codaveto/Work/brain/memories/decisions/das/2026-09-14-separate-intent-and-brain-folders-intent.md"
+    },
+    {
+      "source": "/Users/codaveto/Work/brain/memories/worklogs/das/2026-09-14-569.md",
+      "target": "/Users/codaveto/Work/brain/context/organisations/das.md"
+    },
+    {
+      "source": "/Users/codaveto/Work/brain/memories/worklogs/das/2026-09-14-569.md",
+      "target": "/Users/codaveto/Work/intents/das/intent-and-brain-folders/intent-and-brain-folders.md"
+    },
+    {
+      "source": "/Users/codaveto/Work/brain/memories/worklogs/das/2026-09-14-569.md",
+      "target": "/Users/codaveto/Work/intents/das/intent-and-brain-folders/intent-and-brain-folders.md"
+    },
+    {
+      "source": "/Users/codaveto/Work/brain/memories/worklogs/das/2026-09-14-569.md",
+      "target": "/Users/codaveto/Repos/das/das-work-skills/openspec/specs/intent-context/spec.md"
+    },
+    {
+      "source": "/Users/codaveto/Work/brain/memories/worklogs/das/2026-09-14-569.md",
+      "target": "/Users/codaveto/Repos/das/das-work-skills/openspec/specs/brain-ingestion/spec.md"
+    },
+    {
+      "source": "/Users/codaveto/Work/brain/memories/worklogs/das/2026-09-14-569.md",
+      "target": "/Users/codaveto/Repos/das/das-work-skills/openspec/changes/archive/2026-09-14-intent-and-brain-folders/evidence.md"
+    },
+    {
+      "source": "/Users/codaveto/Work/brain/memories/worklogs/das/2026-09-14-569.md",
+      "target": "/Users/codaveto/Repos/das/das-work-skills/openspec/changes/archive/2026-09-14-intent-and-brain-folders/verification-intent.md"
+    },
+    {
+      "source": "/Users/codaveto/Work/brain/memories/worklogs/das/2026-09-14-569.md",
+      "target": "/Users/codaveto/Repos/das/das-work-skills/openspec/changes/archive/2026-09-14-intent-and-brain-folders/verification-brain.md"
+    },
+    {
+      "source": "/Users/codaveto/Work/brain/memories/decisions/das/2026-09-14-portable-intent-and-brain-workflow.md",
+      "target": "/Users/codaveto/Work/brain/context/organisations/das.md"
+    },
+    {
+      "source": "/Users/codaveto/Work/brain/memories/decisions/das/2026-09-14-portable-intent-and-brain-workflow.md",
+      "target": "/Users/codaveto/Work/intents/das/intent-and-brain-folders/intent-and-brain-folders.md"
+    },
+    {
+      "source": "/Users/codaveto/Work/brain/memories/decisions/das/2026-09-14-das-work-skills-local-planning.md",
+      "target": "/Users/codaveto/Work/brain/context/organisations/das.md"
+    },
+    {
+      "source": "/Users/codaveto/Work/brain/memories/decisions/das/2026-09-14-das-work-skills-local-planning.md",
+      "target": "/Users/codaveto/Work/intents/das/intent-and-brain-folders/intent-and-brain-folders.md"
+    },
+    {
+      "source": "/Users/codaveto/Work/brain/memories/decisions/das/2026-09-14-das-work-skills-intent-folder.md",
+      "target": "/Users/codaveto/Work/brain/context/organisations/das.md"
+    },
+    {
+      "source": "/Users/codaveto/Work/brain/memories/decisions/das/2026-09-14-das-work-skills-intent-folder.md",
+      "target": "/Users/codaveto/Work/intents/das/intent-and-brain-folders/intent-and-brain-folders.md"
+    },
+    {
+      "source": "/Users/codaveto/Work/brain/memories/decisions/das/2026-09-14-das-work-skills-brain-folder.md",
+      "target": "/Users/codaveto/Work/brain/context/organisations/das.md"
+    },
+    {
+      "source": "/Users/codaveto/Work/brain/memories/decisions/das/2026-09-14-das-work-skills-brain-folder.md",
+      "target": "/Users/codaveto/Work/intents/das/intent-and-brain-folders/intent-and-brain-folders.md"
+    },
+    {
+      "source": "/Users/codaveto/Work/brain/memories/decisions/das/2026-09-14-separate-intent-and-brain-folders-intent.md",
+      "target": "/Users/codaveto/Work/brain/context/organisations/das.md"
+    },
+    {
+      "source": "/Users/codaveto/Work/brain/memories/decisions/das/2026-09-14-separate-intent-and-brain-folders-intent.md",
+      "target": "/Users/codaveto/Work/intents/das/intent-and-brain-folders/intent-and-brain-folders.md"
+    }
+  ],
+  "result": "https://linear.app/skuddy/issue/RESULT-4/configurable-intent-storage-and-permanent-archive-ingestion",
+  "main_specs_match_archived_deltas": true
+}

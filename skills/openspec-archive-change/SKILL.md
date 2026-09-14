@@ -1,9 +1,9 @@
 ---
 name: openspec-archive-change
-description: Archive a completed change in the experimental workflow. Use when the user wants to finalize and archive a change after implementation is complete.
+description: Archive a change and ingest its knowledge into the configured brain. Use when finalizing a change or resuming incomplete archive ingestion.
 ---
 
-Read [workflow](../workflow/SKILL.md) before applying this skill.
+Read [workflow](../workflow/SKILL.md) and [brain ingestion](../workflow/references/brain-ingestion.md) before applying this skill.
 
 
 Archive a completed change in the experimental workflow.
@@ -18,12 +18,16 @@ Archive a completed change in the experimental workflow.
 
 1. **Select the change**
 
-   If a name is provided, use it. Otherwise:
-   - Infer from conversation context if the user mentioned a change
-   - Auto-select if only one active change exists
-   - If ambiguous, run `openspec list --json` to get available changes and ask the user to select one
+   If a name is provided, check if it refers to an active change or an archived change:
+   - If the user asks to resume incomplete ingestion or selects an already archived change, skip spec sync and the archive move, and proceed directly to [brain ingestion resumption](../workflow/references/brain-ingestion.md#resumption).
+   - If the name matches an active change, select it.
+   - If no name is provided:
+     - Infer from conversation context if the user mentioned an active change or an archived resumption
+     - Auto-select if only one active change exists
+     - If no active changes exist, check whether the user wants to resume incomplete ingestion for an archived change before stopping
+     - If ambiguous, run `openspec list --json` to get available changes and ask the user to select one
 
-   When prompting, show only active changes (not already archived).
+   When prompting for new archives, show only active changes (not already archived).
    Include the schema used for each change if available.
 
    Always announce: "Using change: <name>" and how to override (e.g., `openspec-archive-change <other>`).
@@ -111,7 +115,7 @@ Archive a completed change in the experimental workflow.
    form of main specs produced by this merge; do not use them as archive guidance,
    change CLI behavior, or copy the rule text into any output file.
 
-   Then run the `openspec-sync-specs` workflow inline (agent-driven intelligent merge) for change '<name>', passing the delta spec analysis and the fetched specs-rule snapshot from above, and wait for it to finish. The inline sync must reuse that snapshot without fetching `specs` instructions again. Do not delegate it to a background task. step 5 would move `changeRoot` out from under a sync that is still reading it, leaving the change archived and the main specs never updated. If your agent can only run it by delegation, delegate synchronously and wait for the result.
+   Then run the `openspec-sync-specs` workflow inline (agent-driven intelligent merge) for change '<name>', passing the delta spec analysis and the fetched specs-rule snapshot from above, and wait for it to finish. The inline sync must reuse that snapshot without fetching `specs` instructions again. Do not delegate it to a background task. The archive move would relocate `changeRoot` while the sync still reads it. If your agent can only run it by delegation, delegate synchronously and wait for the result.
 
    Then re-run the comparison from the top of this step against every capability that has a delta spec in `artifactPaths.specs.existingOutputPaths`. not only the ones the sync reports it touched. A successful sync leaves nothing left to apply, so each capability must now read as already synced:
    - ADDED requirements present
@@ -121,7 +125,11 @@ Archive a completed change in the experimental workflow.
 
    If the sync failed, or any capability does not match, report what differs and stop. do not archive. Nothing has moved and `changeRoot` is intact, so the user can fix the mismatch or re-run the sync and start the archive again.
 
-5. **Perform the archive**
+5. **Run source and destination preflight**
+
+   Complete [brain ingestion preflight](../workflow/references/brain-ingestion.md#preflight) for the selected change before moving `changeRoot`. Report any required source or destination blocker and leave the change at its active path.
+
+6. **Perform the archive and brain ingestion**
 
    Create an `archive` directory under `planningHome.changesDir` if it doesn't exist:
    ```bash
@@ -138,12 +146,16 @@ Archive a completed change in the experimental workflow.
    mv "<changeRoot>" "<planningHome.changesDir>/archive/<target-name>"
    ```
 
-6. **Display summary**
+   Immediately after the move, complete [ingestion and readback](../workflow/references/brain-ingestion.md#ingestion-and-readback). Report success only after readback; a post-move failure uses the incomplete-ingestion result below and retains resumption evidence.
+
+7. **Display summary**
 
    Show archive completion summary including:
    - Change name
    - Schema that was used
    - Archive location
+   - Brain records saved or updated
+   - Owning intent record updated (and whether the intent remains active)
    - Whether specs were synced (if applicable)
    - Note about any warnings (incomplete artifacts/tasks)
 
@@ -155,20 +167,42 @@ Archive a completed change in the experimental workflow.
 **Change:** <change-name>
 **Schema:** <schema-name>
 **Archived to:** the archive path derived from `planningHome.changesDir`/<target-name>/
+**Brain records:** <saved-brain-record-paths>
+**Intent:** <intent-record-path> (active | completed)
 **Specs:** <"✓ Synced to main specs" only if the step 4 verification passed; otherwise "No delta specs" or "Sync skipped">
 
-<"All artifacts complete. All tasks complete.". or, if archived with warnings, list them instead (e.g. "Archived with 2 incomplete tasks")>
+<"All artifacts complete. All tasks complete." or, if archived with warnings, list them instead (e.g. "Archived with 2 incomplete tasks")>
+```
+
+**Output On Incomplete Ingestion**
+
+```markdown
+## Archive Incomplete (Ingestion Failed)
+
+**Change:** <change-name>
+**Archived to:** the archive path derived from `planningHome.changesDir`/<target-name>/
+**Known brain records:** <saved-paths-or-none>
+**Remaining work:** <unwritten-or-unverified-records>
+**Status:** Change is archived, but ingestion is incomplete. Resumable via `openspec-archive-change <target-name>`.
 ```
 
 **Guardrails**
 - Announce the selected change; prompt for selection when it is ambiguous
+- Check for incomplete ingestion of archived changes before stopping on empty active changes
 - Use artifact graph (openspec status --json) for completion checking
-- Don't block archive on warnings - just inform and confirm
+- Don't block archive on warnings, just inform and confirm
 - Preserve .openspec.yaml when moving to archive (it moves with the directory)
 - Show clear summary of what happened
 - If sync is requested, run the `openspec-sync-specs` workflow inline (agent-driven)
 - Never archive while a spec sync is still in flight. run the sync inline and verify the main specs before moving `changeRoot`
 - If delta specs exist, always run the sync assessment and show the combined summary before prompting
+- Run preflight before moving the change; inaccessible required sources or destination block the move
+- Move `changeRoot` only after preflight passes
+- Run brain ingestion and read back saved records before reporting completion
+- Post-move ingestion failure leaves the change archived and resumable; report the archived path and remaining work
+- Resumption accepts the archived directory directly without moving files again or duplicating records
+- Scope source gathering to linked work contributing to this change
+- Keep multi-change intents active while unfinished work remains
 - Apply relevant runtime context and report conflicts; operation guidance remains advisory
 - Consider every guidance entry and explain any inapplicable or conflicting advice
 - Existing CLI checks, resolved paths, prompts, and command contracts are unchanged

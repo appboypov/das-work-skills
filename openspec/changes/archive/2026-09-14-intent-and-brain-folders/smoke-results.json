@@ -1,0 +1,549 @@
+{
+  "scope": "Controlled agent-driven and scripted local workflow exercises; no live Linear API integration or production behaviour verification.",
+  "reports": {
+    "intent-recheck": [
+      {
+        "name": "corrected reuse",
+        "simulated_user_request": "Extend export retention to fourteen days.",
+        "smoke_intent_reply": [
+          {
+            "call": 1,
+            "scenario": "corrected reuse",
+            "question": "Should I extend retain-export-history.md for fourteen-day retention?",
+            "response": "Correction: Keep exports for thirty days, not fourteen, under the existing export-history intent. Please confirm that corrected update before saving."
+          },
+          {
+            "call": 2,
+            "scenario": "corrected reuse",
+            "question": "Confirm updating retain-export-history.md: extend retention to thirty days per your correction?",
+            "response": "Yes. Save that thirty-day request and my correction in the existing intent now."
+          }
+        ],
+        "actions": [
+          "Read defining .das-work at intent-recheck/project/.das-work from fixture root working directory",
+          "Resolve intent folder ../intents to intent-recheck/intents",
+          "Discover active intent retain-export-history.md and linked preparation.md (seven-day retention, unfinished)",
+          "Proposed extending existing retain-export-history.md with fourteen-day retention",
+          "smoke_intent_reply call 1 for reuse decision",
+          "Verified tree hashes unchanged before confirmation write",
+          "smoke_intent_reply call 2 for confirmation",
+          "Wrote retain-export-history.md and preparation.md immediately after valid confirmation"
+        ],
+        "tree_hashes": {
+          "before": {
+            "brain/instructions.md": "f1a3e58c3b1549994b9e45d86a5146aa2794f0edc7f41f59cfa6cd536e80077a",
+            "intents/completed-search.md": "1c7e17d37e821662a3241f2a55c716d7a09111485def5c0f104105d2edd57cc0",
+            "intents/preparation.md": "e2f6e655a9ff7ba9bafa3bd40e918284f0348975a509fe0d66ec56b163af729a",
+            "intents/retain-export-history.md": "2a8aa0ef17b7f403f53b88ba05a3833cc2f688278a8780e301a9bfa5f1733526",
+            "project/.das-work": "f2b844d54b99fc11104e43a948596fb4c6f885e30cdcef4708affa465f92dc4e"
+          },
+          "after": {
+            "intents/retain-export-history.md": "941052e18359f82493e6b018bdf5169a98345f8d5934a801ee40b595482003eb",
+            "intents/preparation.md": "d84fb48482c136c9b5817642547a775ff8577e1313fa11c0b6e7253e079e7981",
+            "brain/instructions.md": "f1a3e58c3b1549994b9e45d86a5146aa2794f0edc7f41f59cfa6cd536e80077a",
+            "intents/completed-search.md": "1c7e17d37e821662a3241f2a55c716d7a09111485def5c0f104105d2edd57cc0",
+            "project/.das-work": "f2b844d54b99fc11104e43a948596fb4c6f885e30cdcef4708affa465f92dc4e"
+          }
+        },
+        "passed": true,
+        "paths": [
+          "intent-recheck/project/.das-work",
+          "intent-recheck/intents/retain-export-history.md",
+          "intent-recheck/intents/preparation.md"
+        ]
+      },
+      {
+        "name": "independent creation",
+        "simulated_user_request": "Email a monthly export summary.",
+        "smoke_intent_reply": [
+          {
+            "call": 3,
+            "scenario": "independent creation",
+            "question": "Should I create a separate intent for emailing a monthly export summary in the configured intent folder?",
+            "response": "Yes. Create the separate monthly export summary email intent now."
+          }
+        ],
+        "actions": [
+          "Resolved as independent outcome separate from retain-export-history.md",
+          "smoke_intent_reply call 3 for creation confirmation",
+          "Created monthly-export-summary-email.md only after matching confirmation"
+        ],
+        "tree_hashes": {
+          "before": {
+            "intents/retain-export-history.md": "941052e18359f82493e6b018bdf5169a98345f8d5934a801ee40b595482003eb",
+            "intents/preparation.md": "d84fb48482c136c9b5817642547a775ff8577e1313fa11c0b6e7253e079e7981",
+            "brain/instructions.md": "f1a3e58c3b1549994b9e45d86a5146aa2794f0edc7f41f59cfa6cd536e80077a",
+            "intents/completed-search.md": "1c7e17d37e821662a3241f2a55c716d7a09111485def5c0f104105d2edd57cc0",
+            "project/.das-work": "f2b844d54b99fc11104e43a948596fb4c6f885e30cdcef4708affa465f92dc4e"
+          },
+          "after": {
+            "intents/completed-search.md": "1c7e17d37e821662a3241f2a55c716d7a09111485def5c0f104105d2edd57cc0",
+            "intents/monthly-export-summary-email.md": "d725b2878cabd35e564979b785f2ebf99134e1e3615c0d215028ff03adec5659",
+            "intents/preparation.md": "d84fb48482c136c9b5817642547a775ff8577e1313fa11c0b6e7253e079e7981",
+            "intents/retain-export-history.md": "941052e18359f82493e6b018bdf5169a98345f8d5934a801ee40b595482003eb"
+          }
+        },
+        "passed": true,
+        "paths": [
+          "intent-recheck/intents/monthly-export-summary-email.md"
+        ]
+      },
+      {
+        "name": "advice-only immutability",
+        "simulated_user_request": "What skill should I use next for the export retention work?",
+        "smoke_intent_reply": [],
+        "actions": [
+          "Read installed ask-skuddy/SKILL.md and active intent records for advice only",
+          "Compared complete intent-recheck tree hashes before and after advice"
+        ],
+        "advice": "Recommend workflow/SKILL.md and ask-skuddy/SKILL.md to coordinate export work; no intent, brain, or .das-work writes.",
+        "tree_hashes": {
+          "before": {
+            "brain/instructions.md": "f1a3e58c3b1549994b9e45d86a5146aa2794f0edc7f41f59cfa6cd536e80077a",
+            "intents/completed-search.md": "1c7e17d37e821662a3241f2a55c716d7a09111485def5c0f104105d2edd57cc0",
+            "project/.das-work": "f2b844d54b99fc11104e43a948596fb4c6f885e30cdcef4708affa465f92dc4e"
+          },
+          "after": {
+            "brain/instructions.md": "f1a3e58c3b1549994b9e45d86a5146aa2794f0edc7f41f59cfa6cd536e80077a",
+            "intents/completed-search.md": "1c7e17d37e821662a3241f2a55c716d7a09111485def5c0f104105d2edd57cc0",
+            "project/.das-work": "f2b844d54b99fc11104e43a948596fb4c6f885e30cdcef4708affa465f92dc4e"
+          },
+          "unchanged": true
+        },
+        "passed": true,
+        "paths": [
+          "intent-recheck/intents/completed-search.md",
+          "intent-recheck/brain/instructions.md",
+          "intent-recheck/project/.das-work"
+        ]
+      },
+      {
+        "name": "framework opt-out immutability",
+        "simulated_user_request": "What is fourteen times thirty? Do this without the framework.",
+        "smoke_intent_reply": [],
+        "actions": [
+          "Used unconfigured subdirectory intent-recheck/unconfigured-work (no .das-work)",
+          "Computed 14 * 30 = 420 without framework setup or intent creation",
+          "Compared complete tree hashes for framework records before and after"
+        ],
+        "calculation_result": 420,
+        "unconfigured_no_das_work": true,
+        "tree_hashes": {
+          "before": {
+            "brain/instructions.md": "f1a3e58c3b1549994b9e45d86a5146aa2794f0edc7f41f59cfa6cd536e80077a",
+            "intents/completed-search.md": "1c7e17d37e821662a3241f2a55c716d7a09111485def5c0f104105d2edd57cc0",
+            "project/.das-work": "f2b844d54b99fc11104e43a948596fb4c6f885e30cdcef4708affa465f92dc4e"
+          },
+          "after": {
+            "brain/instructions.md": "f1a3e58c3b1549994b9e45d86a5146aa2794f0edc7f41f59cfa6cd536e80077a",
+            "intents/completed-search.md": "1c7e17d37e821662a3241f2a55c716d7a09111485def5c0f104105d2edd57cc0",
+            "project/.das-work": "f2b844d54b99fc11104e43a948596fb4c6f885e30cdcef4708affa465f92dc4e"
+          },
+          "unchanged": true
+        },
+        "passed": true,
+        "paths": [
+          "intent-recheck/unconfigured-work",
+          "intent-recheck/project/.das-work"
+        ]
+      },
+      {
+        "name": "cross-directory ownership",
+        "simulated_user_request": null,
+        "smoke_intent_reply": [],
+        "actions": [
+          "Started from intent-recheck/project/.das-work with fixture root as working directory",
+          "Resolved ../intents and ../brain relative to defining .das-work location",
+          "Read active intent and preparation from resolved paths",
+          "Wrote intent-recheck/handoff.md carrying defining .das-work path and relative owning intent paths"
+        ],
+        "observed": {
+          "working_directory": "/var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/intent-brain-smoke-an5f2stt",
+          "defining_das_work": "intent-recheck/project/.das-work",
+          "resolved_intent_folder": "intent-recheck/intents",
+          "resolved_brain_folder": "intent-recheck/brain"
+        },
+        "tree_hashes": {
+          "final": {
+            "brain/instructions.md": "f1a3e58c3b1549994b9e45d86a5146aa2794f0edc7f41f59cfa6cd536e80077a",
+            "handoff.md": "04a0158502279aabbcde341eea55bd8c1f36f5eeadfddb40618edace2f974a38",
+            "intents/completed-search.md": "1c7e17d37e821662a3241f2a55c716d7a09111485def5c0f104105d2edd57cc0",
+            "intents/monthly-export-summary-email.md": "d725b2878cabd35e564979b785f2ebf99134e1e3615c0d215028ff03adec5659",
+            "intents/preparation.md": "d84fb48482c136c9b5817642547a775ff8577e1313fa11c0b6e7253e079e7981",
+            "intents/retain-export-history.md": "941052e18359f82493e6b018bdf5169a98345f8d5934a801ee40b595482003eb",
+            "project/.das-work": "f2b844d54b99fc11104e43a948596fb4c6f885e30cdcef4708affa465f92dc4e"
+          }
+        },
+        "passed": true,
+        "paths": [
+          "intent-recheck/project/.das-work",
+          "intent-recheck/handoff.md",
+          "intent-recheck/intents/retain-export-history.md",
+          "intent-recheck/intents/preparation.md"
+        ]
+      }
+    ],
+    "archive": [
+      {
+        "name": "single archive with source reconciliation and brain-specific format (active intent)",
+        "actions": [
+          "Read installed openspec-archive-change skill and workflow/references/brain-ingestion.md",
+          "Ran openspec instructions archive --change retention --json and openspec status --change retention --json (skip_specs true; specs artifact skipped; existingOutputPaths empty)",
+          "Preflight verified .das-work, brain folder writable, owning intent, issue.md and retention-policy.md sources accessible",
+          "Appended preflight continuation context to evidence.md",
+          "Moved openspec/changes/retention to openspec/changes/archive/2026-09-14-retention",
+          "Updated brain/knowledge/export-retention.md per brain instructions (Sources section, retained sign-in, seven-day retention, search proposed, fixture evidence)",
+          "Updated intents/export-history.md with archived change and brain record links; State remains active; search unfinished",
+          "Read back brain, intent, and archived evidence from disk"
+        ],
+        "observed": "Archive move succeeded. Active change list empty after archive. Brain record uses curated Markdown with Sources links. Intent State: active with one Results entry linking 2026-09-14-retention and export-retention.md; Material still states search remains unfinished. skip_specs honored (no delta spec sync). Evidence records archived path, brain path, intent path, ingestion complete, and controlled-fixture limitation.",
+        "passed": true,
+        "paths": [
+          "/var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/intent-brain-smoke-an5f2stt/archive/project/openspec/changes/archive/2026-09-14-retention",
+          "/var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/intent-brain-smoke-an5f2stt/archive/brain/knowledge/export-retention.md",
+          "/var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/intent-brain-smoke-an5f2stt/archive/intents/export-history.md",
+          "/var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/intent-brain-smoke-an5f2stt/archive/sources/issue.md",
+          "/var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/intent-brain-smoke-an5f2stt/archive/sources/retention-policy.md"
+        ]
+      },
+      {
+        "name": "repeat-safe archived resumption with no active changes",
+        "actions": [
+          "Confirmed openspec list --json returned zero active changes",
+          "Resolved archived change at openspec/changes/archive/2026-09-14-retention from evidence continuation context",
+          "Read evidence Ingestion status: complete",
+          "Applied resumption rule: skip move and skip brain/intent writes when ingestion already complete",
+          "Compared SHA-1 hashes of brain, intent, and evidence before and after resumption check"
+        ],
+        "observed": "No active changes present. Archived identity stable at 2026-09-14-retention; no active retention path recreated. Ingestion status complete in evidence; resumption performed no additional writes. Before/after hashes identical for export-retention.md (7dec7a124f4fe49370b5e246a073db80dbefec58), export-history.md (45405a5c3e4769a8e5acc06807dae7fe591c1c49), and evidence.md (a8063345c1e33037dfef73cbd6f965658b03034e). Intent retains exactly one ### retention results section.",
+        "passed": true,
+        "paths": [
+          "/var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/intent-brain-smoke-an5f2stt/archive/project/openspec/changes/archive/2026-09-14-retention/evidence.md"
+        ]
+      },
+      {
+        "name": "missing-source preflight blocks archive move",
+        "actions": [
+          "Created change via openspec new change missing-source-fixture --json in archive/project",
+          "Wrote proposal.md with Source pointing to archive/sources/does-not-exist.md",
+          "Ran preflight source accessibility check from proposal Source line",
+          "Attempted archive move only if preflight passed (blocked path skips mv)"
+        ],
+        "observed": "Preflight reported BLOCKED: required source missing at archive/sources/does-not-exist.md. Archive move skipped. Change remained active at openspec/changes/missing-source-fixture. No directory created at openspec/changes/archive/2026-09-14-missing-source-fixture.",
+        "passed": true,
+        "paths": [
+          "/var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/intent-brain-smoke-an5f2stt/archive/project/openspec/changes/missing-source-fixture",
+          "/var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/intent-brain-smoke-an5f2stt/archive/sources/does-not-exist.md"
+        ]
+      }
+    ],
+    "failures": [
+      {
+        "name": "shared blocker before moves",
+        "actions": [
+          "mv failures/brain failures/brain-holding",
+          "openspec list --json (from failures/project)",
+          "cd /var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/intent-brain-smoke-an5f2stt/failures/project && openspec status --change available-export --json",
+          "cd /var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/intent-brain-smoke-an5f2stt/failures/project && openspec status --change blocked-export --json",
+          "mv brain -> brain-holding",
+          "preflight_shared for bulk selection",
+          "confirm available-export and blocked-export unchanged",
+          "restore brain"
+        ],
+        "observed": "Shared preflight blocked with shared-blocker: brain destination unavailable at /var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/intent-brain-smoke-an5f2stt/failures/brain. available-export and blocked-export remained at active paths; brain restored. Controlled local fixture only; source fixtures do not establish live Linear integration or production verification.",
+        "passed": true,
+        "paths": [
+          "/var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/intent-brain-smoke-an5f2stt/failures/brain-holding",
+          "/var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/intent-brain-smoke-an5f2stt/failures/project/openspec/changes/available-export",
+          "/var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/intent-brain-smoke-an5f2stt/failures/project/openspec/changes/blocked-export",
+          "/var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/intent-brain-smoke-an5f2stt/failures/brain"
+        ]
+      },
+      {
+        "name": "independent completion despite change-specific blocker",
+        "actions": [
+          "mkdir -p failures/sources",
+          "cd /var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/intent-brain-smoke-an5f2stt/failures/project && openspec instructions archive --change available-export --json",
+          "mv /var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/intent-brain-smoke-an5f2stt/failures/project/openspec/changes/available-export /var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/intent-brain-smoke-an5f2stt/failures/project/openspec/changes/archive/2026-09-14-available-export",
+          "setup sources and proposal links",
+          "preflight_shared",
+          "preflight_change available-export",
+          "preflight_change blocked-export",
+          "archive move available-export",
+          "ingest available-export default-format brain record",
+          "leave blocked-export active"
+        ],
+        "observed": "Shared preflight passed after brain restore. available-export preflight passed; archive move succeeded to /var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/intent-brain-smoke-an5f2stt/failures/project/openspec/changes/archive/2026-09-14-available-export with default-format brain record /var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/intent-brain-smoke-an5f2stt/failures/brain/export-download-seven-day-retention.md (curated Markdown with source links). blocked-export preflight blocked (change-specific preflight rejection, no move): missing required source /var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/intent-brain-smoke-an5f2stt/failures/sources/missing-document.md; change remained active. Controlled local fixture only; source fixtures do not establish live Linear integration or production verification.",
+        "passed": true,
+        "paths": [
+          "/var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/intent-brain-smoke-an5f2stt/failures/sources/issue.md",
+          "/var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/intent-brain-smoke-an5f2stt/failures/sources/missing-document.md",
+          "/var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/intent-brain-smoke-an5f2stt/failures/project/openspec/changes/archive/2026-09-14-available-export",
+          "/var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/intent-brain-smoke-an5f2stt/failures/brain/export-download-seven-day-retention.md",
+          "/var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/intent-brain-smoke-an5f2stt/failures/project/openspec/changes/blocked-export"
+        ]
+      },
+      {
+        "name": "post-move ingestion failure and successful resumption",
+        "actions": [
+          "cd /var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/intent-brain-smoke-an5f2stt/failures/project && openspec new change post-move-failure --schema spec-driven --json",
+          "cd /var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/intent-brain-smoke-an5f2stt/failures/project && openspec status --change post-move-failure --json",
+          "mv /var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/intent-brain-smoke-an5f2stt/failures/project/openspec/changes/post-move-failure /var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/intent-brain-smoke-an5f2stt/failures/project/openspec/changes/archive/2026-09-14-post-move-failure",
+          "mv failures/brain failures/brain-holding (before ingestion)",
+          "mv failures/brain-holding failures/brain (resume)",
+          "openspec new change post-move-failure",
+          "openspec status --change post-move-failure --json",
+          "preflight_change post-move-failure",
+          "archive move post-move-failure",
+          "move brain -> brain-holding before ingestion",
+          "attempt ingestion write while brain unavailable",
+          "restore brain destination",
+          "resume ingestion from archived path",
+          "read back saved brain and intent records"
+        ],
+        "observed": "openspec status exit 0 for post-move-failure. Preflight passed; archive move succeeded to /var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/intent-brain-smoke-an5f2stt/failures/project/openspec/changes/archive/2026-09-14-post-move-failure. Post-move ingestion write failed while brain unavailable (attempt_brain_write on /var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/intent-brain-smoke-an5f2stt/failures/brain/.ingestion-write-probe.md: No such file or directory) \u2014 not preflight rejection. Evidence records Ingestion status: incomplete (brain destination unavailable during ingestion); resumption from archived path without second move completed readback of /var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/intent-brain-smoke-an5f2stt/failures/brain/export-ingestion-resumption-fixture.md. Controlled local fixture only; source fixtures do not establish live Linear integration or production verification.",
+        "passed": true,
+        "paths": [
+          "/var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/intent-brain-smoke-an5f2stt/failures/project/openspec/changes/archive/2026-09-14-post-move-failure",
+          "/var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/intent-brain-smoke-an5f2stt/failures/project/openspec/changes/archive/2026-09-14-post-move-failure/evidence.md",
+          "/var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/intent-brain-smoke-an5f2stt/failures/brain/export-ingestion-resumption-fixture.md",
+          "/var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/intent-brain-smoke-an5f2stt/failures/intents/exports.md"
+        ]
+      }
+    ]
+  },
+  "confirmation_dialogue": [
+    {
+      "question": "Should I extend retain-export-history.md for fourteen-day retention?",
+      "response": "Correction: Keep exports for thirty days, not fourteen, under the existing export-history intent. Please confirm that corrected update before saving.",
+      "snapshot": {
+        "project/.das-work": "f2b844d54b99fc11104e43a948596fb4c6f885e30cdcef4708affa465f92dc4e",
+        "brain/instructions.md": "f1a3e58c3b1549994b9e45d86a5146aa2794f0edc7f41f59cfa6cd536e80077a",
+        "intents/completed-search.md": "1c7e17d37e821662a3241f2a55c716d7a09111485def5c0f104105d2edd57cc0",
+        "intents/retain-export-history.md": "2a8aa0ef17b7f403f53b88ba05a3833cc2f688278a8780e301a9bfa5f1733526",
+        "intents/preparation.md": "e2f6e655a9ff7ba9bafa3bd40e918284f0348975a509fe0d66ec56b163af729a"
+      }
+    },
+    {
+      "question": "Confirm updating retain-export-history.md: extend retention to thirty days per your correction?",
+      "response": "Yes. Save that thirty-day request and my correction in the existing intent now.",
+      "snapshot": {
+        "project/.das-work": "f2b844d54b99fc11104e43a948596fb4c6f885e30cdcef4708affa465f92dc4e",
+        "brain/instructions.md": "f1a3e58c3b1549994b9e45d86a5146aa2794f0edc7f41f59cfa6cd536e80077a",
+        "intents/completed-search.md": "1c7e17d37e821662a3241f2a55c716d7a09111485def5c0f104105d2edd57cc0",
+        "intents/retain-export-history.md": "2a8aa0ef17b7f403f53b88ba05a3833cc2f688278a8780e301a9bfa5f1733526",
+        "intents/preparation.md": "e2f6e655a9ff7ba9bafa3bd40e918284f0348975a509fe0d66ec56b163af729a"
+      }
+    },
+    {
+      "question": "Should I create a separate intent for emailing a monthly export summary in the configured intent folder?",
+      "response": "Yes. Create the separate monthly export summary email intent now.",
+      "snapshot": {
+        "project/.das-work": "f2b844d54b99fc11104e43a948596fb4c6f885e30cdcef4708affa465f92dc4e",
+        "brain/instructions.md": "f1a3e58c3b1549994b9e45d86a5146aa2794f0edc7f41f59cfa6cd536e80077a",
+        "intents/completed-search.md": "1c7e17d37e821662a3241f2a55c716d7a09111485def5c0f104105d2edd57cc0",
+        "intents/retain-export-history.md": "941052e18359f82493e6b018bdf5169a98345f8d5934a801ee40b595482003eb",
+        "intents/preparation.md": "d84fb48482c136c9b5817642547a775ff8577e1313fa11c0b6e7253e079e7981"
+      }
+    }
+  ],
+  "parent_checks": {
+    "three_matching_confirmation_responses": true,
+    "first_two_confirmation_snapshots_unchanged": true,
+    "existing_intent_saved_before_independent_confirmation": true,
+    "post_creation_intent_records_unchanged_through_advice_and_opt_out": true,
+    "archive_source_links_resolved": [
+      {
+        "file": "archive/brain/knowledge/export-retention.md",
+        "link": "../../sources/issue.md",
+        "exists": true
+      },
+      {
+        "file": "archive/brain/knowledge/export-retention.md",
+        "link": "../../sources/retention-policy.md",
+        "exists": true
+      },
+      {
+        "file": "archive/brain/knowledge/export-retention.md",
+        "link": "../../project/openspec/changes/archive/2026-09-14-retention/evidence.md",
+        "exists": true
+      },
+      {
+        "file": "archive/intents/export-history.md",
+        "link": "../project/openspec/changes/archive/2026-09-14-retention/",
+        "exists": true
+      },
+      {
+        "file": "archive/intents/export-history.md",
+        "link": "../brain/knowledge/export-retention.md",
+        "exists": true
+      },
+      {
+        "file": "failures/brain/export-download-seven-day-retention.md",
+        "link": "../sources/issue.md",
+        "exists": true
+      },
+      {
+        "file": "failures/brain/export-download-seven-day-retention.md",
+        "link": "../sources/retention-policy.md",
+        "exists": true
+      },
+      {
+        "file": "failures/brain/export-download-seven-day-retention.md",
+        "link": "../project/openspec/changes/archive/2026-09-14-available-export/evidence.md",
+        "exists": true
+      },
+      {
+        "file": "failures/brain/export-ingestion-resumption-fixture.md",
+        "link": "../sources/issue.md",
+        "exists": true
+      },
+      {
+        "file": "failures/brain/export-ingestion-resumption-fixture.md",
+        "link": "../project/openspec/changes/archive/2026-09-14-post-move-failure/evidence.md",
+        "exists": true
+      },
+      {
+        "file": "failures/intents/exports.md",
+        "link": "../project/openspec/changes/archive/2026-09-14-available-export/",
+        "exists": true
+      },
+      {
+        "file": "failures/intents/exports.md",
+        "link": "../brain/export-download-seven-day-retention.md",
+        "exists": true
+      },
+      {
+        "file": "failures/intents/exports.md",
+        "link": "../project/openspec/changes/archive/2026-09-14-post-move-failure/",
+        "exists": true
+      },
+      {
+        "file": "failures/intents/exports.md",
+        "link": "../brain/export-ingestion-resumption-fixture.md",
+        "exists": true
+      }
+    ],
+    "live_proposal_cli_exposes_intent_section": true
+  },
+  "saved_fixture_records": {
+    "intent-recheck/handoff.md": "# Handoff\n\n## Approved scope\nFaithful replay: corrected reuse of retain-export-history, independent monthly summary email intent, advice-only and framework opt-out checks without writes.\n\n## Owning intent paths\n- `../intents/retain-export-history.md` (extended retention)\n- `../intents/monthly-export-summary-email.md` (independent outcome)\n\n## Defining `.das-work`\n`../project/.das-work` relative to this handoff file, or `intent-recheck/project/.das-work` relative to the fixture root.\n\n## Working directories\n- Defining project context: `intent-recheck/project/`\n- Agent working directory during discovery: fixture root (`intent-brain-smoke-an5f2stt/`)\n\n## Path resolution\nIntent folder `../intents` and brain folder `../brain` resolve from the defining `.das-work` file location, not the agent working directory.\n\n## Next bounded action\nResume framework work from any working directory by reading the defining `.das-work` first, then resolving `../intents` and `../brain` from that file.\n",
+    "intent-recheck/brain/instructions.md": "Use Markdown knowledge records with sources.\n",
+    "intent-recheck/intents/monthly-export-summary-email.md": "# Monthly export summary email\n\nState: active\n\n## User requests\nEmail a monthly export summary.\n\n## End goal\nUsers receive a monthly email summarizing their exports.\n\n## Material\n",
+    "intent-recheck/intents/completed-search.md": "# Search exports\n\nState: yielded\n\nOutcome: search delivered.\n",
+    "intent-recheck/intents/retain-export-history.md": "# Retain export history\n\nState: active\n\n## User requests\nKeep exports available for later download.\nExtend export retention to fourteen days.\n\n## User corrections\nKeep exports for thirty days, not fourteen, under the existing export-history intent.\n\n## Agent interpretation\nExtend the active retain export history intent to thirty-day export retention under the existing record.\n\n## End goal\nUsers can retrieve completed exports with exports retained for thirty days.\n\n## Material\n[Preparation](preparation.md)\n",
+    "intent-recheck/intents/preparation.md": "Exports are retained for thirty days. The outcome is unfinished.\n",
+    "archive/sources/issue.md": "# TEST-1 local issue fixture\n\nDescription: Exports must remain downloadable for seven days.\n\nComment: Retention was exercised at six days; search is proposed and unimplemented.\n\n[Document](retention-policy.md)\n",
+    "archive/sources/retention-policy.md": "# Retention policy fixture\nExports expire after seven days.\n",
+    "archive/brain/instructions.md": "Maintain curated Markdown knowledge in knowledge/export-retention.md. Use Sources for links. Preserve existing correct facts.\n",
+    "archive/intents/export-history.md": "# Export history\n\nState: active\n\n## User requests\nKeep downloads for seven days; add search later.\n\n## End goal\nUsers can retrieve and search exports.\n\n## Material\nRetention is delivered. Search remains unfinished.\n\n## Results\n\n### retention (archived 2026-09-14)\n- Archived change: [2026-09-14-retention](../project/openspec/changes/archive/2026-09-14-retention/)\n- Brain record: [export-retention](../brain/knowledge/export-retention.md)\n- Delivered: seven-day export retention (fixture evidence at six days).\n- Unfinished: search remains proposed.\n",
+    "archive/brain/knowledge/export-retention.md": "# Export retention\n\nDownloads require sign-in.\n\nExports are retained for seven days. Controlled local fixture evidence exercised a six-day download successfully; search remains proposed and unimplemented.\n\n## Sources\n\n- [TEST-1 local issue fixture](../../sources/issue.md)\n- [Retention policy fixture](../../sources/retention-policy.md)\n- [Archived change evidence](../../project/openspec/changes/archive/2026-09-14-retention/evidence.md)\n",
+    "archive/project/openspec/changes/missing-source-fixture/evidence.md": "# Fixture evidence\n\nPreflight missing-source scenario.\n",
+    "archive/project/openspec/changes/missing-source-fixture/tasks.md": "## Tasks\n\n- [x] 1. Fixture task complete.\n",
+    "archive/project/openspec/changes/missing-source-fixture/design.md": "# Design\n\nFixture to prove preflight blocks archive when required source is missing.\n",
+    "archive/project/openspec/changes/missing-source-fixture/proposal.md": "# Missing source preflight fixture\n\nIntent: /var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/intent-brain-smoke-an5f2stt/archive/intents/export-history.md\n\nRetain exports for seven days.\nSource: /var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/intent-brain-smoke-an5f2stt/archive/sources/does-not-exist.md\n",
+    "archive/project/openspec/changes/archive/2026-09-14-retention/evidence.md": "# Fixture evidence\n\nControlled local fixture: six-day download succeeds; search remains proposed. This is not production verification.\n\n## Preflight continuation context\n\n- Defining .das-work: /var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/intent-brain-smoke-an5f2stt/archive/project/.das-work\n- Owning intent: /var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/intent-brain-smoke-an5f2stt/archive/intents/export-history.md\n- Source references: /var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/intent-brain-smoke-an5f2stt/archive/sources/issue.md, /var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/intent-brain-smoke-an5f2stt/archive/sources/retention-policy.md\n\n## Ingestion and readback\n\n- Archived to: /var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/intent-brain-smoke-an5f2stt/archive/project/openspec/changes/archive/2026-09-14-retention/\n- Brain record saved: /var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/intent-brain-smoke-an5f2stt/archive/brain/knowledge/export-retention.md\n- Intent updated: /var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/intent-brain-smoke-an5f2stt/archive/intents/export-history.md (State remains active; search unfinished)\n- Ingestion status: complete\n- Limitation: controlled local fixture only; not production verification\n",
+    "archive/project/openspec/changes/archive/2026-09-14-retention/tasks.md": "## Tasks\n\n- [x] 1. Retention behaviour exercised in fixture evidence.\n",
+    "archive/project/openspec/changes/archive/2026-09-14-retention/design.md": "# Design\n\nApproved fixture archive; source gathering uses controlled local fixture material.\n",
+    "archive/project/openspec/changes/archive/2026-09-14-retention/proposal.md": "# Export download outcome\n\nIntent: /var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/intent-brain-smoke-an5f2stt/archive/intents/export-history.md\n\nRetain exports for seven days.\nSource: /var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/intent-brain-smoke-an5f2stt/archive/sources/issue.md\n",
+    "failures/sources/issue.md": "# TEST-1 local issue fixture\n\nDescription: Exports must remain downloadable for seven days.\n\nComment: Retention was exercised at six days; search is proposed and unimplemented.\n\n[Document](retention-policy.md)\n",
+    "failures/sources/retention-policy.md": "# Retention policy fixture\nExports expire after seven days.\n",
+    "failures/brain/export-download-seven-day-retention.md": "# Export download seven-day retention\n\nExports must remain downloadable for seven days. Controlled local fixture evidence exercised a six-day download successfully; search remains proposed and unimplemented.\n\n## Sources\n\n- [TEST-1 local issue fixture](../sources/issue.md)\n- [Retention policy fixture](../sources/retention-policy.md)\n- [Archived change evidence](../project/openspec/changes/archive/2026-09-14-available-export/evidence.md)\n",
+    "failures/brain/export-ingestion-resumption-fixture.md": "# Export ingestion resumption fixture\n\nPost-move ingestion resumed after a controlled brain-unavailable failure. Exports remain downloadable for seven days in this fixture scope.\n\n## Sources\n\n- [TEST-1 local issue fixture](../sources/issue.md)\n- [Archived change evidence](../project/openspec/changes/archive/2026-09-14-post-move-failure/evidence.md)\n",
+    "failures/brain/instructions.md": "Use curated Markdown records with source links; choose descriptive filenames.\n",
+    "failures/intents/exports.md": "# Export retrieval\n\nState: active\n\n## User requests\nKeep exports downloadable.\n\n## End goal\nRetrieve exports.\n\n## Results\n\n### available-export (archived 2026-09-14)\n- Archived change: [2026-09-14-available-export](../project/openspec/changes/archive/2026-09-14-available-export/)\n- Brain record: [export-download-seven-day-retention](../brain/export-download-seven-day-retention.md)\n- Delivered: seven-day export retention (fixture evidence at six days).\n- Unfinished: search remains proposed.\n\n### post-move-failure (archived 2026-09-14, ingestion resumed)\n- Archived change: [2026-09-14-post-move-failure](../project/openspec/changes/archive/2026-09-14-post-move-failure/)\n- Brain record: [export-ingestion-resumption-fixture](../brain/export-ingestion-resumption-fixture.md)\n- Ingestion status: complete after resumption\n",
+    "failures/project/openspec/changes/blocked-export/evidence.md": "# Fixture evidence\n\nControlled local fixture: six-day download succeeds; search remains proposed. This is not production verification.\n",
+    "failures/project/openspec/changes/blocked-export/tasks.md": "## Tasks\n\n- [x] 1. Retention behaviour exercised in fixture evidence.\n",
+    "failures/project/openspec/changes/blocked-export/design.md": "# Design\n\nApproved fixture archive; source gathering uses controlled local fixture material.\n",
+    "failures/project/openspec/changes/blocked-export/proposal.md": "# Export download outcome\n\nIntent: /var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/intent-brain-smoke-an5f2stt/failures/intents/exports.md\n\nRetain exports for seven days.\nSource: /var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/intent-brain-smoke-an5f2stt/failures/sources/missing-document.md\n",
+    "failures/project/openspec/changes/archive/2026-09-14-post-move-failure/evidence.md": "# Fixture evidence\n\nControlled local fixture for post-move ingestion failure and resumption.\n\n## Preflight continuation context\n\n- Defining .das-work: /var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/intent-brain-smoke-an5f2stt/failures/project/.das-work\n- Owning intent: /var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/intent-brain-smoke-an5f2stt/failures/intents/exports.md\n- Source references: /var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/intent-brain-smoke-an5f2stt/failures/sources/issue.md\n\n## Ingestion and readback\n\n- Archived to: /var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/intent-brain-smoke-an5f2stt/failures/project/openspec/changes/archive/2026-09-14-post-move-failure/\n- Brain record saved: none\n- Intent updated: pending\n- Ingestion status: incomplete (brain destination unavailable during ingestion)\n- Remaining work: write curated Markdown brain record with source links and update intent results\n- Limitation: controlled local fixture only; not production verification\n\n## Resumption\n\n- Brain record saved: /var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/intent-brain-smoke-an5f2stt/failures/brain/export-ingestion-resumption-fixture.md\n- Intent updated: /var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/intent-brain-smoke-an5f2stt/failures/intents/exports.md\n- Ingestion status: complete after resumption\n- Limitation: controlled local fixture only; not production verification\n",
+    "failures/project/openspec/changes/archive/2026-09-14-post-move-failure/tasks.md": "## Tasks\n\n- [x] 1. Fixture scenario prepared.\n",
+    "failures/project/openspec/changes/archive/2026-09-14-post-move-failure/design.md": "# Design\n\nApproved fixture archive for post-move ingestion failure and resumption.\n",
+    "failures/project/openspec/changes/archive/2026-09-14-post-move-failure/proposal.md": "# Post-move ingestion failure fixture\n\nIntent: /var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/intent-brain-smoke-an5f2stt/failures/intents/exports.md\n\nExercise archive move with brain unavailable before ingestion, then resume.\nSource: /var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/intent-brain-smoke-an5f2stt/failures/sources/issue.md\n",
+    "failures/project/openspec/changes/archive/2026-09-14-available-export/evidence.md": "# Fixture evidence\n\nControlled local fixture: six-day download succeeds; search remains proposed. This is not production verification.\n\n## Preflight continuation context\n\n- Defining .das-work: /var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/intent-brain-smoke-an5f2stt/failures/project/.das-work\n- Owning intent: /var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/intent-brain-smoke-an5f2stt/failures/intents/exports.md\n- Source references: /var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/intent-brain-smoke-an5f2stt/failures/sources/issue.md, /var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/intent-brain-smoke-an5f2stt/failures/sources/retention-policy.md\n\n## Ingestion and readback\n\n- Archived to: /var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/intent-brain-smoke-an5f2stt/failures/project/openspec/changes/archive/2026-09-14-available-export/\n- Brain record saved: /var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/intent-brain-smoke-an5f2stt/failures/brain/export-download-seven-day-retention.md\n- Intent updated: /var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/intent-brain-smoke-an5f2stt/failures/intents/exports.md (State remains active)\n- Ingestion status: complete\n- Limitation: controlled local fixture only; not production verification\n",
+    "failures/project/openspec/changes/archive/2026-09-14-available-export/tasks.md": "## Tasks\n\n- [x] 1. Retention behaviour exercised in fixture evidence.\n",
+    "failures/project/openspec/changes/archive/2026-09-14-available-export/design.md": "# Design\n\nApproved fixture archive; source gathering uses controlled local fixture material.\n",
+    "failures/project/openspec/changes/archive/2026-09-14-available-export/proposal.md": "# Export download outcome\n\nIntent: /var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/intent-brain-smoke-an5f2stt/failures/intents/exports.md\n\nRetain exports for seven days.\nSource: /var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/intent-brain-smoke-an5f2stt/failures/sources/issue.md\n"
+  },
+  "rejected_run": "Initial intent/report.json rejected because reported questions differed from actual scripted tool calls. Only the clean intent-recheck replay is accepted.",
+  "source_files_sha256": {
+    "skills/grilling/SKILL.md": "f41948cf96ee940196756289b0a8d85397c68bc21e6283ccc0585c6b0555582b",
+    "skills/grill-with-docs/SKILL.md": "80097844cb2dcc8850383243949f4685c25be65a8c3778c6082055cb3b199ca9",
+    "skills/to-spec/SKILL.md": "abf0927b274f9b1e3db2430b41ccd4d4efd115a015025a39708e7f2d0fcd8f32",
+    "skills/handoff/SKILL.md": "d99fab224507af2eb433c33ce8778eac93b85837cd9586e58f8c0227dd9f703a",
+    "skills/ask-skuddy/SKILL.md": "f5d55518472efbed5060f04a27da1ee87a4185cad2db5a0d92bef3804c8206b1",
+    "skills/openspec-onboard/SKILL.md": "a74b87adbf9175fcf92fb3d77e221326d9d7ec189be9749d5b1034830736e557",
+    "skills/workflow/schemas/das-work-schema/schema.yaml": "64a56e2efad917522edd515ac1c2b2e81585cd96762f026fde6fd65bb13a3371",
+    "skills/workflow/schemas/das-work-schema/templates/proposal.md": "72f9e9e57985aa4973a51bb770aadc25802f19ddda99589fa1ecfa9b2b376cdf",
+    "README.md": "9a4a0120704c47624ae11b1296f8d9ec1e9abc244d1b40df7f8bf3fc1050b0f4",
+    "skills/workflow/SKILL.md": "8684338732850164eefe2ae325429de913f61810e1d23c91abf765e19849d480",
+    "skills/setup-work-skills/SKILL.md": "687a2a774eaaacdfe629497b04f851d02e8c9c5825d7e9bc29616b04e08bb14f",
+    "skills/workflow/references/setup.md": "ed937f0aaf840811dcecb2c7cf0ce859b9e231b697353b33ef9382d0f0c86ba2",
+    "skills/workflow/references/acceptance.md": "4b602312c63ab04ade7159880682820fb82e775c2e8d0e96c91892e09464b65e",
+    "skills/workflow/references/brain-ingestion.md": "3da0a1c958a18411604369973589d644f06a8f2ff850c07a5a505d85fecd3826",
+    "skills/openspec-archive-change/SKILL.md": "2ff1f4c17c64aefe14daf4b256b050b58cfe999b9c7d688bdef413b4fa91acab",
+    "skills/openspec-bulk-archive-change/SKILL.md": "7c23a97eb945b29696448201f6788371bbd0938e51e0fb1c682b30472fe8f349",
+    "skills/openspec-explore/SKILL.md": "9a0af0ece16efdecce8026e6505da94f2889aa3b2353ab7854228e6cd52c2e07",
+    "openspec/schemas/das-work-schema/schema.yaml": "64a56e2efad917522edd515ac1c2b2e81585cd96762f026fde6fd65bb13a3371",
+    "openspec/schemas/das-work-schema/templates/proposal.md": "72f9e9e57985aa4973a51bb770aadc25802f19ddda99589fa1ecfa9b2b376cdf"
+  },
+  "independent_missing_location_check": {
+    "report": {
+      "scenario": "Missing required location",
+      "fixture_root": "/var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/intent-brain-smoke-an5f2stt/missing-location",
+      "simulated_user_request": "Preserve export delivery knowledge through framework ingestion.",
+      "instruction_sources": [
+        "skills/workflow/references/setup.md#project-context",
+        "skills/workflow/references/brain-ingestion.md#preflight"
+      ],
+      "precondition": {
+        "defining_das_work": "/var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/intent-brain-smoke-an5f2stt/missing-location/project/.das-work",
+        "configured_entries_before": [
+          "Intent folder: ../intents"
+        ],
+        "missing_before": "Brain folder",
+        "existing_candidate_directory_not_used_without_prompt": "/var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/intent-brain-smoke-an5f2stt/missing-location/brain"
+      },
+      "dialogue": {
+        "question": "Missing-location exercise (fixture `missing-location/`). Simulated request: preserve export delivery knowledge through framework ingestion.\n\nI read `missing-location/project/.das-work` and found only `Intent folder: ../intents`; there is no configured `Brain folder` entry. Per `setup.md` and `brain-ingestion.md`, framework ingestion must not write until the brain location is chosen.\n\nBefore I record anything in the fixture, which brain folder should I configure for this project? Please reply with the filesystem path relative to the defining `.das-work` (for example `../brain`).",
+        "response": "Main as scripted fixture user: Use ../brain relative to project/.das-work as this project's single brain folder. Record that choice now. Main verified all fixture files remained byte-identical before this response. Save the exact question, this answer and resolved destination in the report; keep scope to this configuration check.",
+        "configured_brain_path": "../brain"
+      },
+      "snapshots": {
+        "before_reply": {
+          "project/.das-work": "84ec97a3228fe9329b7b49b7c949b69ad96df82da14170b40e6763b6ebc04604",
+          "intents/exports.md": "027d70e94f545945e5aa042c4030f7365dad89a95fe2b9e58bf715e3d79405d3",
+          "brain/instructions.md": "2b35b7c93f1fe179d4abb2cbc984ab858e076158368fd552f6a553e6e11c2362"
+        },
+        "after_recording_choice": {
+          "project/.das-work": "f2b844d54b99fc11104e43a948596fb4c6f885e30cdcef4708affa465f92dc4e",
+          "intents/exports.md": "027d70e94f545945e5aa042c4030f7365dad89a95fe2b9e58bf715e3d79405d3",
+          "brain/instructions.md": "2b35b7c93f1fe179d4abb2cbc984ab858e076158368fd552f6a553e6e11c2362"
+        }
+      },
+      "observed": {
+        "prompted_before_fixture_write": true,
+        "did_not_infer_brain_from_existing_directory": true,
+        "recorded_brain_folder_in_das_work": true,
+        "resolved_brain_from_defining_das_work": "/private/var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/intent-brain-smoke-an5f2stt/missing-location/brain",
+        "read_brain_instructions_before_any_brain_write": "Keep curated Markdown records with sources.",
+        "archive_or_ingestion_not_executed": true,
+        "only_das_work_changed": true
+      },
+      "passed": true
+    },
+    "before_selection": {
+      "project/.das-work": "84ec97a3228fe9329b7b49b7c949b69ad96df82da14170b40e6763b6ebc04604",
+      "brain/instructions.md": "2b35b7c93f1fe179d4abb2cbc984ab858e076158368fd552f6a553e6e11c2362",
+      "intents/exports.md": "027d70e94f545945e5aa042c4030f7365dad89a95fe2b9e58bf715e3d79405d3"
+    },
+    "after_selection": {
+      "report.json": "6408f9ded1744848625ee469ebed14255e3130551cdcb5983ecfe35b71415ef0",
+      "project/.das-work": "f2b844d54b99fc11104e43a948596fb4c6f885e30cdcef4708affa465f92dc4e",
+      "brain/instructions.md": "2b35b7c93f1fe179d4abb2cbc984ab858e076158368fd552f6a553e6e11c2362",
+      "intents/exports.md": "027d70e94f545945e5aa042c4030f7365dad89a95fe2b9e58bf715e3d79405d3"
+    },
+    "defining_context": "# Project context\nIntent folder: ../intents\nBrain folder: ../brain\n",
+    "parent_prewrite_unchanged": true
+  }
+}

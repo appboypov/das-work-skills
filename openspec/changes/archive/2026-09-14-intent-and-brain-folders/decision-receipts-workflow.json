@@ -1,0 +1,54 @@
+{
+  "ok": true,
+  "input_rows_in": 2,
+  "receipt_rows_out": 2,
+  "published": 1,
+  "reused": 1,
+  "unchanged": 1,
+  "source_file": "/Users/codaveto/Repos/das/das-work-skills/openspec/changes/archive/2026-09-14-intent-and-brain-folders/ingestion-decisions.json",
+  "receipt_file": "/Users/codaveto/Repos/das/das-work-skills/openspec/changes/archive/2026-09-14-intent-and-brain-folders/decision-receipts-workflow.json",
+  "errors": [],
+  "records": [
+    {
+      "input_index": 0,
+      "input_id": "2026-09-14-portable-intent-and-brain-workflow",
+      "source_file": "/Users/codaveto/Repos/das/das-work-skills/openspec/changes/archive/2026-09-14-intent-and-brain-folders/ingestion-decisions.json",
+      "action": "reused",
+      "logger_exit_code": null,
+      "logger_result": null,
+      "readback": {
+        "question": "What surgical update do you suggest? Please answer this without taking action. I'm merely requesting an expert honest answer.\n",
+        "answer": "the intent should alos be configured. where to save the intents\n\nbut just like our intent currnetly it also checks if an existing intnent is already active to add to and discusses that with the user\n\ncurated records with sources by default unless brain instructions say otherwise, there is always only 1 brain\n\nintent is always captured once intent becomes clear and confirmed with the user before creating/updating. user may also just want to do somryhing without the frameowkr or an intent\n",
+        "path": "/Users/codaveto/Work/brain/memories/decisions/das/2026-09-14-portable-intent-and-brain-workflow.md"
+      }
+    },
+    {
+      "input_index": 1,
+      "input_id": "2026-09-14-das-work-skills-local-planning",
+      "source_file": "/Users/codaveto/Repos/das/das-work-skills/openspec/changes/archive/2026-09-14-intent-and-brain-folders/ingestion-decisions.json",
+      "action": "published",
+      "logger_exit_code": 0,
+      "logger_result": {
+        "ok": true,
+        "records": [
+          {
+            "decision_id": "2026-09-14-das-work-skills-local-planning",
+            "decided_on": "2026-09-14",
+            "subject": "das-work-skills intent and brain folders",
+            "title": "Repository-local planning for das-work-skills",
+            "target": "[[intents/das/intent-and-brain-folders/intent-and-brain-folders]]",
+            "question": "I recommend keeping this bundle's specification in its own repository, since the shared store has no established ownership of it. Shall I initialize local OpenSpec planning and write the agreed specification for review?",
+            "answer": "Yes, write it locally",
+            "options": 2,
+            "supersedes": null
+          }
+        ]
+      },
+      "readback": {
+        "question": "I recommend keeping this bundle's specification in its own repository, since the shared store has no established ownership of it. Shall I initialize local OpenSpec planning and write the agreed specification for review?\n",
+        "answer": "Yes, write it locally\n",
+        "path": "/Users/codaveto/Work/brain/memories/decisions/das/2026-09-14-das-work-skills-local-planning.md"
+      }
+    }
+  ]
+}

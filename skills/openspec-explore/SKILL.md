@@ -8,7 +8,7 @@ Read [workflow](../workflow/SKILL.md) before applying this skill.
 
 Enter explore mode. Think deeply. Visualize freely. Follow the conversation wherever it goes.
 
-**IMPORTANT: Explore mode is for thinking, not implementing.** You may read files, search code, investigate the codebase, and run read-only commands or tools without confirmation, but you must NEVER write code or implement features. If the user asks you to implement something, remind them to exit explore mode first and create a change proposal. You MAY create or update OpenSpec change artifacts (proposals, designs, specs) within a confirmed scope, that's capturing thinking, not implementing. Answering design or clarifying questions is never consent to write. Before the first write-capable action, name the artifacts or files you would change and what you would do, ask a direct yes/no question, and wait for the user's confirmation in a separate message. Confirmation covers only the scope you described; ask again before expanding it. For a new change, scaffold it first as described below.
+**Explore mode captures thinking within the user's write authorization.** Read files, search code, investigate and run read-only tools freely. Resolve confirmed intent capture through [intent context](../workflow/SKILL.md#intent-context). OpenSpec proposals, designs and specs may be created or updated within a confirmed scope. Before an OpenSpec write, name the artifacts and proposed changes and obtain explicit confirmation covering that scope. For a new change, scaffold it first as described below. Implementation uses the apply workflow after its own approval.
 
 **This is a stance, not a workflow.** There are no fixed steps, no required sequence, no mandatory outputs. You're a thinking partner helping the user explore.
 
@@ -36,7 +36,7 @@ Before asking a factual question, follow the context discovery below and inspect
 - **Follow dependencies** - Resolve the next blocking decision before its dependent details. For example, clarify the user's outcome and scope before choosing an API or data model. Revisit downstream assumptions when an earlier answer changes. Skip branches that do not matter to this goal.
 - **Keep questions focused** - Ask one focused question at a time, and briefly explain why it matters and which decision it unlocks. Batch questions only if the user asks for a batch; keep them small and group related decisions.
 - **Offer grounded recommendations** - When evidence supports a recommendation, state your preferred option and why it fits the user's goals, with alternatives and their tradeoffs when useful. Do not invent intent, priorities, or external constraints: ask the user when only they can answer. Avoid a fixed question format.
-- **Keep a conversational record** - Track decisions in the conversation, not in files. Separate confirmed decisions from proposed defaults and unresolved questions. Silence is not acceptance. Accepting an answer or a batch of recommendations is not permission to write. Keep file-write confirmation separate from discovery questions and follow the guardrails below.
+- **Keep confirmed context** - Separate confirmed decisions, proposed defaults and unresolved questions in the conversation. Save confirmed intent requests through [intent context](../workflow/SKILL.md#intent-context); capture OpenSpec decisions within the file-write scope approved below. Discovery answers establish understanding; write confirmation establishes permission.
 
 Stop asking when the user has enough clarity. Let them pause, pivot, or defer a decision; do not exhaust every branch or force a proposal.
 
@@ -328,11 +328,11 @@ But this summary is optional. Sometimes the thinking IS the value.
 
 ## Guardrails
 
-- **Don't implement** - Never write code or implement features. Workflow configuration counts too: creating or editing schemas, templates, or `openspec/config.yaml` is a change, not thinking. Creating or updating OpenSpec change artifacts within the confirmed scope is fine, writing anything else is not.
+- **Respect exploration scope** - Authorized writes capture the owning intent and OpenSpec change artifacts. Code, workflow configuration, schemas and templates belong to implementation.
 - **Don't fake understanding** - If something is unclear, dig deeper
 - **Don't rush** - Discovery is thinking time, not task time
 - **Don't force structure** - Let patterns emerge naturally
-- **Don't auto-capture** - Offer to save insights, don't just do it. Read-only commands and tools need no confirmation. Before the first write-capable action, including `openspec new change` or another command that writes files, name the artifacts or files and proposed changes, ask a direct yes/no question, and wait for explicit confirmation in a separate user message. That confirmation covers only the described scope; ask again before expanding it. Answers to design or clarifying questions are never consent to write.
+- **Confirm capture** - Follow [intent context](../workflow/SKILL.md#intent-context) for intent writes. Before the first OpenSpec write-capable action, including `openspec new change`, name the artifacts and proposed changes, ask a direct yes/no question, and wait for explicit confirmation. Reuse confirmation covering the same described scope; confirm an expansion separately.
 - **Don't manually scaffold changes** - Never create a new change directory under `openspec/changes/` by hand. Always use `openspec new change "<name>"` (with `--store <id>` when applicable) so required metadata such as `.openspec.yaml` is created before writing artifacts.
 - **Do visualize** - A good diagram is worth many paragraphs
 - **Do explore the codebase** - Ground discussions in reality

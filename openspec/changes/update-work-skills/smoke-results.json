@@ -1,0 +1,137 @@
+{
+  "fixtureRoot": "/var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/update-work-skills-pwzbtvxv",
+  "cliVersion": "1.5.26",
+  "fixtureNote": "Local add does not enter the global lock. Used a controlled local-source-only global lock entry for the already installed update-work-skills fixture to exercise reported skips. Updater omits skips when a checkable global entry is unchanged; wrapper reports only observed output.",
+  "runs": [
+    {
+      "command": [
+        "node",
+        "/Users/codaveto/Repos/das/das-work-skills/scripts/install.mjs",
+        "--skills-dir",
+        "/var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/update-work-skills-pwzbtvxv/bundle"
+      ],
+      "cwd": "/var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/update-work-skills-pwzbtvxv/project",
+      "exit": 0,
+      "stdout": "{\n  \"skillsDirectory\": \"/private/var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/update-work-skills-pwzbtvxv/bundle\",\n  \"planningRoot\": null,\n  \"schema\": null,\n  \"files\": 129,\n  \"changed\": 129\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "node",
+        "/Users/codaveto/.npm/_npx/ac0ed6aa23b37c1e/node_modules/skills/bin/cli.mjs",
+        "add",
+        "appboypov/das-work-skills",
+        "--global",
+        "--skill",
+        "setup-work-skills",
+        "--agent",
+        "claude-code",
+        "--yes"
+      ],
+      "cwd": "/var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/update-work-skills-pwzbtvxv/project",
+      "exit": 0,
+      "stdout": "\n\u001b[38;5;250m\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2557\u2588\u2588\u2557  \u2588\u2588\u2557\u2588\u2588\u2557\u2588\u2588\u2557     \u2588\u2588\u2557     \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2557\u001b[0m\n\u001b[38;5;248m\u2588\u2588\u2554\u2550\u2550\u2550\u2550\u255d\u2588\u2588\u2551 \u2588\u2588\u2554\u255d\u2588\u2588\u2551\u2588\u2588\u2551     \u2588\u2588\u2551     \u2588\u2588\u2554\u2550\u2550\u2550\u2550\u255d\u001b[0m\n\u001b[38;5;245m\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2557\u2588\u2588\u2588\u2588\u2588\u2554\u255d \u2588\u2588\u2551\u2588\u2588\u2551     \u2588\u2588\u2551     \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2557\u001b[0m\n\u001b[38;5;243m\u255a\u2550\u2550\u2550\u2550\u2588\u2588\u2551\u2588\u2588\u2554\u2550\u2588\u2588\u2557 \u2588\u2588\u2551\u2588\u2588\u2551     \u2588\u2588\u2551     \u255a\u2550\u2550\u2550\u2550\u2588\u2588\u2551\u001b[0m\n\u001b[38;5;240m\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2551\u2588\u2588\u2551  \u2588\u2588\u2557\u2588\u2588\u2551\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2557\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2557\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2551\u001b[0m\n\u001b[38;5;238m\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u255d\u255a\u2550\u255d  \u255a\u2550\u255d\u255a\u2550\u255d\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u255d\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u255d\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u255d\u001b[0m\n\n\u250c  \u001b[46m\u001b[30m skills \u001b[39m\u001b[49m\n\u2502\n\u2502  \u001b[2mTip: use the --yes (-y) and --global (-g) flags to install without prompts.\u001b[22m\n\u001b[?25l\u2502\n\u25c7  Source: https://github.com/appboypov/das-work-skills.git\n\u001b[?25h\u001b[?25l\u2502\n\u25d2  Cloning repository\u2026\u001b[1G\u001b[J\u25d0  Cloning repository\u2026\u001b[1G\u001b[J\u25d3  Cloning repository\u2026\u001b[1G\u001b[J\u25d1  Cloning repository\u2026\u001b[1G\u001b[J\u25d2  Cloning repository\u2026\u001b[1G\u001b[J\u25d0  Cloning repository\u2026\u001b[1G\u001b[J\u25d3  Cloning repository\u2026\u001b[1G\u001b[J\u25d1  Cloning repository\u2026\u001b[1G\u001b[J\u25d2  Cloning repository\u2026.\u001b[1G\u001b[J\u25d0  Cloning repository\u2026.\u001b[1G\u001b[J\u25d3  Cloning repository\u2026.\u001b[1G\u001b[J\u25d1  Cloning repository\u2026.\u001b[1G\u001b[J\u25d2  Cloning repository\u2026.\u001b[1G\u001b[J\u25d0  Cloning repository\u2026.\u001b[1G\u001b[J\u25d3  Cloning repository\u2026.\u001b[1G\u001b[J\u25c7  Repository cloned\n\u001b[?25h\u001b[?25l\u2502\n\u001b[1G\u001b[J\u25d2  Discovering skills\u2026\u001b[1G\u001b[J\u25c7  Found \u001b[32m51\u001b[39m skills\n\u001b[?25h\u2502\n\u25cf  Selected 1 skill: \u001b[36msetup-work-skills\u001b[39m\n\n\u2502\n\u25c7  Installation Summary \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e\n\u2502                                      \u2502\n\u2502  \u001b[36m~/.agents/skills/setup-work-skills\u001b[39m  \u2502\n\u2502    \u001b[2mcopy \u2192\u001b[22m Claude Code                \u2502\n\u2502                                      \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\u001b[?25l\u2502\n\u001b[1G\u001b[J\u25c7  Installation complete\n\u001b[?25h\n\u2502\n\u25c7  \u001b[32mInstalled 1 skill\u001b[39m \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e\n\u2502                                          \u2502\n\u2502  \u001b[32m\u2713\u001b[39m setup-work-skills \u001b[2m(copied)\u001b[22m            \u2502\n\u2502    \u001b[2m\u2192\u001b[22m ~/.claude/skills/setup-work-skills  \u2502\n\u2502                                          \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\n\u2502\n\u2514  \u001b[32mDone!\u001b[39m\u001b[2m  Review skills before use; they run with full agent permissions.\u001b[22m\n\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "node",
+        "/Users/codaveto/.npm/_npx/ac0ed6aa23b37c1e/node_modules/skills/bin/cli.mjs",
+        "update",
+        "--global",
+        "--project"
+      ],
+      "cwd": "/var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/update-work-skills-pwzbtvxv/project",
+      "exit": 0,
+      "stdout": "\u001b[38;5;145mChecking for skill updates\u2026\u001b[0m\n\n\u001b[1mGlobal Skills\u001b[0m\n\n\u001b[38;5;102mChecking skills from source: appboypov/das-work-skills\u001b[0m\u001b[K\n\n\u001b[K\u001b[38;5;145m\u2713 All global skills are up to date\u001b[0m\n\n\u001b[1mProject Skills\u001b[0m\n\u001b[38;5;102mNo project skills to update.\u001b[0m\n\u001b[38;5;102mInstall project skills with\u001b[0m \u001b[38;5;145mnpx skills add <package>\u001b[0m\n\n\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "node",
+        "/Users/codaveto/.npm/_npx/ac0ed6aa23b37c1e/node_modules/skills/bin/cli.mjs",
+        "add",
+        "appboypov/das-work-skills",
+        "--skill",
+        "setup-work-skills",
+        "--agent",
+        "claude-code",
+        "--yes"
+      ],
+      "cwd": "/var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/update-work-skills-pwzbtvxv/project",
+      "exit": 0,
+      "stdout": "\n\u001b[38;5;250m\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2557\u2588\u2588\u2557  \u2588\u2588\u2557\u2588\u2588\u2557\u2588\u2588\u2557     \u2588\u2588\u2557     \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2557\u001b[0m\n\u001b[38;5;248m\u2588\u2588\u2554\u2550\u2550\u2550\u2550\u255d\u2588\u2588\u2551 \u2588\u2588\u2554\u255d\u2588\u2588\u2551\u2588\u2588\u2551     \u2588\u2588\u2551     \u2588\u2588\u2554\u2550\u2550\u2550\u2550\u255d\u001b[0m\n\u001b[38;5;245m\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2557\u2588\u2588\u2588\u2588\u2588\u2554\u255d \u2588\u2588\u2551\u2588\u2588\u2551     \u2588\u2588\u2551     \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2557\u001b[0m\n\u001b[38;5;243m\u255a\u2550\u2550\u2550\u2550\u2588\u2588\u2551\u2588\u2588\u2554\u2550\u2588\u2588\u2557 \u2588\u2588\u2551\u2588\u2588\u2551     \u2588\u2588\u2551     \u255a\u2550\u2550\u2550\u2550\u2588\u2588\u2551\u001b[0m\n\u001b[38;5;240m\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2551\u2588\u2588\u2551  \u2588\u2588\u2557\u2588\u2588\u2551\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2557\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2557\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2551\u001b[0m\n\u001b[38;5;238m\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u255d\u255a\u2550\u255d  \u255a\u2550\u255d\u255a\u2550\u255d\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u255d\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u255d\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u255d\u001b[0m\n\n\u250c  \u001b[46m\u001b[30m skills \u001b[39m\u001b[49m\n\u2502\n\u2502  \u001b[2mTip: use the --yes (-y) and --global (-g) flags to install without prompts.\u001b[22m\n\u001b[?25l\u2502\n\u25c7  Source: https://github.com/appboypov/das-work-skills.git\n\u001b[?25h\u001b[?25l\u2502\n\u25d2  Cloning repository\u2026\u001b[1G\u001b[J\u25d0  Cloning repository\u2026\u001b[1G\u001b[J\u25d3  Cloning repository\u2026\u001b[1G\u001b[J\u25d1  Cloning repository\u2026\u001b[1G\u001b[J\u25d2  Cloning repository\u2026\u001b[1G\u001b[J\u25d0  Cloning repository\u2026\u001b[1G\u001b[J\u25d3  Cloning repository\u2026\u001b[1G\u001b[J\u25d1  Cloning repository\u2026\u001b[1G\u001b[J\u25d2  Cloning repository\u2026.\u001b[1G\u001b[J\u25d0  Cloning repository\u2026.\u001b[1G\u001b[J\u25d3  Cloning repository\u2026.\u001b[1G\u001b[J\u25c7  Repository cloned\n\u001b[?25h\u001b[?25l\u2502\n\u001b[1G\u001b[J\u25c7  Found \u001b[32m51\u001b[39m skills\n\u001b[?25h\u2502\n\u25cf  Selected 1 skill: \u001b[36msetup-work-skills\u001b[39m\n\n\u2502\n\u25c7  Installation Summary \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e\n\u2502                                      \u2502\n\u2502  \u001b[36m./.agents/skills/setup-work-skills\u001b[39m  \u2502\n\u2502    \u001b[2mcopy \u2192\u001b[22m Claude Code                \u2502\n\u2502                                      \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\u001b[?25l\u2502\n\u001b[1G\u001b[J\u25c7  Installation complete\n\u001b[?25h\n\u2502\n\u25c7  \u001b[32mInstalled 1 skill\u001b[39m \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e\n\u2502                                          \u2502\n\u2502  \u001b[32m\u2713\u001b[39m setup-work-skills \u001b[2m(copied)\u001b[22m            \u2502\n\u2502    \u001b[2m\u2192\u001b[22m ./.claude/skills/setup-work-skills  \u2502\n\u2502                                          \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\n\u2502\n\u2514  \u001b[32mDone!\u001b[39m\u001b[2m  Review skills before use; they run with full agent permissions.\u001b[22m\n\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "node",
+        "/Users/codaveto/.npm/_npx/ac0ed6aa23b37c1e/node_modules/skills/bin/cli.mjs",
+        "update",
+        "--global",
+        "--project"
+      ],
+      "cwd": "/var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/update-work-skills-pwzbtvxv/project",
+      "exit": 0,
+      "stdout": "\u001b[38;5;145mChecking for skill updates\u2026\u001b[0m\n\n\u001b[1mGlobal Skills\u001b[0m\n\n\u001b[38;5;102mChecking skills from source: appboypov/das-work-skills\u001b[0m\u001b[K\n\n\u001b[K\u001b[38;5;145m\u2713 All global skills are up to date\u001b[0m\n\n\u001b[1mProject Skills\u001b[0m\n\u001b[38;5;145mUpdating for: Claude Code\u001b[0m\n\u001b[38;5;145mRefreshing 1 skill(s)\u2026\u001b[0m\n\n\u001b[38;5;145mUpdating setup-work-skills\u2026\u001b[0m\n  \u001b[38;5;145m\u2713\u001b[0m Updated setup-work-skills\n\n\u001b[38;5;145m\u2713 Updated 1 skill(s)\u001b[0m\n\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "node",
+        "/Users/codaveto/.npm/_npx/ac0ed6aa23b37c1e/node_modules/skills/bin/cli.mjs",
+        "add",
+        "/var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/update-work-skills-pwzbtvxv/bundle",
+        "--global",
+        "--skill",
+        "update-work-skills",
+        "--agent",
+        "claude-code",
+        "--yes"
+      ],
+      "cwd": "/var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/update-work-skills-pwzbtvxv/project",
+      "exit": 0,
+      "stdout": "\n\u001b[38;5;250m\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2557\u2588\u2588\u2557  \u2588\u2588\u2557\u2588\u2588\u2557\u2588\u2588\u2557     \u2588\u2588\u2557     \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2557\u001b[0m\n\u001b[38;5;248m\u2588\u2588\u2554\u2550\u2550\u2550\u2550\u255d\u2588\u2588\u2551 \u2588\u2588\u2554\u255d\u2588\u2588\u2551\u2588\u2588\u2551     \u2588\u2588\u2551     \u2588\u2588\u2554\u2550\u2550\u2550\u2550\u255d\u001b[0m\n\u001b[38;5;245m\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2557\u2588\u2588\u2588\u2588\u2588\u2554\u255d \u2588\u2588\u2551\u2588\u2588\u2551     \u2588\u2588\u2551     \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2557\u001b[0m\n\u001b[38;5;243m\u255a\u2550\u2550\u2550\u2550\u2588\u2588\u2551\u2588\u2588\u2554\u2550\u2588\u2588\u2557 \u2588\u2588\u2551\u2588\u2588\u2551     \u2588\u2588\u2551     \u255a\u2550\u2550\u2550\u2550\u2588\u2588\u2551\u001b[0m\n\u001b[38;5;240m\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2551\u2588\u2588\u2551  \u2588\u2588\u2557\u2588\u2588\u2551\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2557\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2557\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2551\u001b[0m\n\u001b[38;5;238m\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u255d\u255a\u2550\u255d  \u255a\u2550\u255d\u255a\u2550\u255d\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u255d\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u255d\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u255d\u001b[0m\n\n\u250c  \u001b[46m\u001b[30m skills \u001b[39m\u001b[49m\n\u2502\n\u2502  \u001b[2mTip: use the --yes (-y) and --global (-g) flags to install without prompts.\u001b[22m\n\u001b[?25l\u2502\n\u25c7  Source: /var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/update-work-skills-pwzbtvxv/bundle\n\u001b[?25h\u001b[?25l\u2502\n\u25c7  Local path validated\n\u001b[?25h\u001b[?25l\u2502\n\u25d2  Discovering skills\u2026\u001b[1G\u001b[J\u25d0  Discovering skills\u2026\u001b[1G\u001b[J\u25d3  Discovering skills\u2026\u001b[1G\u001b[J\u25c7  Found \u001b[32m52\u001b[39m skills\n\u001b[?25h\u2502\n\u25cf  Selected 1 skill: \u001b[36mupdate-work-skills\u001b[39m\n\n\u2502\n\u25c7  Installation Summary \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e\n\u2502                                       \u2502\n\u2502  \u001b[36m~/.agents/skills/update-work-skills\u001b[39m  \u2502\n\u2502    \u001b[2mcopy \u2192\u001b[22m Claude Code                 \u2502\n\u2502                                       \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\u001b[?25l\u2502\n\u001b[1G\u001b[J\u25c7  Installation complete\n\u001b[?25h\n\u2502\n\u25c7  \u001b[32mInstalled 1 skill\u001b[39m \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e\n\u2502                                           \u2502\n\u2502  \u001b[32m\u2713\u001b[39m update-work-skills \u001b[2m(copied)\u001b[22m            \u2502\n\u2502    \u001b[2m\u2192\u001b[22m ~/.claude/skills/update-work-skills  \u2502\n\u2502                                           \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\n\u2502\n\u2514  \u001b[32mDone!\u001b[39m\u001b[2m  Review skills before use; they run with full agent permissions.\u001b[22m\n\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "npx",
+        "skills",
+        "update",
+        "--global",
+        "--project"
+      ],
+      "cwd": "/var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/update-work-skills-pwzbtvxv/project",
+      "exit": 0,
+      "stdout": "\u001b[38;5;145mChecking for skill updates\u2026\u001b[0m\n\n\u001b[1mGlobal Skills\u001b[0m\n\n\u001b[38;5;102mChecking skills from source: appboypov/das-work-skills\u001b[0m\u001b[K\n\n\u001b[K\u001b[38;5;145m\u2713 All global skills are up to date\u001b[0m\n\n\u001b[1mProject Skills\u001b[0m\n\u001b[38;5;145mUpdating for: Universal, Claude Code\u001b[0m\n\u001b[38;5;145mRefreshing 1 skill(s)\u2026\u001b[0m\n\n\u001b[38;5;145mUpdating setup-work-skills\u2026\u001b[0m\n  \u001b[38;5;145m\u2713\u001b[0m Updated setup-work-skills\n\n\u001b[38;5;145m\u2713 Updated 1 skill(s)\u001b[0m\n\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "npx",
+        "skills",
+        "update",
+        "--global",
+        "--project"
+      ],
+      "cwd": "/var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/update-work-skills-pwzbtvxv/project",
+      "exit": 0,
+      "stdout": "\u001b[38;5;145mChecking for skill updates\u2026\u001b[0m\n\n\u001b[1mGlobal Skills\u001b[0m\n\n\u001b[38;5;102mChecking skills from source: appboypov/das-work-skills\u001b[0m\u001b[K\n\n\u001b[K\u001b[38;5;145m\u2713 All global skills are up to date\u001b[0m\n\n\u001b[1mProject Skills\u001b[0m\n\u001b[38;5;145mUpdating for: Universal, Claude Code\u001b[0m\n\u001b[38;5;145mRefreshing 1 skill(s)\u2026\u001b[0m\n\n\u001b[38;5;145mUpdating setup-work-skills\u2026\u001b[0m\n  \u001b[38;5;145m\u2713\u001b[0m Updated setup-work-skills\n\n\u001b[38;5;145m\u2713 Updated 1 skill(s)\u001b[0m\n\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "npx",
+        "skills",
+        "update",
+        "--global",
+        "--project"
+      ],
+      "cwd": "/var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/update-work-skills-pwzbtvxv/project",
+      "exit": 0,
+      "stdout": "\u001b[38;5;145mChecking for skill updates\u2026\u001b[0m\n\n\u001b[1mGlobal Skills\u001b[0m\n\n\u001b[38;5;102m1 skill(s) cannot be checked automatically:\u001b[0m\n  \u001b[38;5;145m\u2022\u001b[0m update-work-skills \u001b[38;5;102m(Local path)\u001b[0m\n    \u001b[38;5;102mTo update: \u001b[38;5;145mnpx skills add /var/folders/fh/kwjz4grx18nbq8pgvbzvn8rc0000gn/T/update-work-skills-pwzbtvxv/bundle -g -y\u001b[0m\n\n\u001b[1mProject Skills\u001b[0m\n\u001b[38;5;145mUpdating for: Universal, Claude Code\u001b[0m\n\u001b[38;5;145mRefreshing 1 skill(s)\u2026\u001b[0m\n\n\u001b[38;5;145mUpdating setup-work-skills\u2026\u001b[0m\n  \u001b[38;5;145m\u2713\u001b[0m Updated setup-work-skills\n\n\u001b[38;5;145m\u2713 Updated 1 skill(s)\u001b[0m\n\n",
+      "stderr": ""
+    }
+  ]
+}

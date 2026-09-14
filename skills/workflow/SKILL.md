@@ -8,11 +8,30 @@ All bundle guidance, templates and schema files travel with the installed skills
 
 ## Establish context
 
-Read the requested scope, project instructions, the project root's `.das-work`, relevant source, and existing work before choosing a skill. `.das-work` holds the project context described in [setup](references/setup.md#project-context). Use the project's language and conventions. For software changes, identify the selected OpenSpec change, its planning root, participating code repositories and related Linear URLs. Reuse that context across skills.
+Read the requested scope, project instructions, the project root's `.das-work`, relevant source, and existing work before choosing a skill. `.das-work` holds the project context described in [setup](references/setup.md#project-context), including the configured intent folder and single brain folder. Follow [intent context](#intent-context) to discover, confirm or resume the owning intent before framework work. Honour an explicit framework opt-out or read-only request. For software changes, identify the selected OpenSpec change, its planning root, participating code repositories and related Linear URLs. Reuse that context across skills.
 
 Linear is the default work manager. Read [linear](../linear/SKILL.md) when organizing work or reporting relevant progress. OpenSpec holds evolving specifications, design and implementation tasks. Linear issue descriptions use their type's template at creation and remain the initial brief. Subsequent relevant decisions, blockers and completed local results belong in short issue comments. Record issue URLs alongside the corresponding OpenSpec tasks. Comments communicate meaningful changes rather than every local action.
 
 Standalone writing, learning and research use their own useful artifacts. Associate them with a change or Linear work when they contribute to that work.
+
+## Intent context
+
+Use the configured folders and path rules in [project context](references/setup.md#project-context). Read the intent folder's applicable instructions before creating or updating its records.
+
+Before framework work, search the configured intent folder for relevant active intents and read their linked preparation. Clarify the requested outcome and discuss whether to extend an existing active intent or create an independent intent. Obtain explicit user confirmation before creating or updating any intent record. An existing confirmation covers the exact proposed record update; any revision or changed outcome requires renewed confirmation. If the user corrects the proposed outcome or intent relationship, revise the interpretation and confirm before writing.
+
+Once confirmed and authorized, save the intent in the configured folder and identify its path. Use a descriptive outcome name and follow the folder's record format.
+
+Record verbatim user requests and corrections separately from agent interpretation. Link related preparation, OpenSpec changes and established Linear work. Ownership boundaries remain distinct:
+- The intent owns the requested outcome, provenance, and links to preparation.
+- OpenSpec retains specification, design approval, and implementation-task ownership.
+- Linear retains work-tracking ownership.
+
+Proposals reference the owning intent, and the intent links the preparation without duplicating authoritative specifications or task progress.
+
+Honour an explicit choice to work outside the framework. Carry out requested work within authorization without requiring framework setup, creating an intent, or triggering framework ingestion. Honour advice-only and read-only requests by inspecting relevant records while leaving intent, project, brain and Linear records unchanged.
+
+An intent remains active while its requested outcome or linked preparation remains unfinished. An intent may span multiple OpenSpec changes. Archiving one linked change leaves unfinished intent work active and updates only relevant results and references within the confirmed scope. Cross-repository work and handoffs preserve the owning intent path and defining `.das-work` path so receiving agents resolve relative paths from the defining context file.
 
 ## Resolve OpenSpec context
 
@@ -28,7 +47,7 @@ Read project conventions before editing. Implement only the agreed behavior. Wri
 
 Use [tdd](../tdd/SKILL.md) at useful behavioral seams. Exercise the actual changed behavior and record the commands, results and limitations under the change's `evidence.md`. Mark a task complete only after its implementation and applicable checks succeed. On requirement revision, inspect completed tasks against the revised behavior and uncheck affected work whose completion evidence no longer applies.
 
-Review the complete relevant implementation with [code-review](../code-review/SKILL.md). Verification reports conformance and remaining findings. Synchronization updates current specs; archive files the change. These operations have distinct outcomes. Publication, commits, PR creation and merging follow the user's authorization and project's policy. Multi-repository changes retain evidence and publication state for each repository.
+Review the complete relevant implementation with [code-review](../code-review/SKILL.md). Verification reports conformance and remaining findings. Synchronization updates current specs; the archive skills file the change and preserve its knowledge through [brain ingestion](references/brain-ingestion.md). Complete the selected specification reconciliation, archive operation, ingestion and readback before reporting archive completion. Publication, commits, PR creation and merging follow the user's authorization and project's policy. Multi-repository changes retain evidence and publication state for each repository.
 
 ## Portable interaction
 
@@ -40,4 +59,4 @@ Perform work directly. Where the user permits delegation and the host supports i
 
 ## Handoff
 
-Carry the scope, approval, selected store, change path, repository paths, issue URLs, remaining tasks and evidence references. Read existing comments and handoffs before adding a relevant update. Preserve facts in their owning artifact and link them from recipients.
+Carry the approved scope, owning intent path, defining `.das-work` path, exact working directories, selected store, change identity and path, Linear links, remaining tasks and evidence references. Preserve intent and folder ownership through [intent context](#intent-context) across repositories and shared planning stores. For incomplete archive ingestion, record the archived identity, known saved brain paths and remaining work. Read existing comments and handoffs before adding a relevant update. Preserve facts in their owning artifact and link them from recipients.

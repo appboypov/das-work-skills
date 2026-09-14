@@ -1,0 +1,13 @@
+{
+  "ok": true,
+  "records": [
+    {
+      "entry_id": 569,
+      "happened_at": "2026-09-14 22:35:11.547626",
+      "actor": "agent",
+      "organisation": "das",
+      "subject": "[[intents/das/intent-and-brain-folders/intent-and-brain-folders]]",
+      "action": "Implemented configured intent storage and one second-brain destination in the das-work-skills bundle. Framework work discovers relevant active intents, reads their preparation, confirms creation or updates with the user, and preserves requests separately from interpretation. Advice-only requests and framework opt-out retain their write boundaries.\n\nSingle and bulk archive skills use one instruction-led ingestion procedure: required-source preflight, curated records with sources, accurate proposed/delivered/verified distinctions, output readback, per-change failures and resumption from an archived identity. Handoffs retain the defining project context and intent; unfinished intent outcomes stay active.\n\nThe user selected /Users/codaveto/Work/intents for intent storage and /Users/codaveto/Work/brain for the brain. Planning remains repository-local with das-work-schema. Both current capability specs were reconciled: 11 requirements and 22 scenarios, with strict validation passing. The completed change is archived at ../Repos/das/das-work-skills/openspec/changes/archive/2026-09-14-intent-and-brain-folders/.\n\nEvidence: npm run check passed for 51 skills, 45 templates and 128 files. Bundled and local schemas match. Repeat installation changed zero files. Twelve controlled workflow checks preserve actual read-back records and confirmation-boundary snapshots. Fresh independent intent and ingestion verifiers returned PASS with no blocking source findings.\n\nProof limits: no production release or live Linear source-ingestion test was performed. Binary attachment failures and an explicitly verified-versus-delivered fixture remain unexercised. No preexisting Linear work issue was linked to this change; no unrelated issue history was ingested.\n\nSources: [[intents/das/intent-and-brain-folders/intent-and-brain-folders]], [[../Repos/das/das-work-skills/openspec/specs/intent-context/spec]], [[../Repos/das/das-work-skills/openspec/specs/brain-ingestion/spec]], [[../Repos/das/das-work-skills/openspec/changes/archive/2026-09-14-intent-and-brain-folders/evidence]], [[../Repos/das/das-work-skills/openspec/changes/archive/2026-09-14-intent-and-brain-folders/verification-intent]], [[../Repos/das/das-work-skills/openspec/changes/archive/2026-09-14-intent-and-brain-folders/verification-brain]]."
+    }
+  ]
+}

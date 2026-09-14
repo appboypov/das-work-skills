@@ -1,6 +1,6 @@
 # DAS work skills
 
-Skuddy coordinates 51 skills combining AI Hero's engineering, research and writing methods with the OpenSpec lifecycle and Linear work management.
+Skuddy coordinates 52 skills combining AI Hero's engineering, research and writing methods with the OpenSpec lifecycle and Linear work management.
 
 ## Install
 
@@ -12,17 +12,21 @@ npx skills add appboypov/das-work-skills --global --skill '*'
 
 The skills CLI manages the global installation and links it into the selected agents. Run this command from any directory.
 
-Then ask the agent to run **setup-work-skills**. It records project context in `.das-work` and selects `das-work-schema` in OpenSpec. Setup instructions, schema templates, acceptance journeys, provenance and licenses are all inside the installed skills. OpenSpec installs independently of this repository. Clients do not need to return here.
+Then ask the agent to run **setup-work-skills**. It records project context in `.das-work`, configures where intents are saved and where the user's single second brain lives, and selects `das-work-schema` in OpenSpec. Setup instructions, schema templates, acceptance journeys, provenance and licenses are all inside the installed skills. OpenSpec installs independently of this repository. Clients do not need to return here.
 
 Start everyday work with **ask-skuddy**. It recommends exact skill names with links, explains why they fit and lays out the relevant skill sequence. Linear holds the initial templated briefs and meaningful comments. OpenSpec holds evolving specs, design, tasks and evidence.
 
+Framework work discovers relevant active intents and confirms reuse or creation with the user before saving. Users can request work without the framework or an intent. The archive skills preserve curated knowledge and its sources in the configured brain, following that folder's instructions, and report the saved records. See [intent context](skills/workflow/SKILL.md#intent-context) and [brain ingestion](skills/workflow/references/brain-ingestion.md). This ingestion runs through the skills' archive workflow.
+
 ## Update
 
+Ask the agent to run [update-work-skills](skills/update-work-skills/SKILL.md), or run this command from the project whose skills you want to update:
+
 ```sh
-npx skills update --global
+npx skills update --global --project
 ```
 
-This updates all globally installed skills, including this bundle. Review local skill customizations before updating. Project-local OpenSpec schema copies are updated separately through **setup-work-skills**.
+This updates all bundles tracked by the skills CLI in global and current-project installations. The updater uses their existing installation records and destinations. Review local skill customizations before updating. Project-local OpenSpec schema copies are updated separately through **setup-work-skills**.
 
 ## Maintainers
 

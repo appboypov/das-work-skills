@@ -1,9 +1,9 @@
 ---
 name: openspec-bulk-archive-change
-description: Archive multiple completed changes at once. Use when archiving several parallel changes.
+description: Archive several changes and ingest their knowledge into the configured brain. Use when archiving a batch or resuming its incomplete ingestion.
 ---
 
-Read [workflow](../workflow/SKILL.md) before applying this skill.
+Read [workflow](../workflow/SKILL.md) and [brain ingestion](../workflow/references/brain-ingestion.md) before applying this skill.
 
 
 Archive multiple completed changes in a single operation.
@@ -22,7 +22,9 @@ This skill allows you to batch-archive changes, handling spec conflicts intellig
 
    Run `openspec list --json` to get all active changes.
 
-   If no active changes exist, inform user and stop.
+   Handle any requested archived resumption through [brain ingestion resumption](../workflow/references/brain-ingestion.md#resumption), including when active changes also exist. Archived selections use their archived paths and proceed directly to ingestion and readback. Keep them out of active-change CLI checks, sync and moves, and include their outcomes in the batch report.
+
+   If no active changes or requested archived resumptions remain, inform the user and stop.
 
 2. **Prompt for change selection**
 
@@ -30,6 +32,7 @@ This skill allows you to batch-archive changes, handling spec conflicts intellig
    - Show each change with its schema
    - Include an option for "All changes"
    - Allow any number of selections (1+ works, 2+ is the typical use case)
+   - When resuming incomplete ingestion, include eligible archived changes in the selection prompt
 
    **IMPORTANT**: Do NOT auto-select. Always let the user choose.
 
@@ -151,19 +154,16 @@ This skill allows you to batch-archive changes, handling spec conflicts intellig
    so match what the user picked rather than the wording above:
    - "Cancel". stop, do not archive. Report that nothing was archived and skip the remaining steps.
    - The archive-everything option. proceed with every selected change
-   - The ready-only option. proceed with only the changes the step 6 table marks `Ready` or `Ready*`, and record the rest as Skipped in step 8d. If a `Ready*` change's conflict partner is skipped, re-derive that conflict's resolution using only the changes being archived.
+   - The ready-only option. proceed with only the changes the step 6 table marks `Ready` or `Ready*`, and record the rest as Skipped in step 8f. If a `Ready*` change's conflict partner is skipped, re-derive that conflict's resolution using only the changes being archived.
    - Anything else. ask again rather than archiving
 
-   Before step 8 writes the first main spec or moves any change, fetch every
-   required specs-rule snapshot for the confirmed batch. For each change that will
-   sync concrete `artifactPaths.specs.existingOutputPaths`, run
-   `openspec instructions specs --change "<name>" --json` exactly once with the
-   same selected-root flags. Obtain all snapshots before the first write or move.
-   If any lookup exits non-zero or returns invalid artifact-instruction JSON,
-   identify the affected change, report the error, and stop the whole batch before
-   any main-spec write or change move. Do not treat lookup failure as omitted
-   rules. A valid response without `rules` is the no-rules case.
+   Before step 8 writes the first main spec or moves any change, check shared prerequisites and fetch every required specs-rule snapshot for the confirmed batch.
 
+   **Check shared destination prerequisites:**
+   Complete the shared destination checks in [brain ingestion preflight](../workflow/references/brain-ingestion.md#preflight). A shared blocker stops the batch before any selected change is moved or written.
+
+   **Fetch specs-rule snapshots:**
+   For each change that will sync concrete `artifactPaths.specs.existingOutputPaths`, run `openspec instructions specs --change "<name>" --json` exactly once with the same selected-root flags. Obtain all snapshots before the first write or move. If any lookup exits non-zero or returns invalid artifact-instruction JSON, identify the affected change, report the error, and stop the whole batch before any main-spec write or change move. Do not treat lookup failure as omitted rules. A valid response without `rules` is the no-rules case.
 8. **Execute archive for each confirmed change**
 
    Before processing, carry the recorded decisions from step 5 (after any step 7 re-derivation) into two per-delta sets:
@@ -173,7 +173,11 @@ This skill allows you to batch-archive changes, handling spec conflicts intellig
 
    Process changes in the determined order (respecting conflict resolution):
 
-   a. **Sync included delta specs**:
+   a. **Run change-specific preflight**:
+      - Complete [brain ingestion preflight](../workflow/references/brain-ingestion.md#preflight) for the change, reusing the shared destination checks.
+      - Mark a source-specific blocker as `Blocked`, retain that change's active path and continue independent eligible changes. Reconsider conflict partners whose sync depended on the blocked change before proceeding.
+
+   b. **Sync included delta specs**:
       - Run the `openspec-sync-specs` workflow inline (agent-driven intelligent merge) only for changes with entries in `includedDeltas`, passing only the included delta paths and explicitly instructing it to ignore that change's `excludedDeltas`. Wait for it to finish.
       - For conflicts, apply in resolved order.
       - Pass that change's fetched specs-rule snapshot into inline sync; inline
@@ -181,10 +185,10 @@ This skill allows you to batch-archive changes, handling spec conflicts intellig
       - Apply artifact rules only to main specs produced by that change. They do
         not change conflict resolution, archive behavior, or CLI contracts, and
         their text is not copied into an output file
-      - Do not delegate to a background task. step 8c would move `changeRoot` out from under a sync that is still reading it.
+      - Do not delegate to a background task. Step 8d would move `changeRoot` out from under a sync that is still reading it.
       - If a change has no included delta specs, do not run the sync workflow for it.
 
-   b. **Verify included delta specs before moving changeRoot**:
+   c. **Verify included delta specs before moving changeRoot**:
       - Re-run the comparison only for delta specs in `includedDeltas` against main spec at `<planningHome.root>/openspec/specs/<capability-path>/spec.md` (use the store-aware `planningHome.root` from step 3 status JSON, not a hardcoded repo path).
       - Verify that main specs are updated:
         - ADDED requirements present
@@ -192,34 +196,41 @@ This skill allows you to batch-archive changes, handling spec conflicts intellig
         - REMOVED requirements gone. and where this sync retired a capability (removed its last requirement, leaving `## Requirements` empty), its main spec deleted rather than left empty; a spec the sync deliberately kept and reported is also a match
         - RENAMED requirements present under the new name and absent under the old one
       - Do not verify delta specs in `excludedDeltas`; they are intentionally left unsynced.
-      - If sync failed or any capability does not match verification, report what differs and fail/skip moving that change's `changeRoot`. do not archive that change. `changeRoot` remains intact.
+      - If sync failed or any capability does not match verification, report what differs and mark that change as `Failed`. Do not move that change's `changeRoot`. Independent eligible changes continue.
 
-   c. **Perform the archive**:
+   d. **Perform the archive move**:
+      - Target name: use the change name as-is when it already starts with a `YYYY-MM-DD-` prefix; otherwise prepend the current date as `YYYY-MM-DD-<name>` (same rule as `openspec archive`).
+      - Check if target already exists:
+        - If yes: mark that change as `Failed` (archive directory already exists), do not move `changeRoot`, and continue with other changes.
+        - If no: move `changeRoot` to the archive directory:
+          ```bash
+          mkdir -p "<planningHome.changesDir>/archive"
+          mv "<changeRoot>" "<planningHome.changesDir>/archive/<target-name>"
+          ```
 
-      Target name: use the change name as-is when it already starts with a `YYYY-MM-DD-` prefix; otherwise prepend the current date as `YYYY-MM-DD-<name>` (same rule as `openspec archive`).
+   e. **Ingest knowledge and read back records**:
+      - Immediately after moving `changeRoot`, complete [ingestion and readback](../workflow/references/brain-ingestion.md#ingestion-and-readback).
+      - Record a post-move failure as `Archived (ingestion incomplete)` with its archived identity, known output paths and remaining work. Continue independent eligible changes.
 
-      ```bash
-      mkdir -p "<planningHome.changesDir>/archive"
-      mv "<changeRoot>" "<planningHome.changesDir>/archive/<target-name>"
-      ```
-
-   d. **Track outcome** for each change:
-      - Success: archived successfully
-      - Failed: error during archive or spec verification (record error)
-      - Skipped: user chose not to archive (if applicable)
-      - Sync skipped: for every delta in `excludedDeltas`, report `sync skipped` with the change, `<capability-path>`, and recorded reason. This is distinct from skipping the archive.
+   f. **Track outcome for each change**:
+      - `Completed`: archived successfully, brain ingestion and readback verified, with saved brain record paths.
+      - `Archived (ingestion incomplete)`: moved to archive, but brain ingestion or readback failed; records remaining work and resumption details.
+      - `Blocked`: change-specific preflight failed (missing required issue, document, attachment, or intent); `changeRoot` unmoved.
+      - `Failed`: error during spec verification or archive move (e.g. archive directory already exists); `changeRoot` unmoved.
+      - `Skipped`: user chose not to archive.
+      - `Sync skipped`: for every delta in `excludedDeltas`, report `sync skipped` with the change, `<capability-path>`, and recorded reason. This is distinct from skipping the archive.
 
 9. **Display summary**
 
-   Show final results:
+   Show final results with per-change outcomes:
 
    ```markdown
    ## Bulk Archive Complete
 
-   Archived 3 changes:
-   - schema-management-cli -> archive/2026-01-19-schema-management-cli/
-   - project-config -> archive/2026-01-19-project-config/
-   - add-oauth -> archive/2026-01-19-add-oauth/
+   Archived and ingested 3 changes:
+   - schema-management-cli -> archive/2026-01-19-schema-management-cli/ (brain: knowledge/schema-management.md)
+   - project-config -> archive/2026-01-19-project-config/ (brain: knowledge/project-config.md)
+   - add-oauth -> archive/2026-01-19-add-oauth/ (brain: knowledge/auth.md)
 
    Skipped 1 change:
    - add-verify-skill (user chose not to archive incomplete)
@@ -230,12 +241,17 @@ This skill allows you to batch-archive changes, handling spec conflicts intellig
    - 1 conflict resolved (identity/user-auth: synced add-oauth, skipped add-jwt)
    ```
 
-   If any failures:
-   ```text
-   Failed 1 change:
-   - some-change: Archive directory already exists
-   ```
+   If any changes are blocked, failed, or have incomplete ingestion:
+   ```markdown
+   Archived with incomplete ingestion (resumable) 1 change:
+   - partial-change -> archive/2026-01-19-partial-change/ (remaining: write knowledge/partial.md)
 
+   Blocked 1 change:
+   - blocked-change: Missing linked Linear issue attachment design-spec.pdf (changeRoot intact)
+
+   Failed 1 change:
+   - some-change: Archive directory already exists (changeRoot intact)
+   ```
 **Conflict Resolution Examples**
 
 Example 1: Only one implemented
@@ -274,9 +290,9 @@ behaviors in the resulting API requirements and validate both.
 ```markdown
 ## Bulk Archive Complete
 
-Archived N changes:
-- <change-1> -> archive/<target-name-1>/
-- <change-2> -> archive/<target-name-2>/
+Archived and ingested N changes:
+- <change-1> -> archive/<target-name-1>/ (brain: <saved-brain-paths>)
+- <change-2> -> archive/<target-name-2>/ (brain: <saved-brain-paths>)
 
 Spec sync summary:
 - N delta specs synced to main specs
@@ -286,16 +302,22 @@ Spec sync summary:
 **Output On Partial Success**
 
 ```markdown
-## Bulk Archive Complete (partial)
+## Bulk Archive Results
 
-Archived N changes:
-- <change-1> -> archive/<target-name-1>/
+Archived and ingested N changes:
+- <change-1> -> archive/<target-name-1>/ (brain: <saved-brain-paths>)
 
-Skipped M changes:
-- <change-2> (user chose not to archive incomplete)
+Archived with incomplete ingestion (resumable) K changes:
+- <change-2> -> archive/<target-name-2>/ (remaining: <remaining-work>)
 
-Failed K changes:
-- <change-3>: Archive directory already exists
+Blocked M changes:
+- <change-3>: Missing required document <path> (changeRoot intact)
+
+Failed J changes:
+- <change-4>: Archive directory already exists (changeRoot intact)
+
+Skipped P changes:
+- <change-5> (user chose not to archive incomplete)
 ```
 
 **Output When No Changes**
@@ -303,7 +325,7 @@ Failed K changes:
 ```markdown
 ## No Changes to Archive
 
-No active changes found. Create a new change to get started.
+No active changes found. If you have archived changes with incomplete ingestion, run `openspec-bulk-archive-change` and name the archived changes to resume ingestion.
 ```
 
 **Guardrails**
@@ -314,19 +336,24 @@ No active changes found. Create a new change to get started.
 - Skip spec sync only when implementation is missing (warn user)
 - Show clear per-change status before confirming
 - Use single confirmation for entire batch
-- Never archive after the user cancels the confirmation. a cancelled batch archives nothing
-- Track and report all outcomes (success/skip/fail)
-- Preserve .openspec.yaml when moving to archive
-- Archive directory target uses current date: YYYY-MM-DD-<name>; a name that already starts with a `YYYY-MM-DD-` prefix is used as-is (never stack a second date)
-- If archive target exists, fail that change but continue with others
+- Never archive after the user cancels the confirmation; a cancelled batch archives nothing
+- Check for incomplete ingestion of archived changes before stopping on empty active changes
+- Check shared brain prerequisites once before any change moves; an inaccessible brain folder is a shared blocker that stops the batch before any move
+- Run change-specific preflight before moving each change; an inaccessible issue, document, or intent blocks only that change while independent eligible changes continue
+- Move `changeRoot` only after preflight passes
+- If archive target exists or spec verification fails, fail that change but continue with others
 - If sync is requested, run the `openspec-sync-specs` workflow inline (agent-driven) for each change with included delta specs
 - Carry the per-delta `includedDeltas` and `excludedDeltas` decisions into execution; sync and verify only included deltas
 - Report every excluded delta as `sync skipped` without treating the archive itself as skipped
-- Never archive a change while a spec sync is still in flight. run the sync inline and verify main specs at `<planningHome.root>/openspec/specs/<capability-path>/spec.md` before moving `changeRoot`
-- Fetch archive inputs once per selected root before spec inspection or moves
-- Fetch all required specs-rule snapshots before the batch's first main-spec write or move
-- A failed archive-inputs lookup never blocks the batch; it proceeds with no context or guidance
-- A failed specs instruction lookup stops the whole batch atomically
+- Never archive a change while a spec sync is still in flight; run the sync inline and verify main specs before moving `changeRoot`
+- Run brain ingestion and read back saved records immediately after each change moves; post-move ingestion failure records the change as archived with incomplete ingestion and allows independent changes to continue
+- Resumption accepts the archived directory directly without moving files again or duplicating records
+- Scope source gathering to linked work contributing to each change
+- Keep multi-change intents active while unfinished work remains
+- Track and report all outcomes per change: completed, archived with incomplete ingestion, blocked, failed, and skipped
+- Distinguish shared blockers from change-specific failures: a shared blocker stops moves across the batch; a change-specific blocker affects only that change and allows independent eligible changes to proceed
+- Fetch archive inputs once per selected root before spec inspection or moves; resolve a failed lookup before processing that root's batch
+- Fetch all required specs-rule snapshots before the batch's first main-spec write or move; a shared snapshot failure stops the batch atomically before any write or move
 - Changes without concrete `artifactPaths.specs.existingOutputPaths` continue without spec sync
 - Apply relevant runtime context across the batch and report conflicts
 - Operation guidance remains advisory; consider every entry and explain rejected advice
