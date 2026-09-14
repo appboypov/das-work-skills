@@ -34,3 +34,13 @@ This is a Markdown skill wrapper, not a new updater implementation. The real com
 Local-source installs are not automatically entered into the updater's global lock. The skip-output fixture therefore used an explicit controlled lock entry. The upstream CLI also omits skipped entries when checkable global skills are unchanged; the wrapper reports observed output and does not claim a stronger inventory audit. These upstream behaviors were not changed.
 
 No live user installation, commit, publication, current-spec synchronization or archive was performed.
+
+## Final archive and ingestion
+
+After implementation, the user authorized publication, independent verification and the complete archive lifecycle. Source commit `360bd2f` and independent report commit `18e26e9` were pushed to origin/main. The fresh verifier passed with no blocking findings; its [report](verification-independent.md) preserves the failure-path runtime limit.
+
+Synchronized the two requirements and four scenarios into `openspec/specs/work-skills-update/spec.md`, with exact requirement-body comparison. Strict validation passed for all three current specifications. Moved the change to `openspec/changes/archive/2026-09-14-update-work-skills`, preserving `.openspec.yaml`.
+
+Canonical brain logging preserved the confirmed all-bundles decision and worklog 571. Read back both records and the updated owning intent; all 18 checked wikilinks resolved. The intent is yielded and points to this archive. [Readback](ingestion-readback.json) and logging receipts preserve the locations.
+
+Published [RESULT-5](https://linear.app/skuddy/issue/RESULT-5/update-installed-work-skills-through-one-skill) in Done, attached independent verification and raw smoke output, opened it in Linear and read back its state and attachments. Final archive publication follows in the enclosing commit. No live skill installation was updated.

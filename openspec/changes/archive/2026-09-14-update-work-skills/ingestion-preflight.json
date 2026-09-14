@@ -1,0 +1,22 @@
+{
+  "definingConfiguration": "/Users/codaveto/Repos/das/das-work-skills/.das-work",
+  "intent": "/Users/codaveto/Work/intents/das/update-work-skills/update-work-skills.md",
+  "brain": "/Users/codaveto/Work/brain",
+  "requiredSources": [
+    "/Users/codaveto/Repos/das/das-work-skills/openspec/changes/update-work-skills/smoke-results.json",
+    "/Users/codaveto/Repos/das/das-work-skills/openspec/changes/update-work-skills/.openspec.yaml",
+    "/Users/codaveto/Repos/das/das-work-skills/openspec/changes/update-work-skills/evidence.md",
+    "/Users/codaveto/Repos/das/das-work-skills/openspec/changes/update-work-skills/verification-independent.md",
+    "/Users/codaveto/Repos/das/das-work-skills/openspec/changes/update-work-skills/tasks.md",
+    "/Users/codaveto/Repos/das/das-work-skills/openspec/changes/update-work-skills/verification.md",
+    "/Users/codaveto/Repos/das/das-work-skills/openspec/changes/update-work-skills/design.md",
+    "/Users/codaveto/Repos/das/das-work-skills/openspec/changes/update-work-skills/proposal.md",
+    "/Users/codaveto/Repos/das/das-work-skills/openspec/changes/update-work-skills/handoff.md",
+    "/Users/codaveto/Repos/das/das-work-skills/openspec/changes/update-work-skills/specs/work-skills-update/spec.md"
+  ],
+  "relatedLinearIssues": [],
+  "archiveTarget": "/Users/codaveto/Repos/das/das-work-skills/openspec/changes/archive/2026-09-14-update-work-skills",
+  "destinationWritable": true,
+  "specSynchronized": true,
+  "independentVerification": "Pass with documented nonblocking runtime limit"
+}
