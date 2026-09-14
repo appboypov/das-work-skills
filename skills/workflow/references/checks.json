@@ -948,6 +948,151 @@
       "exit": 0,
       "stdout": "{\n  \"skillsDirectory\": \"<smoke-directory>/final-skills\",\n  \"planningRoot\": null,\n  \"schema\": null,\n  \"files\": 127,\n  \"changed\": 0\n}\n",
       "stderr": ""
+    },
+    {
+      "check": "Install renamed schema",
+      "command": [
+        "node",
+        "<repository>/scripts/install.mjs",
+        "--skills-dir",
+        "<schema-smoke-directory>/skills",
+        "--planning-root",
+        "<schema-smoke-directory>/project",
+        "--select-schema"
+      ],
+      "exit": 0,
+      "stdout": "{\n  \"skillsDirectory\": \"<schema-smoke-directory>/skills\",\n  \"planningRoot\": \"<schema-smoke-directory>/project\",\n  \"schema\": \"das-work-schema\",\n  \"files\": 133,\n  \"changed\": 133\n}\n",
+      "stderr": ""
+    },
+    {
+      "check": "Reinstall renamed schema",
+      "command": [
+        "node",
+        "<repository>/scripts/install.mjs",
+        "--skills-dir",
+        "<schema-smoke-directory>/skills",
+        "--planning-root",
+        "<schema-smoke-directory>/project",
+        "--select-schema"
+      ],
+      "exit": 0,
+      "stdout": "{\n  \"skillsDirectory\": \"<schema-smoke-directory>/skills\",\n  \"planningRoot\": \"<schema-smoke-directory>/project\",\n  \"schema\": \"das-work-schema\",\n  \"files\": 133,\n  \"changed\": 0\n}\n",
+      "stderr": ""
+    },
+    {
+      "check": "Validate das-work-schema",
+      "command": [
+        "node",
+        "<repository>/node_modules/@fission-ai/openspec/bin/openspec.js",
+        "schema",
+        "validate",
+        "das-work-schema",
+        "--json"
+      ],
+      "exit": 0,
+      "stdout": "{\n  \"name\": \"das-work-schema\",\n  \"path\": \"<schema-smoke-directory>/project/openspec/schemas/das-work-schema\",\n  \"valid\": true,\n  \"issues\": []\n}\n",
+      "stderr": "Note: Schema commands are experimental and may change.\n"
+    },
+    {
+      "check": "Create change with renamed schema",
+      "command": [
+        "node",
+        "<repository>/node_modules/@fission-ai/openspec/bin/openspec.js",
+        "new",
+        "change",
+        "greeting",
+        "--schema",
+        "das-work-schema"
+      ],
+      "exit": 0,
+      "stdout": "Created change 'greeting' at openspec/changes/greeting/\nSchema: das-work-schema\nNext: openspec status --change greeting\n",
+      "stderr": "- Creating change 'greeting' with schema 'das-work-schema'...\n"
+    },
+    {
+      "check": "Resolve renamed schema status",
+      "command": [
+        "node",
+        "<repository>/node_modules/@fission-ai/openspec/bin/openspec.js",
+        "status",
+        "--change",
+        "greeting",
+        "--json"
+      ],
+      "exit": 0,
+      "stdout": "{\n  \"changeName\": \"greeting\",\n  \"schemaName\": \"das-work-schema\",\n  \"planningHome\": {\n    \"kind\": \"repo\",\n    \"root\": \"<schema-smoke-directory>/project\",\n    \"changesDir\": \"<schema-smoke-directory>/project/openspec/changes\",\n    \"defaultSchema\": \"spec-driven\"\n  },\n  \"changeRoot\": \"<schema-smoke-directory>/project/openspec/changes/greeting\",\n  \"artifactPaths\": {\n    \"proposal\": {\n      \"outputPath\": \"proposal.md\",\n      \"resolvedOutputPath\": \"<schema-smoke-directory>/project/openspec/changes/greeting/proposal.md\",\n      \"existingOutputPaths\": []\n    },\n    \"specs\": {\n      \"outputPath\": \"specs/**/*.md\",\n      \"resolvedOutputPath\": \"<schema-smoke-directory>/project/openspec/changes/greeting/specs/**/*.md\",\n      \"existingOutputPaths\": []\n    },\n    \"design\": {\n      \"outputPath\": \"design.md\",\n      \"resolvedOutputPath\": \"<schema-smoke-directory>/project/openspec/changes/greeting/design.md\",\n      \"existingOutputPaths\": []\n    },\n    \"tasks\": {\n      \"outputPath\": \"tasks.md\",\n      \"resolvedOutputPath\": \"<schema-smoke-directory>/project/openspec/changes/greeting/tasks.md\",\n      \"existingOutputPaths\": []\n    }\n  },\n  \"isPlanningComplete\": false,\n  \"isComplete\": false,\n  \"applyRequires\": [\n    \"tasks\"\n  ],\n  \"nextSteps\": [\n    \"Run openspec instructions proposal --change \\\"greeting\\\" --json before writing that artifact.\"\n  ],\n  \"actionContext\": {\n    \"mode\": \"repo-local\",\n    \"sourceOfTruth\": \"repo\",\n    \"planningArtifacts\": [\n      \"proposal\",\n      \"specs\",\n      \"design\",\n      \"tasks\"\n    ],\n    \"linkedContext\": [],\n    \"allowedEditRoots\": [\n      \"<schema-smoke-directory>/project\"\n    ],\n    \"requiresAffectedAreaSelection\": false,\n    \"constraints\": [\n      \"Repo-local change artifacts and implementation edits are scoped to this project.\"\n    ]\n  },\n  \"artifacts\": [\n    {\n      \"id\": \"proposal\",\n      \"outputPath\": \"proposal.md\",\n      \"status\": \"ready\",\n      \"requires\": []\n    },\n    {\n      \"id\": \"specs\",\n      \"outputPath\": \"specs/**/*.md\",\n      \"status\": \"blocked\",\n      \"requires\": [\n        \"proposal\"\n      ],\n      \"missingDeps\": [\n        \"proposal\"\n      ]\n    },\n    {\n      \"id\": \"design\",\n      \"outputPath\": \"design.md\",\n      \"status\": \"blocked\",\n      \"requires\": [\n        \"proposal\"\n      ],\n      \"missingDeps\": [\n        \"proposal\"\n      ]\n    },\n    {\n      \"id\": \"tasks\",\n      \"outputPath\": \"tasks.md\",\n      \"status\": \"blocked\",\n      \"requires\": [\n        \"specs\",\n        \"design\"\n      ],\n      \"missingDeps\": [\n        \"specs\",\n        \"design\"\n      ]\n    }\n  ],\n  \"root\": {\n    \"path\": \"<schema-smoke-directory>/project\",\n    \"source\": \"nearest\"\n  }\n}\n",
+      "stderr": ""
+    },
+    {
+      "check": "Read native proposal instructions",
+      "command": [
+        "node",
+        "<repository>/node_modules/@fission-ai/openspec/bin/openspec.js",
+        "instructions",
+        "proposal",
+        "--change",
+        "greeting",
+        "--json"
+      ],
+      "exit": 0,
+      "stdout": "{\n  \"changeName\": \"greeting\",\n  \"artifactId\": \"proposal\",\n  \"schemaName\": \"das-work-schema\",\n  \"changeDir\": \"<schema-smoke-directory>/project/openspec/changes/greeting\",\n  \"planningHome\": {\n    \"kind\": \"repo\",\n    \"root\": \"<schema-smoke-directory>/project\",\n    \"changesDir\": \"<schema-smoke-directory>/project/openspec/changes\",\n    \"defaultSchema\": \"spec-driven\"\n  },\n  \"outputPath\": \"proposal.md\",\n  \"resolvedOutputPath\": \"<schema-smoke-directory>/project/openspec/changes/greeting/proposal.md\",\n  \"existingOutputPaths\": [],\n  \"description\": \"Outcome and affected capabilities\",\n  \"instruction\": \"Read the installed workflow skill. Establish the problem, desired outcome and scope from the request and source evidence.\\nUse grilling and domain-modeling when the outcome or vocabulary needs clarification. Reuse settled answers.\\nIdentify existing capabilities with openspec list --specs and read relevant specs with openspec show <id> --type spec.\\nCarry the selected --store flag. Preserve existing capability paths.\\nList introduced and modified capabilities and affected code repositories. Link related Linear entities where they exist.\\nA change with no externally visible specification change declares skip_specs: true in .openspec.yaml.\\nRecord the actual reason; invent no requirements to satisfy validation.\\n\",\n  \"context\": \"Project context remains intact\",\n  \"template\": \"## Why\\n\\nDescribe the problem and desired outcome.\\n\\n## What changes\\n\\nState the agreed scope.\\n\\n## Capabilities\\n\\n### New capabilities\\n\\n### Modified capabilities\\n\\n## Impact\\n\\nName affected repositories and external contracts.\\n\\n## Linear\\n\\nLink related work when available.\\n\",\n  \"dependencies\": [],\n  \"unlocks\": [\n    \"specs\",\n    \"design\"\n  ],\n  \"root\": {\n    \"path\": \"<schema-smoke-directory>/project\",\n    \"source\": \"nearest\"\n  }\n}\n",
+      "stderr": ""
+    },
+    {
+      "check": "Register isolated schema store",
+      "command": [
+        "node",
+        "<repository>/node_modules/@fission-ai/openspec/bin/openspec.js",
+        "store",
+        "setup",
+        "schema-plans",
+        "--path",
+        "<schema-smoke-directory>/plans",
+        "--no-init-git",
+        "--json"
+      ],
+      "exit": 0,
+      "stdout": "{\n  \"store\": {\n    \"id\": \"schema-plans\",\n    \"root\": \"<schema-smoke-directory>/plans\",\n    \"metadata_path\": \"<schema-smoke-directory>/plans/.openspec-store/store.yaml\"\n  },\n  \"registry\": {\n    \"path\": \"<schema-smoke-directory>/data/openspec/stores/registry.yaml\",\n    \"registered\": true,\n    \"already_registered\": false\n  },\n  \"git\": {\n    \"is_repository\": false,\n    \"initialized\": false,\n    \"committed\": false\n  },\n  \"created_files\": [\n    \"openspec/\",\n    \"openspec/specs/\",\n    \"openspec/changes/\",\n    \"openspec/changes/archive/\",\n    \"openspec/config.yaml\",\n    \"openspec/specs/.gitkeep\",\n    \"openspec/changes/archive/.gitkeep\",\n    \".openspec-store/store.yaml\"\n  ],\n  \"status\": []\n}\n",
+      "stderr": ""
+    },
+    {
+      "check": "Install schema into shared planning root",
+      "command": [
+        "node",
+        "<repository>/scripts/install.mjs",
+        "--skills-dir",
+        "<schema-smoke-directory>/skills",
+        "--planning-root",
+        "<schema-smoke-directory>/plans",
+        "--select-schema"
+      ],
+      "exit": 0,
+      "stdout": "{\n  \"skillsDirectory\": \"<schema-smoke-directory>/skills\",\n  \"planningRoot\": \"<schema-smoke-directory>/plans\",\n  \"schema\": \"das-work-schema\",\n  \"files\": 133,\n  \"changed\": 7\n}\n",
+      "stderr": ""
+    },
+    {
+      "check": "Resolve shared das-work-schema",
+      "command": [
+        "node",
+        "<repository>/node_modules/@fission-ai/openspec/bin/openspec.js",
+        "schemas",
+        "--store",
+        "schema-plans",
+        "--json"
+      ],
+      "exit": 0,
+      "stdout": "[\n  {\n    \"name\": \"das-work-schema\",\n    \"description\": \"Linear-linked change planning with behavioral specifications and evidence-backed tasks\",\n    \"artifacts\": [\n      \"proposal\",\n      \"specs\",\n      \"design\",\n      \"tasks\"\n    ],\n    \"source\": \"project\"\n  },\n  {\n    \"name\": \"spec-driven\",\n    \"description\": \"Default OpenSpec workflow - proposal \u2192 specs \u2192 design \u2192 tasks\",\n    \"artifacts\": [\n      \"proposal\",\n      \"specs\",\n      \"design\",\n      \"tasks\"\n    ],\n    \"source\": \"package\"\n  }\n]\n",
+      "stderr": ""
+    },
+    {
+      "check": "Validate bundle links and metadata",
+      "command": [
+        "npm",
+        "run",
+        "check"
+      ],
+      "exit": 0,
+      "stdout": "\n> client-skills@1.0.0 check\n> node scripts/check.mjs\n\n{\n  \"skills\": 51,\n  \"templates\": 45,\n  \"files\": 127,\n  \"localReferences\": \"valid\",\n  \"portableMetadata\": \"valid\",\n  \"schemaTemplates\": \"present\"\n}\n",
+      "stderr": ""
     }
   ],
   "pathRedaction": "Workstation repository and temporary paths replaced with symbolic locations; command results unchanged."

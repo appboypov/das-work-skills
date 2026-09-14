@@ -48,7 +48,7 @@ Continue working on a change by creating the next artifact.
    **If all planning artifacts are complete (`isPlanningComplete: true`)**:
    - Congratulate the user
    - Show final status including the schema used
-   - Suggest: "Planning is complete! You can now implement this change. Once implementation and any tracked work are complete, archive it."
+   - Recommend `implement` for a bounded approved slice or `implement-spec` for the approved dependency graph. Name `code-review` and `openspec-verify-change` as the subsequent evidence checks, with `openspec-archive-change` after completion.
    - STOP
 
    ---

@@ -10,9 +10,18 @@ Use temporary `XDG_CONFIG_HOME` and `XDG_DATA_HOME` directories for store and wo
 
 1. Install the complete bundle through the skills CLI with `--copy` in a temporary project. Expect 51 skill directories including `ask-skuddy`, `setup-work-skills` and `workflow`.
 2. Read the installed setup guide, schema and issue templates without opening the source repository. Expect all local references to resolve inside the installed bundle.
-3. Follow installed setup to copy the schema into the temporary planning root and select it. Expect native schema validation to pass.
-4. Ask the host to read `ask-skuddy/SKILL.md` from the installed directory. Expect Skuddy to identify the appropriate activity and preserve the user's scope.
+3. Follow installed setup to select `das-work-schema` and record confirmed project context in `.das-work` at the project root. Expect native schema validation to pass, unrelated OpenSpec configuration to remain intact, and the project instructions to point to `.das-work`.
+4. Ask the host to read `ask-skuddy/SKILL.md` from the installed directory. Expect a recommendation naming the exact next skill, its link, why it fits and its expected result, followed by the relevant conditional skill path.
 5. Review local skill customizations before requesting package-manager updates. The optional maintainer installer has separate collision and idempotence checks recorded in verification.
+
+## Receive skill-based advice
+
+1. Provide a completed implementation with current requirements and passing behavior checks, but no review. Ask Skuddy what comes next. Expect `code-review`, followed conditionally by `openspec-verify-change` and `openspec-archive-change`, with reasons and prerequisites.
+2. Provide an unclear feature request without an agreed outcome. Expect a clarification skill suited to the available project context before specification or implementation.
+3. Provide a confirmed plan with one approved pending slice. Expect `implement` for that slice and the applicable review and verification skills, without restarting completed planning.
+4. Revise a requirement after implementation. Expect `openspec-update-change` before applying the revised work and rechecking it. Existing completion evidence is reconsidered.
+5. Ask for advice on shaping collected writing material. Expect a relevant writing skill from the installed bundle and its next useful result.
+6. Ask for recommendations only. Expect advice without starting implementation or mutating project files.
 
 ## Plan and implement a local change
 

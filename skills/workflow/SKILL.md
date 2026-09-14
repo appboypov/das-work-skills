@@ -8,7 +8,7 @@ All bundle guidance, templates and schema files travel with the installed skills
 
 ## Establish context
 
-Read the requested scope, project instructions, relevant source, and existing work before choosing a skill. Use the project's language and conventions. For software changes, identify the selected OpenSpec change, its planning root, participating code repositories and related Linear URLs. Reuse that context across skills.
+Read the requested scope, project instructions, the project root's `.das-work`, relevant source, and existing work before choosing a skill. `.das-work` holds the project context described in [setup](references/setup.md#project-context). Use the project's language and conventions. For software changes, identify the selected OpenSpec change, its planning root, participating code repositories and related Linear URLs. Reuse that context across skills.
 
 Linear is the default work manager. Read [linear](../linear/SKILL.md) when organizing work or reporting relevant progress. OpenSpec holds evolving specifications, design and implementation tasks. Linear issue descriptions use their type's template at creation and remain the initial brief. Subsequent relevant decisions, blockers and completed local results belong in short issue comments. Record issue URLs alongside the corresponding OpenSpec tasks. Comments communicate meaningful changes rather than every local action.
 
@@ -16,7 +16,7 @@ Standalone writing, learning and research use their own useful artifacts. Associ
 
 ## Resolve OpenSpec context
 
-Use OpenSpec 1.13.0. Read command help for the operation, then read `openspec status --change <name> --json` and `openspec instructions <artifact> --change <name> --json` as needed. Use the `client-work` schema for this bundle's software changes.
+Use OpenSpec 1.13.0. Read command help for the operation, then read `openspec status --change <name> --json` and `openspec instructions <artifact> --change <name> --json` as needed. Use the `das-work-schema` schema for this bundle's software changes.
 
 When a store is selected, carry `--store <id>` through every operation accepting it and every handoff. Read the CLI's resolved root, output paths and context files. Artifact paths belong to the planning root; source edits belong to the participating code repositories. Read [stores](../openspec-store/SKILL.md) for shared planning and [worksets](../openspec-workset/SKILL.md) for folder groups.
 
@@ -33,6 +33,8 @@ Review the complete relevant implementation with [code-review](../code-review/SK
 ## Portable interaction
 
 Use the host's available file, search, command and question capabilities. Read another skill through its linked `SKILL.md`; host-specific invocation syntax is optional. Present questions about behaviors and outcomes through question tools when available, otherwise in concise conversation. Ask only decisions not settled by sources or earlier answers, one subject per question, in waves whose prerequisites are known.
+
+When recommending work, name the exact installed skill and link its `SKILL.md`, explain why it fits the current evidence, and state the result it should produce. Use [ask-skuddy](../ask-skuddy/SKILL.md) to assemble the relevant skills into an ordered path. Distinguish the next ready skill from later steps with unresolved prerequisites.
 
 Perform work directly. Where the user permits delegation and the host supports it, independent assignments may run concurrently with explicit inputs, output ownership and acceptance criteria. The same dependency order works sequentially. A missing capability blocks only the action that requires it; state the missing prerequisite accurately. Use credentials through the available authenticated connection and keep secrets out of artifacts and handoffs.
 

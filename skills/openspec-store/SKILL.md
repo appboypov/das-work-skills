@@ -18,7 +18,7 @@ Root selection follows explicit `--store`, then local specs/changes, then the pr
 
 1. Obtain the intended store identity and location from the agreed project. Reuse an existing registered store when it owns the work.
 2. For authorized creation, use `openspec store setup <id> --path <path> --json`. Setup initializes Git and an initial commit by default; pass `--no-init-git` when Git initialization is outside the request. `--remote <url>` records its canonical clone source. Read help before applying additional options.
-3. Install `client-work` in the store's `openspec/schemas/` and select it in the store configuration. Keep project-specific context and rules in that root's config.
+3. Install `das-work-schema` in the store's `openspec/schemas/` and select it in the store configuration. Keep project-specific context and rules in that root's config.
 4. To share a store, use the user's authorized Git publication process. Teammates clone it and run `openspec store register <path>` on their machine. Registration associates an existing checkout; confirm the stored identity and location afterward.
 5. Verify with `openspec store doctor <id>` and `openspec context --store <id> --json`. Commands inspect the registered local checkout. Fetching or publishing remote content is a separate authorized Git action.
 

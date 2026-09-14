@@ -15,7 +15,7 @@ Implementation and checks were performed directly by the main agent. No subagent
 | Source protection | A destination nested inside the source skill tree was rejected |
 | Store-pointer protection | A code repository pointing to a store was rejected as a schema installation root before destination writes |
 | Config preservation | Existing reference-store configuration survived explicit schema selection |
-| Native schema | `schema validate client-work --json` returned `valid: true` and no issues |
+| Native schema | `schema validate das-work-schema --json` returned `valid: true` and no issues |
 | Planning instructions | Proposal, specs, design and tasks resolved through the custom schema |
 | Missing prerequisites | Apply instructions returned `blocked` with the actual missing artifacts |
 | Ready work | Complete planning with an unchecked task returned `ready` |
@@ -27,7 +27,7 @@ Implementation and checks were performed directly by the main agent. No subagent
 | Store-only routing | A config-only code repository resolved its registered planning store |
 | Store-optional routing | Unscoped context stayed local; explicit store selection resolved the store |
 | Cross-directory continuation | Shared status from a different repository resolved the same store change |
-| Store schema lookup | `schemas --store smoke-plans --json` returned the store-local `client-work` schema |
+| Store schema lookup | `schemas --store smoke-plans --json` returned the store-local custom schema |
 | Read-only references | Artifact instructions included the reference index and fetch command; its spec bytes stayed unchanged |
 | Multi-repository behavior | Both temporary repository commands printed `Hello Ada!` |
 | Shared archive | Archive invoked from a code checkout updated current specs and history in the selected store only |
@@ -49,13 +49,15 @@ The first installer run encountered macOS's system directory symlink. The instal
 
 The first non-interactive workset removal required `--yes`. The delivered workset instructions include that confirmed option, and the subsequent removal passed.
 
-The CLI's creation progress message and `planningHome.defaultSchema` can say `spec-driven` while the created change and its `schemaName` correctly use `client-work`. Schema instructions and validation confirmed the selected custom schema. Consumers use the change's `schemaName` and returned artifact paths.
+The CLI's creation progress message and `planningHome.defaultSchema` can say `spec-driven` while the created change uses the selected custom schema. Schema instructions and validation confirmed the selection. Consumers use the change's `schemaName` and returned artifact paths.
 
 ## Evidence and limits
 
 The standard skills CLI also installed all 51 skills with `--copy` into a temporary client project. The installed tree contained the setup guide, schema, templates, licenses and provenance without symlinks to the checkout. Copying the installed schema into that project and running OpenSpec through an independent `npx --package @fission-ai/openspec@1.13.0` invocation passed native validation. Client operation requires no source-repository files.
 
 [checks.json](checks.json) records command invocations with output, including initial findings and intentionally rejected operations. [source-checksums.json](source-checksums.json) identifies the checked skill and script files. Historical command paths reflect their execution locations.
+
+Schema naming and project-context checks confirmed `das-work-schema` in installer output, native schema validation, new-change status and artifact instructions. Reinstallation changed zero files and preserved unrelated configuration and comments. Setup and resumed work use `.das-work`; Skuddy's recommendation contract names installed skills, explains their purpose and orders the relevant steps. The acceptance journeys cover review, clarification, approved work, revisions, writing and advice-only requests. These routing checks are instruction review, not a claim of execution across every agent.
 
 The CLI smoke journeys were authored and executed by the main agent using the delivered workflow rules. They establish installer behavior, native schema compatibility, actual command behavior and planning-root resolution. Skill instructions are agent guidance, not runtime enforcement of approval or evidence.
 

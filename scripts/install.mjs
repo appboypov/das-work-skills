@@ -67,10 +67,10 @@ function install() {
     const config = parseDocument(existsSync(configPath) ? readFileSync(configPath, 'utf8') : '{}\n');
     if (config.errors.length || !config.toJS() || typeof config.toJS() !== 'object' || Array.isArray(config.toJS())) throw new Error(`Invalid planning config: ${configPath}`);
     if (config.get('store') && !existsSync(join(specRoot, 'specs')) && !existsSync(join(specRoot, 'changes'))) throw new Error('The planning root is a store pointer. Select the actual registered store directory.');
-    const schemaSource = join(source, 'skills', 'workflow', 'schemas', 'client-work');
-    for (const relative of files(schemaSource)) planned.set(join(specRoot, 'schemas', 'client-work', relative), readFileSync(join(schemaSource, relative)));
+    const schemaSource = join(source, 'skills', 'workflow', 'schemas', 'das-work-schema');
+    for (const relative of files(schemaSource)) planned.set(join(specRoot, 'schemas', 'das-work-schema', relative), readFileSync(join(schemaSource, relative)));
     if (options.selectSchema) {
-      config.set('schema', 'client-work');
+      config.set('schema', 'das-work-schema');
       planned.set(configPath, Buffer.from(config.toString()));
     }
   }
@@ -96,7 +96,7 @@ function install() {
   }
   mkdirSync(target, { recursive: true });
   writeFileSync(receiptPath, `${JSON.stringify(receipt, null, 2)}\n`);
-  console.log(JSON.stringify({ skillsDirectory: target, planningRoot: planningRoot ?? null, schema: planningRoot ? 'client-work' : null, files: planned.size, changed }, null, 2));
+  console.log(JSON.stringify({ skillsDirectory: target, planningRoot: planningRoot ?? null, schema: planningRoot ? 'das-work-schema' : null, files: planned.size, changed }, null, 2));
 }
 
 try { install(); } catch (error) { console.error(error.message); process.exitCode = 1; }

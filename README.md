@@ -12,9 +12,9 @@ npx skills add appboypov/das-work-skills --skill '*' --copy
 
 Use `--global` for user-level installation. `--copy` makes the installation independent of a source checkout.
 
-Then ask the agent to run **setup-work-skills**. Setup instructions, the custom schema, templates, acceptance journeys, provenance and licenses are all inside the installed skills. OpenSpec installs independently of this repository. Clients do not need to return here.
+Then ask the agent to run **setup-work-skills**. It records project context in `.das-work` and selects `das-work-schema` in OpenSpec. Setup instructions, schema templates, acceptance journeys, provenance and licenses are all inside the installed skills. OpenSpec installs independently of this repository. Clients do not need to return here.
 
-Start everyday work with **ask-skuddy**. Linear holds the initial templated briefs and meaningful comments. OpenSpec holds evolving specs, design, tasks and evidence.
+Start everyday work with **ask-skuddy**. It recommends exact skill names with links, explains why they fit and lays out the relevant skill sequence. Linear holds the initial templated briefs and meaningful comments. OpenSpec holds evolving specs, design, tasks and evidence.
 
 ## Maintainers
 

@@ -44,7 +44,7 @@ for (const file of files.filter((file) => file.endsWith('.md'))) {
 }
 const templateFiles = files.filter((file) => file.includes(`${sep}workflow${sep}templates${sep}`) && file.endsWith('.md'));
 if (templateFiles.length !== 45) errors.push(`Expected 45 supplied templates, found ${templateFiles.length}`);
-const schema = parse(readFileSync(join(skills, 'workflow/schemas/client-work/schema.yaml'), 'utf8'));
-for (const artifact of schema.artifacts) if (!existsSync(join(skills, 'workflow/schemas/client-work/templates', artifact.template))) errors.push(`Missing artifact template: ${artifact.template}`);
+const schema = parse(readFileSync(join(skills, 'workflow/schemas/das-work-schema/schema.yaml'), 'utf8'));
+for (const artifact of schema.artifacts) if (!existsSync(join(skills, 'workflow/schemas/das-work-schema/templates', artifact.template))) errors.push(`Missing artifact template: ${artifact.template}`);
 if (errors.length) { console.error(errors.join('\n')); process.exitCode = 1; }
 else console.log(JSON.stringify({ skills: names.size, templates: templateFiles.length, files: files.length, localReferences: 'valid', portableMetadata: 'valid', schemaTemplates: 'present' }, null, 2));
