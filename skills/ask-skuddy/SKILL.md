@@ -13,7 +13,7 @@ Resolve [intent context](../workflow/SKILL.md#intent-context) before framework w
 | Situation | Skill |
 | --- | --- |
 | Project needs setup | [setup-work-skills](../setup-work-skills/SKILL.md) |
-| Installed skills need updating | [update-work-skills](../update-work-skills/SKILL.md) |
+| Installed DAS work skills need updating | [update-work-skills](../update-work-skills/SKILL.md) |
 | Outcome or behavior is unclear | [grill-with-docs](../grill-with-docs/SKILL.md) in a project; [grill-me](../grill-me/SKILL.md) for a standalone question |
 | A large effort has unresolved decisions | [wayfinder](../wayfinder/SKILL.md) |
 | A fact needs primary-source evidence | [research](../research/SKILL.md) |

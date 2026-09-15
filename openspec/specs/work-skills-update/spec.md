@@ -2,24 +2,33 @@
 
 ## Purpose
 
-Let users update their installed skill bundles through one portable skill using the existing updater and its installation records.
+Let users refresh the DAS work skills bundle in its existing global and current-project installations through the skills CLI.
 
 ## Requirements
 
-### Requirement: Update installed bundles in place
+### Requirement: Update installed DAS work skills
 
-The bundle SHALL provide a discoverable `update-work-skills` skill that invokes the existing skills updater for all installed bundles in global and current-project scope using their recorded installation destinations.
+The bundle SHALL provide a discoverable `update-work-skills` skill that considers the global configuration and current project to determine where this bundle is installed. It SHALL run `npx skills add appboypov/das-work-skills --global --skill '*'` for an existing global installation and `npx skills add appboypov/das-work-skills --skill '*'` from the current project for an existing local installation.
 
 #### Scenario: Global and project installations exist
 
-- **WHEN** the user invokes update-work-skills from a project with installed skills and has globally installed skills
-- **THEN** the skill runs the updater for both scopes without restricting the operation to the DAS bundle
-- **AND** the updater owns destination selection through its existing installation records
+- **WHEN** DAS work skills are installed globally and in the current project
+- **THEN** the skill runs both commands to refresh this bundle in both scopes
 
-#### Scenario: Only global installations exist
+#### Scenario: Only a global installation exists
 
-- **WHEN** the user invokes update-work-skills where no project skills are installed
-- **THEN** the skill still runs the global update and reports the updater's project-scope result
+- **WHEN** DAS work skills are installed globally but not in the current project
+- **THEN** the skill runs only the global command
+
+#### Scenario: Only a project installation exists
+
+- **WHEN** DAS work skills are installed in the current project but not globally
+- **THEN** the skill runs only the local command from the current project
+
+#### Scenario: Neither installation exists
+
+- **WHEN** DAS work skills are installed in neither scope
+- **THEN** the skill reports that there is no installation to update and runs neither command
 
 ### Requirement: Report the actual update result
 

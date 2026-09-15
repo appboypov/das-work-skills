@@ -53,10 +53,6 @@ Start with the current outcome and evidence. Skuddy recommends exact installed s
 
 The supplied [issue](../templates/issues/), [task](../templates/tasks/) and [action](../templates/actions/) templates are available here after installation. [Provenance](../upstream.json) and [licenses](../licenses/) travel with them.
 
-Update globally installed skills from any directory:
+Use [update-work-skills](../../update-work-skills/SKILL.md) to refresh this bundle wherever it is installed in the global configuration or current project.
 
-```sh
-npx skills update --global
-```
-
-This updates all global skills, including this bundle. Review local skill customizations before updating. Existing project schemas retain their own copies; compare them with the updated installed schema and revalidate after an approved schema update.
+Review local skill customizations before updating. Existing project schemas retain their own copies; compare them with the updated installed schema and revalidate after an approved schema update.

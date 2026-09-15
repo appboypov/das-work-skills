@@ -12,7 +12,7 @@ Use temporary `XDG_CONFIG_HOME` and `XDG_DATA_HOME` directories for store and wo
 2. Read the installed setup guide, schema and issue templates without opening the source repository. Expect all local references to resolve inside the installed bundle.
 3. Follow installed setup to select `das-work-schema` and record confirmed project context in `.das-work` at the project root, including the intent folder and one brain folder. Expect native schema validation to pass, unrelated OpenSpec configuration to remain intact, and the project instructions to point to `.das-work`.
 4. Ask the host to read `ask-skuddy/SKILL.md` from the installed directory. Expect a recommendation naming the exact next skill, its link, why it fits and its expected result, followed by the relevant conditional skill path.
-5. Review local skill customizations, then run `npx skills update --global` in that isolated environment. Expect the CLI to check and update global installations, including this bundle. Confirm project-local OpenSpec schema copies remain separate. The optional maintainer installer has separate collision and idempotence checks recorded in verification.
+5. Review local skill customizations, then invoke [update-work-skills](../../update-work-skills/SKILL.md). Expect it to refresh only this bundle: globally when installed globally, in the current project when installed locally, or both when both installations exist. Confirm project-local OpenSpec schema copies remain separate. The optional maintainer installer has separate collision and idempotence checks recorded in verification.
 
 ## Receive skill-based advice
 

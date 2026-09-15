@@ -1,9 +1,12 @@
 ---
 name: update-work-skills
-description: Update installed skill bundles through the skills CLI. Use when the user wants to update their installed skills.
+description: Update installed DAS work skills globally or in the current project. Use when the user wants to update this bundle.
 ---
 # Update work skills
 
-1. Use the user's target project as the working directory, or the current directory when no project is involved.
-2. Run `npx skills update --global --project`. This updates all bundles tracked by the updater in global and current-project scope using their existing installation records and destinations.
-3. Read the output and exit status. Report the actual updates or up-to-date result, including any skipped skills or failures.
+1. Consider the current project's configuration and the global configuration to determine where DAS work skills are installed.
+2. Run the command for each existing installation:
+   - Global: `npx skills add appboypov/das-work-skills --global --skill '*'`
+   - Current project: `npx skills add appboypov/das-work-skills --skill '*'`, run from the current project directory.
+   - If both installations exist, run both commands. If neither exists, report that there is no installation to update.
+3. Read each command's output and exit status. Report the actual result, including any skipped skills or failures.

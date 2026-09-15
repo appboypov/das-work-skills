@@ -20,13 +20,9 @@ Framework work discovers relevant active intents and confirms reuse or creation 
 
 ## Update
 
-Ask the agent to run [update-work-skills](skills/update-work-skills/SKILL.md), or run this command from the project whose skills you want to update:
+Ask the agent to run [update-work-skills](skills/update-work-skills/SKILL.md). It refreshes this bundle globally when installed globally, locally when installed in the current project, or both when both installations exist.
 
-```sh
-npx skills update --global --project
-```
-
-This updates all bundles tracked by the skills CLI in global and current-project installations. The updater uses their existing installation records and destinations. Review local skill customizations before updating. Project-local OpenSpec schema copies are updated separately through **setup-work-skills**.
+Review local skill customizations before updating. Project-local OpenSpec schema copies are updated separately through **setup-work-skills**.
 
 ## Maintainers
 
