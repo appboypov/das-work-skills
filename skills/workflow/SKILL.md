@@ -49,6 +49,18 @@ Use [tdd](../tdd/SKILL.md) at useful behavioral seams. Exercise the actual chang
 
 Review the complete relevant implementation with [code-review](../code-review/SKILL.md). Verification reports conformance and remaining findings. Synchronization updates current specs; the archive skills file the change and preserve its knowledge through [brain ingestion](references/brain-ingestion.md). Complete the selected specification reconciliation, archive operation, ingestion and readback before reporting archive completion. Publication, commits, PR creation and merging follow the user's authorization and project's policy. Multi-repository changes retain evidence and publication state for each repository.
 
+### Issue worktrees
+
+Linear issue implementation uses worktrees by default. The issue released as one outcome owns the integration branch and worktree in each participating repository, normally a story or bug. Determine ownership from what ships together. Establish that worktree from the repository's default branch before the first repository edit for the outcome. An independently shipped issue owns its own worktree.
+
+Issues beneath that outcome use their own worktrees, branching from the owning issue's branch even while it is unmerged. Merge their completed work locally into the owning branch. The owning issue has one pull request to the default branch per repository, containing the combined work. Implementation, review markers, fixes and checks run in the worktree for the issue being worked on. Carry its path and base branch into task context and handoffs.
+
+Resolve the worktree folder through [project context](references/setup.md#project-context). Place each worktree under `{folder}/{organisation key}/{repo}/{branch}`, using the project's established organisation and repository names and the issue's Linear branch name. Where the plx CLI is available, use `plx create worktree --issue {identifier} --base {base}` and pass `--path {path}` when the configured destination differs from its default. Otherwise use `git worktree add` with the same branch, base and destination. Reuse an existing worktree for the same issue.
+
+Keep the main checkout on the repository's default branch throughout. Fetch and fast-forward it before creating worktrees, when resuming issue work, and immediately after each merge to the default branch. Preserve concurrent local changes; report any obstruction to that update rather than overwriting them. Apply an explicitly selected project direct-to-main mode where configured. Record-only work in a shared administrative workspace follows that workspace's main-branch policy.
+
+After opening the owning issue's pull request, babysit it until merged, closed or the user stops monitoring. Watch required checks, conflicts and review feedback, handling fixes in its worktree. Use the host's supported persistent follow-up when monitoring must continue beyond the active turn. After the user's approval and successful required checks, squash-merge the approved revision and immediately update the main checkout as above. Keep the remote branch; remove local worktrees and branches through the project's source-preservation policy.
+
 ## Portable interaction
 
 Use the host's available file, search, command and question capabilities. Read another skill through its linked `SKILL.md`; host-specific invocation syntax is optional. Present questions about behaviors and outcomes through question tools when available, otherwise in concise conversation. Ask only decisions not settled by sources or earlier answers, one subject per question, in waves whose prerequisites are known.

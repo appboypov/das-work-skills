@@ -28,9 +28,11 @@ Use temporary `XDG_CONFIG_HOME` and `XDG_DATA_HOME` directories for store and wo
 1. Ask Skuddy to plan a temporary CLI that prints `Hello Ada` when passed `Ada`. Expect proposal, greeting specification, design and tasks in the selected OpenSpec change. Expect implementation approval to remain pending.
 2. Run `openspec status --change <change> --json`. Expect the selected schema and paths to identify the temporary project.
 3. Run `openspec validate <change> --strict`. Expect a valid change with a requirement and scenario.
-4. Approve implementation and ask Skuddy to implement the change. Expect the actual command to print `Hello Ada`, task completion after the check, and recorded execution evidence.
+4. Approve implementation and ask Skuddy to implement the change for its linked Linear issue. Expect the actual command to print `Hello Ada`, task completion after the check, and recorded execution evidence. Expect edits, review and fixes in the issue worktree at the destination resolved from `Worktree folder`, with the main checkout current on its default branch. Repeat with a relative configured folder while resuming from another directory; expect resolution from the defining `.das-work`. Without an entry, expect the documented default.
 5. Ask for review. Expect current requirements and the complete relevant implementation, including uncommitted work, to be examined.
 6. Ask for verification and then archive the completed change. Expect the current greeting specification under `openspec/specs/`, the change under `openspec/changes/archive/`, and read-back brain records containing the outcome and its sources. Expect the completion report to name both archive and brain paths.
+
+For an outcome with subordinate issues, expect their worktrees to branch from the owning issue's branch and merge back locally. Expect one combined PR per repository. Exercise review feedback in the owning worktree, then approve the passing PR. Expect a squash merge and an immediate main-checkout update while the remote branch remains. Record whether creation used plx or Git and distinguish local fixture checks from live PR approval and monitoring.
 
 ## Revise completed work
 

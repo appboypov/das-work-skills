@@ -12,7 +12,7 @@ npx skills add appboypov/das-work-skills --global --skill '*'
 
 The skills CLI manages the global installation and links it into the selected agents. Run this command from any directory.
 
-Then ask the agent to run **setup-work-skills**. It records project context in `.das-work`, configures where intents are saved and where the user's single second brain lives, and selects `das-work-schema` in OpenSpec. Setup instructions, schema templates, acceptance journeys, provenance and licenses are all inside the installed skills. OpenSpec installs independently of this repository. Clients do not need to return here.
+Then ask the agent to run **setup-work-skills**. It records project context in `.das-work`, configures where intents are saved, where the user's single second brain lives and where issue worktrees are created, and selects `das-work-schema` in OpenSpec. See [project context](skills/workflow/references/setup.md#project-context) for folder settings and defaults. Setup instructions, schema templates, acceptance journeys, provenance and licenses are all inside the installed skills. OpenSpec installs independently of this repository. Clients do not need to return here.
 
 Start everyday work with **ask-skuddy**. It recommends exact skill names with links, explains why they fit and lays out the relevant skill sequence. Linear holds the initial templated briefs and meaningful comments. OpenSpec holds evolving specs, design, tasks and evidence.
 

@@ -35,7 +35,7 @@ for (const file of files.filter((file) => file.endsWith('.md'))) {
     if (!link || /^(?:[a-z]+:|\/)/i.test(link) || /[<>*{}]/.test(link)) continue;
     if (!existsSync(resolve(dirname(file), decodeURIComponent(link)))) errors.push(`Broken local link: ${file} -> ${link}`);
   }
-  if (/claude|codex|disable-model-invocation|allowed-tools|Skill tool|~\/Work|skills\/our-work-conventions/i.test(content)) errors.push(`Host or personal dependency: ${file}`);
+  if (/claude|codex|disable-model-invocation|allowed-tools|Skill tool|~\/Work\b|skills\/our-work-conventions/i.test(content)) errors.push(`Host or personal dependency: ${file}`);
   for (const marker of ['OPTIONAL', 'JOURNEY', 'SCREEN', 'SKILL', 'STEP', 'WAY_IN']) {
     const start = content.split(`<!-- ${marker}:START`).length;
     const end = content.split(`<!-- ${marker}:END`).length;

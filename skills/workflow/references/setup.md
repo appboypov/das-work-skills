@@ -39,9 +39,11 @@ Make all installed sibling skills discoverable to the host. Start with [ask-skud
 
 ## Project context
 
-Maintain a plain-text Markdown file named `.das-work` at the project root. Read it before setup, advice or resumed work, and update it with confirmed project agreements. Record the project's purpose, relevant repositories, installed skill location, Linear workspace, team and project identifiers and links, planning mode, labelled `Intent folder` and `Brain folder` entries, and references to the selected OpenSpec configuration and project conventions. Include only facts established for this project.
+Maintain a plain-text Markdown file named `.das-work` at the project root. Read it before setup, advice or resumed work, and update it with confirmed project agreements. Record the project's purpose, relevant repositories, installed skill location, Linear workspace, team and project identifiers and links, planning mode, labelled `Intent folder`, `Brain folder` and `Worktree folder` entries, and references to the selected OpenSpec configuration and project conventions. Include only facts established for this project.
 
 The labelled `Intent folder` and `Brain folder` entries configure storage for the workflow. Each entry holds one filesystem path. Relative paths resolve from the defining `.das-work` file rather than the agent's working directory, keeping folder resolution consistent during multi-repository work, shared planning or handoffs. The project configures exactly one brain folder. Intent and brain paths may point to separate roots or a nested arrangement. Read each destination folder for applicable instructions and follow them before creating or modifying records. When a framework operation needs an intent or brain folder that has not been configured, prompt the user for their location choice before writing there.
+
+`Worktree folder` configures the root for [issue worktrees](../SKILL.md#issue-worktrees) and defaults to `~/Worktrees` when omitted. Users may set another location in their project's `.das-work`. Expand `~` against the user's home directory; resolve relative paths from the defining `.das-work`, including when work resumes inside a worktree. Carry that defining context path into handoffs.
 
 Honour an explicit choice to work outside the framework without creating `.das-work` or capturing intents. Advice-only and read-only requests inspect relevant records while leaving `.das-work`, intent records, brain records and Linear state unchanged.
 
